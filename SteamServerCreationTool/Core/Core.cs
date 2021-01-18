@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using SteamServerCreationTool.Data;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -10,7 +13,7 @@ namespace SteamServerCreationTool
 {
     public static class Core
     {
-        public static LoadForm mainRef = null;
+        public static bool debug = false;
 
         public static string softwareName = "StarterPack";
 
@@ -20,7 +23,9 @@ namespace SteamServerCreationTool
         public static string authorContact = "contact@bytevaultstudio.se";
         public static string companyWebsite = "http://bytevaultstudio.se/";
 
-        public static string serversURL = "https://raw.githubusercontent.com/dgibbs64/SteamCMD-AppID-List-Servers/master/steamcmd_appid_servers.json";
+        public static string steamCMDURL = "https://steamcdn-a.akamaihd.net/client/installer/steamcmd.zip";
+        public static string serversURL = "https://api.steampowered.com/ISteamApps/GetAppList/v2/";
+        public static string appDetailsURL = "https://store.steampowered.com/api/appdetails?appids=";
 
         #region Version
 
@@ -119,18 +124,18 @@ namespace SteamServerCreationTool
 
         #region IO
         public static string GetCurrentDirectory() => @AppDomain.CurrentDomain.BaseDirectory;
-        /*
-        public static void SaveCurrentSettings(Applications.Applications applications)
+
+        public static void SaveCurrentSettings(Settings applications)
         {
             using (StreamWriter writer = new StreamWriter("data")) writer.Write(JsonConvert.SerializeObject(applications));
         }
 
-        public static Applications.Applications LoadData()
+        public static Settings LoadData()
         {
-            if (File.Exists("data")) using (StreamReader streamReader = new StreamReader("data", Encoding.UTF8)) return JsonConvert.DeserializeObject<Applications.Applications>(streamReader.ReadToEnd());
-            else return new Applications.Applications();
+            if (File.Exists("data")) using (StreamReader streamReader = new StreamReader("data", Encoding.UTF8)) return JsonConvert.DeserializeObject<Settings>(streamReader.ReadToEnd());
+            else return null;
         }
-        */
+
         #endregion
     }
 }

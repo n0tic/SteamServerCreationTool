@@ -63,9 +63,19 @@ namespace SteamServerCreationTool.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Loading {
+        internal static System.Drawing.Bitmap _016_folder_24_EDIT {
             get {
-                object obj = ResourceManager.GetObject("Loading", resourceCulture);
+                object obj = ResourceManager.GetObject("016-folder-24-EDIT", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _075_reload_EDIT {
+            get {
+                object obj = ResourceManager.GetObject("075-reload-EDIT", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
