@@ -94,6 +94,8 @@ namespace SteamServerCreationTool.Forms
                         ProgressBarInfo.Enabled = true;
                         ProgressBarInfo.Visible = true;
 
+                        this.Text = "Steam Server Creation Tool - Fixing SteamCMD...";
+
                         installedSteamCMDPath = Path.Combine(steamCMDFolderPath, "steamcmd.exe");
                     }
                 }
@@ -126,6 +128,8 @@ namespace SteamServerCreationTool.Forms
 
                 ProgressBarInfo.Enabled = false;
                 ProgressBarInfo.Visible = false;
+
+                this.Text = "Steam Server Creation Tool";
 
                 Core.SaveCurrentSettings(settings);
             }
@@ -222,6 +226,8 @@ namespace SteamServerCreationTool.Forms
         {
             App_InstallLocationBox.Enabled = false;
 
+            this.Text = "Steam Server Creation Tool - Updating server list...";
+
             ProgressBarInfo.Value = 0;
             ProgressBarInfo.Enabled = true;
             ProgressBarInfo.Visible = true;
@@ -303,6 +309,8 @@ namespace SteamServerCreationTool.Forms
                 MessageBox.Show("The result was not exptected. Exiting...");
                 Environment.Exit(0);
             }
+
+            this.Text = "Steam Server Creation Tool";
         }
 
         private void MainForm_Load(object sender, EventArgs e) 

@@ -25,7 +25,6 @@ namespace SteamServerCreationTool
 
         public static string steamCMDURL = "https://steamcdn-a.akamaihd.net/client/installer/steamcmd.zip";
         public static string serversURL = "https://api.steampowered.com/ISteamApps/GetAppList/v2/";
-        public static string appDetailsURL = "https://store.steampowered.com/api/appdetails?appids=";
 
         #region Version
 
