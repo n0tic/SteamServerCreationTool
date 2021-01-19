@@ -78,7 +78,7 @@ namespace SteamServerCreationTool
             }
             catch
             {
-                //mainRef.noticeSystem.SetNoticePanel(true, "SSL/TSL(12) connection could not be established. Networking disabled.", Modules.NoticeSystem.NoticeType.Warning);
+                MessageBox.Show("SSL/TSL(12) connection could not be established. Networking disabled.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
@@ -88,7 +88,7 @@ namespace SteamServerCreationTool
             }
             catch
             {
-                //mainRef.noticeSystem.SetNoticePanel(true, "Could not detect a valid ethernet connection. Networking disabled.", Modules.NoticeSystem.NoticeType.Error);
+                MessageBox.Show("Could not detect a valid ethernet connection. Networking disabled.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }

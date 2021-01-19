@@ -16,9 +16,9 @@ namespace SteamServerCreationTool.Data
     public class InstalledServer
     {
         public string installPath;
-        public SteamApps app;
+        public App app;
 
-        public InstalledServer(string installPath, SteamApps app)
+        public InstalledServer(string installPath, App app)
         {
             this.installPath = installPath;
             this.app = app;

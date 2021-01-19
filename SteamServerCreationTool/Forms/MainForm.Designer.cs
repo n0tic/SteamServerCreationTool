@@ -29,6 +29,8 @@ namespace SteamServerCreationTool.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.InstallCMDButton = new System.Windows.Forms.Button();
             this.LocateSteamCMDButton = new System.Windows.Forms.Button();
             this.SteamServerList = new System.Windows.Forms.ComboBox();
@@ -40,15 +42,22 @@ namespace SteamServerCreationTool.Forms
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.ServersRefreshButton = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.DeleteServerButton = new System.Windows.Forms.Button();
+            this.InstallServerButton = new System.Windows.Forms.Button();
+            this.App_installedLabel = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.App_nameLabel = new System.Windows.Forms.Label();
+            this.App_idLabel = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.App_InstallLocationBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.ValidateBox = new System.Windows.Forms.CheckBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -63,6 +72,8 @@ namespace SteamServerCreationTool.Forms
             this.InstallCMDButton.Size = new System.Drawing.Size(156, 24);
             this.InstallCMDButton.TabIndex = 0;
             this.InstallCMDButton.Text = "Install SteamCMD";
+            this.toolTip1.SetToolTip(this.InstallCMDButton, "Install SteamCMD by selecting install location. Download and unpacking starts imm" +
+        "ediately.");
             this.InstallCMDButton.UseVisualStyleBackColor = true;
             this.InstallCMDButton.Click += new System.EventHandler(this.InstallCMDButton_Click);
             // 
@@ -74,6 +85,7 @@ namespace SteamServerCreationTool.Forms
             this.LocateSteamCMDButton.Size = new System.Drawing.Size(156, 24);
             this.LocateSteamCMDButton.TabIndex = 1;
             this.LocateSteamCMDButton.Text = "Locate SteamCMD";
+            this.toolTip1.SetToolTip(this.LocateSteamCMDButton, "Locate \"steamcmd.exe\" on your drive.");
             this.LocateSteamCMDButton.UseVisualStyleBackColor = true;
             this.LocateSteamCMDButton.Click += new System.EventHandler(this.LocateSteamCMDButton_Click);
             // 
@@ -85,6 +97,8 @@ namespace SteamServerCreationTool.Forms
             this.SteamServerList.Name = "SteamServerList";
             this.SteamServerList.Size = new System.Drawing.Size(344, 21);
             this.SteamServerList.TabIndex = 3;
+            this.toolTip1.SetToolTip(this.SteamServerList, "A full list of servers registered with steam.\r\nList is filtering away linux build" +
+        "s and shows only servers with \"server\" in the name.");
             this.SteamServerList.SelectedIndexChanged += new System.EventHandler(this.SteamServerList_SelectedIndexChanged);
             // 
             // groupBox1
@@ -118,6 +132,7 @@ namespace SteamServerCreationTool.Forms
             this.OpenSteamCMDHelp.Size = new System.Drawing.Size(27, 24);
             this.OpenSteamCMDHelp.TabIndex = 8;
             this.OpenSteamCMDHelp.Text = "?";
+            this.toolTip1.SetToolTip(this.OpenSteamCMDHelp, "Valve SteamCMD Wiki page to find more information about SteamCMD.");
             this.OpenSteamCMDHelp.UseVisualStyleBackColor = true;
             this.OpenSteamCMDHelp.Click += new System.EventHandler(this.OpenSteamCMDHelp_Click);
             // 
@@ -129,6 +144,7 @@ namespace SteamServerCreationTool.Forms
             this.OpenSteamCMDButton.Name = "OpenSteamCMDButton";
             this.OpenSteamCMDButton.Size = new System.Drawing.Size(27, 24);
             this.OpenSteamCMDButton.TabIndex = 4;
+            this.toolTip1.SetToolTip(this.OpenSteamCMDButton, "Open Directory");
             this.OpenSteamCMDButton.UseVisualStyleBackColor = true;
             this.OpenSteamCMDButton.Click += new System.EventHandler(this.OpenSteamCMDButton_Click);
             // 
@@ -163,36 +179,67 @@ namespace SteamServerCreationTool.Forms
             this.ServersRefreshButton.Name = "ServersRefreshButton";
             this.ServersRefreshButton.Size = new System.Drawing.Size(27, 23);
             this.ServersRefreshButton.TabIndex = 9;
+            this.toolTip1.SetToolTip(this.ServersRefreshButton, "Refresh server list by downloading the new list from steam api.");
             this.ServersRefreshButton.UseVisualStyleBackColor = true;
             this.ServersRefreshButton.Click += new System.EventHandler(this.ServersRefreshButton_Click);
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.label7);
-            this.groupBox3.Controls.Add(this.label6);
-            this.groupBox3.Controls.Add(this.label5);
+            this.groupBox3.Controls.Add(this.linkLabel2);
+            this.groupBox3.Controls.Add(this.linkLabel1);
             this.groupBox3.Controls.Add(this.label4);
+            this.groupBox3.Controls.Add(this.ValidateBox);
+            this.groupBox3.Controls.Add(this.DeleteServerButton);
+            this.groupBox3.Controls.Add(this.InstallServerButton);
+            this.groupBox3.Controls.Add(this.App_installedLabel);
+            this.groupBox3.Controls.Add(this.label6);
+            this.groupBox3.Controls.Add(this.App_nameLabel);
+            this.groupBox3.Controls.Add(this.App_idLabel);
             this.groupBox3.Controls.Add(this.button1);
             this.groupBox3.Controls.Add(this.label3);
-            this.groupBox3.Controls.Add(this.textBox1);
+            this.groupBox3.Controls.Add(this.App_InstallLocationBox);
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.label1);
+            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(12, 129);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(389, 154);
+            this.groupBox3.Size = new System.Drawing.Size(389, 160);
             this.groupBox3.TabIndex = 11;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Server Information";
             // 
-            // label7
+            // DeleteServerButton
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(71, 16);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(97, 13);
-            this.label7.TabIndex = 10;
-            this.label7.Text = "App Installed Label";
+            this.DeleteServerButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.DeleteServerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.DeleteServerButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeleteServerButton.Location = new System.Drawing.Point(9, 129);
+            this.DeleteServerButton.Name = "DeleteServerButton";
+            this.DeleteServerButton.Size = new System.Drawing.Size(103, 24);
+            this.DeleteServerButton.TabIndex = 15;
+            this.DeleteServerButton.Text = "Delete Server";
+            this.DeleteServerButton.UseVisualStyleBackColor = true;
+            this.DeleteServerButton.Click += new System.EventHandler(this.DeleteServerButton_Click);
+            // 
+            // InstallServerButton
+            // 
+            this.InstallServerButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InstallServerButton.Location = new System.Drawing.Point(290, 129);
+            this.InstallServerButton.Name = "InstallServerButton";
+            this.InstallServerButton.Size = new System.Drawing.Size(93, 24);
+            this.InstallServerButton.TabIndex = 13;
+            this.InstallServerButton.Text = "Install Server";
+            this.InstallServerButton.UseVisualStyleBackColor = true;
+            this.InstallServerButton.Click += new System.EventHandler(this.InstallServerButton_Click);
+            // 
+            // App_installedLabel
+            // 
+            this.App_installedLabel.AutoSize = true;
+            this.App_installedLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.App_installedLabel.Location = new System.Drawing.Point(71, 16);
+            this.App_installedLabel.Name = "App_installedLabel";
+            this.App_installedLabel.Size = new System.Drawing.Size(0, 13);
+            this.App_installedLabel.TabIndex = 10;
             // 
             // label6
             // 
@@ -204,25 +251,23 @@ namespace SteamServerCreationTool.Forms
             this.label6.TabIndex = 9;
             this.label6.Text = "Installed:";
             // 
-            // label5
+            // App_nameLabel
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(76, 46);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(86, 13);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "App Name Label";
+            this.App_nameLabel.AutoSize = true;
+            this.App_nameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.App_nameLabel.Location = new System.Drawing.Point(76, 46);
+            this.App_nameLabel.Name = "App_nameLabel";
+            this.App_nameLabel.Size = new System.Drawing.Size(0, 13);
+            this.App_nameLabel.TabIndex = 8;
             // 
-            // label4
+            // App_idLabel
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(62, 31);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(69, 13);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "App ID Label";
+            this.App_idLabel.AutoSize = true;
+            this.App_idLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.App_idLabel.Location = new System.Drawing.Point(62, 31);
+            this.App_idLabel.Name = "App_idLabel";
+            this.App_idLabel.Size = new System.Drawing.Size(0, 13);
+            this.App_idLabel.TabIndex = 7;
             // 
             // button1
             // 
@@ -232,6 +277,7 @@ namespace SteamServerCreationTool.Forms
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(27, 22);
             this.button1.TabIndex = 5;
+            this.toolTip1.SetToolTip(this.button1, "Open Directory");
             this.button1.UseVisualStyleBackColor = true;
             // 
             // label3
@@ -244,12 +290,13 @@ namespace SteamServerCreationTool.Forms
             this.label3.TabIndex = 3;
             this.label3.Text = "Install Location:";
             // 
-            // textBox1
+            // App_InstallLocationBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(9, 80);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(341, 20);
-            this.textBox1.TabIndex = 2;
+            this.App_InstallLocationBox.Location = new System.Drawing.Point(9, 80);
+            this.App_InstallLocationBox.Name = "App_InstallLocationBox";
+            this.App_InstallLocationBox.Size = new System.Drawing.Size(341, 20);
+            this.App_InstallLocationBox.TabIndex = 2;
+            this.App_InstallLocationBox.Click += new System.EventHandler(this.App_InstallLocationBox_Click);
             // 
             // label2
             // 
@@ -271,6 +318,53 @@ namespace SteamServerCreationTool.Forms
             this.label1.TabIndex = 0;
             this.label1.Text = "App ID:";
             // 
+            // ValidateBox
+            // 
+            this.ValidateBox.AutoSize = true;
+            this.ValidateBox.Checked = true;
+            this.ValidateBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ValidateBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ValidateBox.Location = new System.Drawing.Point(293, 105);
+            this.ValidateBox.Name = "ValidateBox";
+            this.ValidateBox.Size = new System.Drawing.Size(94, 17);
+            this.ValidateBox.TabIndex = 16;
+            this.ValidateBox.Text = "Validate Install";
+            this.ValidateBox.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(4, 107);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(190, 13);
+            this.label4.TabIndex = 17;
+            this.label4.Text = "Some servers require a \"server token\".";
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic);
+            this.linkLabel1.Location = new System.Drawing.Point(190, 107);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(59, 13);
+            this.linkLabel1.TabIndex = 18;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Get it here!";
+            this.linkLabel1.Click += new System.EventHandler(this.linkLabel1_Click);
+            // 
+            // linkLabel2
+            // 
+            this.linkLabel2.AutoSize = true;
+            this.linkLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabel2.Location = new System.Drawing.Point(323, 9);
+            this.linkLabel2.Name = "linkLabel2";
+            this.linkLabel2.Size = new System.Drawing.Size(65, 13);
+            this.linkLabel2.TabIndex = 19;
+            this.linkLabel2.TabStop = true;
+            this.linkLabel2.Text = "Find Tutorial";
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -280,12 +374,13 @@ namespace SteamServerCreationTool.Forms
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.ProgressBarInfo);
             this.Controls.Add(this.groupBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "MainForm";
+            this.Text = "Steam Server Creation Tool";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -312,11 +407,18 @@ namespace SteamServerCreationTool.Forms
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox App_InstallLocationBox;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label App_nameLabel;
+        private System.Windows.Forms.Label App_idLabel;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label App_installedLabel;
+        private System.Windows.Forms.Button InstallServerButton;
+        private System.Windows.Forms.Button DeleteServerButton;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.CheckBox ValidateBox;
+        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.LinkLabel linkLabel2;
     }
 }

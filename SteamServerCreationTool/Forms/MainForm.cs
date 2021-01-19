@@ -21,6 +21,8 @@ namespace SteamServerCreationTool.Forms
     {
         Settings settings;
         SteamApps apps = null;
+        App selectedApp = null;
+        InstalledServer selectedInstalledApp = null;
 
         public string steamCMDFolderPath;
         public string installedSteamCMDPath;
@@ -81,7 +83,7 @@ namespace SteamServerCreationTool.Forms
                     fbd.Description = "Select steamCMD install location:";
                     fbd.ShowNewFolderButton = true;
 
-                    if (fbd.ShowDialog() == DialogResult.OK)
+                    if (fbd.ShowDialog() == DialogResult.OK && Directory.Exists(fbd.SelectedPath))
                     {
                         //Send content to string
                         steamCMDFolderPath = fbd.SelectedPath;
@@ -160,6 +162,9 @@ namespace SteamServerCreationTool.Forms
         {
             App app = null;
 
+            InstallServerButton.Enabled = false;
+            DeleteServerButton.Enabled = false;
+
             foreach (var item in apps.Applist.Apps)
             {
                 if(item.Name == SteamServerList.SelectedItem.ToString())
@@ -171,46 +176,58 @@ namespace SteamServerCreationTool.Forms
 
             if(app != null)
             {
-                app.Appid.ToString();
-
-                ProgressBarInfo.Enabled = true;
-                ProgressBarInfo.Visible = true;
-
-                using(WebClient wc = new WebClient())
+                selectedApp = app;
+                bool installed = false;
+                for (int i = 0; i < settings.installedServer.Count; i++)
                 {
-                    wc.Headers.Add("User-Agent", "Other");
+                    if (settings.installedServer[i].app.Name == app.Name)
+                    {
+                        installed = true;
+                        selectedInstalledApp = settings.installedServer[i];
+                        break;
+                    }
+                }
 
-                    wc.DownloadStringCompleted += Wc_DownloadStringCompleted;
-                    wc.DownloadStringAsync(new Uri(Core.appDetailsURL + app.Appid.ToString()));
+                App_installedLabel.Text = installed.ToString();
+                App_idLabel.Text = app.Appid.ToString();
+                App_nameLabel.Text = app.Name;
+                if(selectedInstalledApp != null)
+                {
+                    App_InstallLocationBox.Text = selectedInstalledApp.installPath;
+                    if(Directory.Exists(App_InstallLocationBox.Text))
+                    {
+                        InstallServerButton.Enabled = true;
+                        DeleteServerButton.Enabled = true;
+                    }
+                    else
+                    {
+                        InstallServerButton.Enabled = false;
+                        DeleteServerButton.Enabled = false;
+                    }
                 }
             }
-        }
-
-        private void Wc_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
-        {
-            ProgressBarInfo.Enabled = false;
-            ProgressBarInfo.Visible = false;
-
-            if (e.Cancelled)
+            else
             {
-                MessageBox.Show("Downloading of app details was cancelled.");
-                return;
-            }
+                selectedApp = null;
+                selectedInstalledApp = null;
 
-            if(e.Error != null)
-            {
-                MessageBox.Show(e.Error.Message);
-                return;
+                App_installedLabel.Text = "";
+                App_idLabel.Text = "";
+                App_nameLabel.Text = "";
+                App_InstallLocationBox.Text = "";
             }
-
-            Console.WriteLine(e.Result);
         }
 
         private void ServersRefreshButton_Click(object sender, EventArgs e)
         {
+            App_InstallLocationBox.Enabled = false;
+
             ProgressBarInfo.Value = 0;
             ProgressBarInfo.Enabled = true;
             ProgressBarInfo.Visible = true;
+
+            ServersRefreshButton.Enabled = false;
+            SteamServerList.Enabled = false;
 
             SteamServerList.Items.Clear();
             SteamServerList.Items.Add("Loading...");
@@ -270,12 +287,15 @@ namespace SteamServerCreationTool.Forms
 
                     apps.Applist.Apps = apps.Applist.Apps.OrderBy(o => o.Name).ToList();
 
-                    foreach (var item in apps.Applist.Apps) SteamServerList.Items.Add("[" + item.Appid.ToString() + "] " + item.Name);
+                    foreach (var item in apps.Applist.Apps) SteamServerList.Items.Add(item.Name);
 
-                    SteamServerList.SelectedIndex = SteamServerList.FindString("[740] Counter-Strike Global Offensive - Dedicated Server");
+                    SteamServerList.SelectedIndex = SteamServerList.FindString("Counter-Strike Global Offensive - Dedicated Server");
 
                     ProgressBarInfo.Enabled = false;
                     ProgressBarInfo.Visible = false;
+                    SteamServerList.Enabled = true;
+                    ServersRefreshButton.Enabled = true;
+                    App_InstallLocationBox.Enabled = true;
                 }
             }
             else
@@ -287,8 +307,8 @@ namespace SteamServerCreationTool.Forms
 
         private void MainForm_Load(object sender, EventArgs e) 
         {
-            //InstallCMDButton.Enabled = false;
-            SteamServerList.Enabled = false;
+            InstallServerButton.Enabled = false;
+            DeleteServerButton.Enabled = false;
 
             settings = Core.LoadData();
             if(settings != null)
@@ -304,13 +324,140 @@ namespace SteamServerCreationTool.Forms
                 settings = new Settings();
             }
 
-            if(Core.CheckNetwork())
+            if(!Core.CheckNetwork())
             {
-                ServersRefreshButton_Click(null, EventArgs.Empty);
+                InstallCMDButton.Enabled = false;
+                ServersRefreshButton.Enabled = false;
+                SteamServerList.Enabled = false;
             }
             else
             {
+                InstallCMDButton.Enabled = true;
+                ServersRefreshButton.Enabled = false;
+                SteamServerList.Enabled = false;
 
+                ServersRefreshButton_Click(null, EventArgs.Empty);
+            }
+        }
+
+        private void App_InstallLocationBox_Click(object sender, EventArgs e)
+        {
+            using (FolderBrowserDialog fbd = new FolderBrowserDialog())
+            {
+                fbd.Description = "Select a location to install server:";
+                fbd.ShowNewFolderButton = true;
+
+                if (fbd.ShowDialog() == DialogResult.OK && Directory.Exists(fbd.SelectedPath))
+                {
+                    App_InstallLocationBox.Text = fbd.SelectedPath;
+
+                    InstallServerButton.Enabled = true;
+                    DeleteServerButton.Enabled = true;
+
+                    if (selectedInstalledApp != null)
+                    {
+                        if(Directory.Exists(selectedInstalledApp.installPath) && Directory.GetFiles(selectedInstalledApp.installPath).Length > 1 && selectedInstalledApp.installPath != fbd.SelectedPath)
+                            InstallServerButton.Text = "Move Server";
+                        else InstallServerButton.Text = "Install Server";
+
+                        DeleteServerButton.Enabled = true;
+                    }
+                    else
+                    {
+                        DeleteServerButton.Enabled = false;
+                    }
+                }
+            }
+        }
+
+        private void InstallServerButton_Click(object sender, EventArgs e)
+        {
+            new Thread(() => {
+
+                bool install = true;
+
+                Invoke(new Action(() => {
+                    InstallServerButton.Enabled = false;
+                }));
+
+                string validated = "";
+                if (ValidateBox.Checked) validated = "validate ";
+                else validated = "";
+
+                string installDir = "";
+                string appID = "";
+                if (selectedInstalledApp != null)
+                {
+                    appID = selectedInstalledApp.app.Appid.ToString();
+                    installDir = selectedInstalledApp.installPath;
+                }
+                else
+                {
+                    appID = selectedApp.Appid.ToString();
+                    installDir = App_InstallLocationBox.Text;
+                }
+
+                using (Process process = new Process
+                {
+                    StartInfo =
+                {
+                    UseShellExecute = false,
+                    FileName = settings.steamCMD_installLocation,
+                    Arguments = "+login anonymous +force_install_dir \"" + installDir + "\" +app_update " + appID + " " + validated + "+quit"
+                }
+                })
+                {
+                    try
+                    {
+                        process.Start();
+                    }
+                    catch (ObjectDisposedException x) { MessageBox.Show(x.Message); install = false; }
+                    catch (InvalidOperationException x) { MessageBox.Show(x.Message); install = false; }
+                    catch (Win32Exception x) { MessageBox.Show(x.Message); install = false; }
+
+                    try
+                    {
+                        process.WaitForExit();
+                    }
+                    catch (Win32Exception x) { MessageBox.Show(x.Message); install = false; }
+                    catch (OutOfMemoryException x) { MessageBox.Show(x.Message); install = false; }
+                    catch (IOException x) { MessageBox.Show(x.Message); install = false; }
+                    catch (SystemException x) { MessageBox.Show(x.Message); install = false; }
+
+                    Invoke(new Action(() => {
+                        if(install && selectedInstalledApp == null)
+                        {
+                            settings.installedServer.Add(new InstalledServer(installDir, selectedApp));
+                            Core.SaveCurrentSettings(settings);
+                        }
+
+                        int tmpInt = SteamServerList.SelectedIndex;
+                        SteamServerList.SelectedIndex = 0;
+                        SteamServerList.SelectedIndex = tmpInt;
+
+                        InstallServerButton.Enabled = true;
+                    }));
+                }
+            }).Start();
+        }
+
+        private void DeleteServerButton_Click(object sender, EventArgs e)
+        {
+            if(selectedInstalledApp != null)
+            {
+                File.Delete(selectedInstalledApp.installPath);
+                SteamServerList.SelectedIndex = SteamServerList.SelectedIndex;
+            }
+        }
+
+        private void linkLabel1_Click(object sender, EventArgs e) => Process.Start("https://steamcommunity.com/dev/managegameservers?l=english");
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (SteamServerList.Items.Count > 0 && selectedApp != null)
+            {
+                string query = selectedApp.Name.Replace(' ', '+');
+                Process.Start("https://www.google.com/search?q=" + query + "+server+setup");
             }
         }
     }
