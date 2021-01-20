@@ -70,10 +70,19 @@
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ServerListSearchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ServerListSearchForm.Designer.cs">
+      <DependentUpon>ServerListSearchForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ServerListSearchForm.resx">
+      <DependentUpon>ServerListSearchForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -107,6 +116,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="026-cloud-computing-12.ico" />
+    <None Include="Resources\079-search-EDIT.png" />
     <Content Include="version.txt" />
     <None Include="Resources\Up.png" />
     <None Include="Resources\Down.png" />

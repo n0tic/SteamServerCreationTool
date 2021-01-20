@@ -19,8 +19,7 @@ namespace SteamServerCreationTool.Forms
     {
         //Stored Information
         private Settings settings;
-
-        private SteamApps apps = null; // All apps from api (Only "server" and excludes "linux")
+        public SteamApps apps = null; // All apps from api (Only "server" and excludes "linux")
 
         //Temporary information
         private App selectedApp = null;
@@ -309,7 +308,7 @@ namespace SteamServerCreationTool.Forms
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        private int GetAppid(string name)
+        public int GetAppid(string name)
         {
             string[] split = name.Split(']');
             if (split.Length > 1)
@@ -356,6 +355,7 @@ namespace SteamServerCreationTool.Forms
             App_InstallLocationBox.Enabled = false;
             OpenServerButton.Enabled = false;
             ServersRefreshButton.Enabled = false;
+            SearchButton.Enabled = false;
             SteamServerList.Enabled = false;
 
             // Update title to show what the application is working on
@@ -452,6 +452,7 @@ namespace SteamServerCreationTool.Forms
                     OpenServerButton.Enabled = true;
                     SteamServerList.Enabled = true;
                     ServersRefreshButton.Enabled = true;
+                    SearchButton.Enabled = true;
                     App_InstallLocationBox.Enabled = true;
 
                     // Update title to show what the application is working on
@@ -506,12 +507,14 @@ namespace SteamServerCreationTool.Forms
             {
                 InstallCMDButton.Enabled = false;
                 ServersRefreshButton.Enabled = false;
+                SearchButton.Enabled = false;
                 SteamServerList.Enabled = false;
             }
             else
             {
                 InstallCMDButton.Enabled = true;
                 ServersRefreshButton.Enabled = false;
+                SearchButton.Enabled = false;
                 SteamServerList.Enabled = false;
 
                 if(!Core.IsApplicationVersionCurrent())
@@ -856,5 +859,13 @@ namespace SteamServerCreationTool.Forms
         }
 
         private void NewReleaseButton_Click(object sender, EventArgs e) => Process.Start(Core.projectURL + "/releases");
+
+        private void SearchButton_Click(object sender, EventArgs e)
+        {
+            using(ServerListSearchForm form = new ServerListSearchForm(this))
+            {
+                form.ShowDialog();
+            }
+        }
     }
 }
