@@ -483,8 +483,8 @@ namespace SteamServerCreationTool.Forms
             Clipboard.SetText(Core.GetVersion());
 
             //Set author/app information
-            BottomLabel.Text = "(" + Core.softwareNameShort + ") " + Core.softwareName + " " + Core.GetVersion() + "\n\rCreated by " + Core.authorName + " AKA " + Core.authorRealName + "";
-            ProjectLink.Text = "Github: n0tic/SteamServerCreationTool";
+            BottomLabel.Text = "(" + Core.softwareNameShort + ") " + Core.softwareName + " " + Core.GetVersion() + "\n\rCreated by " + Core.authorName + " AKA " + Core.authorRealName + "\n\rContact: " + Core.authorContact;
+            ProjectLink.Text = "Github/Project Home";
 
             //Load settings
             settings = Core.LoadData();

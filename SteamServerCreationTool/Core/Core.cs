@@ -21,6 +21,7 @@ namespace SteamServerCreationTool
 
         public static string authorRealName = "Victor Rimsby";
         public static string authorName = "N0tiC";
+        public static string authorContact = "contact@bytevaultstudio.se";
 
         public static string projectURL = "https://github.com/n0tic/SteamServerCreationTool";
 
