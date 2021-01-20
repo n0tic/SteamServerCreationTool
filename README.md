@@ -17,8 +17,26 @@ Initially to get the application up and running you need "steamcmd.exe".
   - Step three, click "Install Server" button to start the installation of the server. The cmd window (Black box window) will disappear once the install is completed. 
     - Closing the cmd window (Black box window) prematurely will result in installation failure. SSCT have no way of detecting a successful installation so be careful.
   - Step four, once the server has been installed your next mission will be to setup the server and if the idea is to lauch a server publicly, you need to open server-specific ports.
+  
+# Requirements
+- .NET Framework 4.7.2
+- System.IO.Compression (.Net 4.5+ should suffice)
+- Newtonsoft Json
 
 # Disclamer
+Newtonsoft Json:
+```
+The MIT License (MIT)
+
+Copyright (c) 2007 James Newton-King
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+```
+
 All files are provided as-is with no express or implied warranty. No liability for content in external links.
 
 I'm not affiliated, associated, endorsed by, or in any way officially connected with Steam, Valve or any of its subsidiaries or its affiliates. SSCT | Steam Server Creation Tool and all its content is provided "as is" and "with all faults." I makes no representations or warranties of any kind concerning the safety, suitability, inaccuracies, typographical errors, or other components mishaps. I guarantee no accuracy or completeness of any information or usage on or in this project or found by following any link in this readme. There are inherent dangers in the use of any software, and you are solely responsible for determining whether this software is compatible with your equipment and other softwares installed on your equipment. You are also solely responsible for the protection of your equipment and backup of your data, and I will be liable for any damages you may suffer in connection with using, modifying, or distributing SSCT | Steam Server Creation Tool.
