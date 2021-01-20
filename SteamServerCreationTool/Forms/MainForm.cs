@@ -244,6 +244,11 @@ namespace SteamServerCreationTool.Forms
 
             this.Text = Core.softwareNameShort + " " + Core.softwareName + " - Updating server list...";
 
+            App_installedLabel.Text = "";
+            App_idLabel.Text = "";
+            App_nameLabel.Text = "";
+            App_InstallLocationBox.Text = "";
+
             ProgressBarInfo.Value = 0;
             ProgressBarInfo.Enabled = true;
             ProgressBarInfo.Visible = true;
@@ -406,6 +411,12 @@ namespace SteamServerCreationTool.Forms
 
         private void InstallServerButton_Click(object sender, EventArgs e)
         {
+            if(!File.Exists(settings.steamCMD_installLocation))
+            {
+                MessageBox.Show("The reference to steamCMD is either empty or steamCMD is missing! Please locate or install steamCMD.", "SteamCMD Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             InstallServerButton.Enabled = false;
 
             if (InstallServerButton.Text == "Move Server")
