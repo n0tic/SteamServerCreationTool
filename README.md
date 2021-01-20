@@ -1,0 +1,27 @@
+# SSCT | Steam Server Creation Tool
+![](http://bytevaultstudio.se/ShareX/SteamServerCreationTool_B4UeGWu609.png)
+
+Steam Server Creation Tool is a simple GUI based server installation tool for servers hosted at steam. 
+It automates downloading and the usage of steamCMD to install servers extrapolated from steams API so it will always dynamically stay up-to-date if there are any servers added or removed.
+
+# How does it work?
+Initially to get the application up and running you need "steamcmd.exe".
+- Install and reference "steamcmd.exe" automatically by pressing "Install SteamCMD" button and selecting a install directory.
+- Additionally you can locate "steamcmd.exe" manually by using the button "Locate SteamCMD".
+  - If you don't already have "steamcmd.exe" on your system you can download it manually:
+    - Direct download: https://steamcdn-a.akamaihd.net/client/installer/steamcmd.zip
+    - Page with download link: https://developer.valvesoftware.com/wiki/SteamCMD
+- "steamcmd.exe" has been located by the application, whats the next step?
+  - Step one, find your desired server in the list and select it. Information bellow should update with "App ID, App Name" etc.
+  - Step two, click on the textfield to get the folder browser dialogue to open, create or select a desired install folder.
+  - Step three, click "Install Server" button to start the installation of the server. The cmd window (Black box window) will disappear once the install is completed. 
+    - Closing the cmd window (Black box window) prematurely will result in installation failure. SSCT have no way of detecting a successful installation so be careful.
+  - Step four, once the server has been installed your next mission will be to setup the server and if the idea is to lauch a server publicly, you need to open server-specific ports.
+
+# Disclamer
+All files are provided as-is with no express or implied warranty. No liability for content in external links.
+
+I'm not affiliated, associated, endorsed by, or in any way officially connected with Steam, Valve or any of its subsidiaries or its affiliates. SSCT | Steam Server Creation Tool and all its content is provided "as is" and "with all faults." I makes no representations or warranties of any kind concerning the safety, suitability, inaccuracies, typographical errors, or other components mishaps. I guarantee no accuracy or completeness of any information or usage on or in this project or found by following any link in this readme. There are inherent dangers in the use of any software, and you are solely responsible for determining whether this software is compatible with your equipment and other softwares installed on your equipment. You are also solely responsible for the protection of your equipment and backup of your data, and I will be liable for any damages you may suffer in connection with using, modifying, or distributing SSCT | Steam Server Creation Tool.
+
+# Usage Preview
+![](http://bytevaultstudio.se/ShareX/bhyW1b8bSF.gif)
