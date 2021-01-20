@@ -19,6 +19,7 @@ Initially to get the application up and running you need "steamcmd.exe".
   - Step four, once the server has been installed your next mission will be to setup the server and if the idea is to lauch a server publicly, you need to open server-specific ports.
   
 # Requirements
+- Internet Connection
 - .NET Framework 4.7.2
 - System.IO.Compression (.Net 4.5+ should suffice)
 - Newtonsoft Json
