@@ -50,7 +50,7 @@ namespace SteamServerCreationTool
                 wc.Headers.Add("User-Agent", "Other");
                 try
                 {
-                    if (wc.DownloadString(new Uri("https://raw.githubusercontent.com/n0tic/SteamServerCreationTool/master/SteamServerCreationTool/version.txt")) == GetVersion())
+                    if (wc.DownloadString(new Uri("https://raw.githubusercontent.com/n0tic/SteamServerCreationTool/master/SteamServerCreationTool/version.txt?=" + GetUTCTime())) == GetVersion())
                         return true;
                     else return false;
                 }
