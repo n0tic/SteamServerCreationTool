@@ -1,13 +1,14 @@
 ﻿using Newtonsoft.Json;
 using SteamServerCreationTool.Data;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+
+/*
+ Core system for the application providing name, version, links, feature methods etc.
+ */
 
 namespace SteamServerCreationTool
 {
@@ -20,9 +21,6 @@ namespace SteamServerCreationTool
 
         public static string authorRealName = "Victor Rimsby";
         public static string authorName = "N0tiC";
-        //public static string companyName = "ByteVault Studio";
-        //public static string authorContact = "contact@bytevaultstudio.se";
-        //public static string companyWebsite = "http://bytevaultstudio.se/";
 
         public static string projectURL = "https://github.com/n0tic/SteamServerCreationTool";
 
@@ -125,6 +123,7 @@ namespace SteamServerCreationTool
         #endregion Network
 
         #region IO
+
         public static string GetCurrentDirectory() => @AppDomain.CurrentDomain.BaseDirectory;
 
         public static void SaveCurrentSettings(Settings applications)
@@ -176,6 +175,6 @@ namespace SteamServerCreationTool
             }
         }
 
-        #endregion
+        #endregion IO
     }
 }

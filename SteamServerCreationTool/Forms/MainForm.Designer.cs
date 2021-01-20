@@ -41,7 +41,6 @@ namespace SteamServerCreationTool.Forms
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.label4 = new System.Windows.Forms.Label();
             this.ValidateBox = new System.Windows.Forms.CheckBox();
             this.DeleteServerButton = new System.Windows.Forms.Button();
             this.InstallServerButton = new System.Windows.Forms.Button();
@@ -53,7 +52,7 @@ namespace SteamServerCreationTool.Forms
             this.App_InstallLocationBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.Tooltipper = new System.Windows.Forms.ToolTip(this.components);
             this.BottomLabel = new System.Windows.Forms.Label();
             this.ProjectLink = new System.Windows.Forms.LinkLabel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -78,7 +77,7 @@ namespace SteamServerCreationTool.Forms
             this.InstallCMDButton.Size = new System.Drawing.Size(156, 24);
             this.InstallCMDButton.TabIndex = 0;
             this.InstallCMDButton.Text = "Install SteamCMD";
-            this.toolTip1.SetToolTip(this.InstallCMDButton, "Install SteamCMD by selecting install location. Download and unpacking starts imm" +
+            this.Tooltipper.SetToolTip(this.InstallCMDButton, "Install SteamCMD by selecting install location. Download and unpacking starts imm" +
         "ediately.");
             this.InstallCMDButton.UseVisualStyleBackColor = true;
             this.InstallCMDButton.Click += new System.EventHandler(this.InstallCMDButton_Click);
@@ -91,7 +90,7 @@ namespace SteamServerCreationTool.Forms
             this.LocateSteamCMDButton.Size = new System.Drawing.Size(156, 24);
             this.LocateSteamCMDButton.TabIndex = 1;
             this.LocateSteamCMDButton.Text = "Locate SteamCMD";
-            this.toolTip1.SetToolTip(this.LocateSteamCMDButton, "Locate \"steamcmd.exe\" on your drive.");
+            this.Tooltipper.SetToolTip(this.LocateSteamCMDButton, "Locate \"steamcmd.exe\" on your drive.");
             this.LocateSteamCMDButton.UseVisualStyleBackColor = true;
             this.LocateSteamCMDButton.Click += new System.EventHandler(this.LocateSteamCMDButton_Click);
             // 
@@ -103,7 +102,7 @@ namespace SteamServerCreationTool.Forms
             this.SteamServerList.Name = "SteamServerList";
             this.SteamServerList.Size = new System.Drawing.Size(344, 21);
             this.SteamServerList.TabIndex = 3;
-            this.toolTip1.SetToolTip(this.SteamServerList, "A full list of servers registered with steam.\r\nList is filtering away linux build" +
+            this.Tooltipper.SetToolTip(this.SteamServerList, "A full list of servers registered with steam.\r\nList is filtering away linux build" +
         "s and shows only servers with \"server\" in the name.");
             this.SteamServerList.SelectedIndexChanged += new System.EventHandler(this.SteamServerList_SelectedIndexChanged);
             // 
@@ -129,7 +128,7 @@ namespace SteamServerCreationTool.Forms
             this.OpenSteamCMDHelp.Size = new System.Drawing.Size(27, 24);
             this.OpenSteamCMDHelp.TabIndex = 8;
             this.OpenSteamCMDHelp.Text = "?";
-            this.toolTip1.SetToolTip(this.OpenSteamCMDHelp, "Valve SteamCMD Wiki page to find more information about SteamCMD.");
+            this.Tooltipper.SetToolTip(this.OpenSteamCMDHelp, "Valve SteamCMD Wiki page to find more information about SteamCMD.");
             this.OpenSteamCMDHelp.UseVisualStyleBackColor = true;
             this.OpenSteamCMDHelp.Click += new System.EventHandler(this.OpenSteamCMDHelp_Click);
             // 
@@ -160,7 +159,6 @@ namespace SteamServerCreationTool.Forms
             // 
             this.groupBox3.Controls.Add(this.linkLabel2);
             this.groupBox3.Controls.Add(this.linkLabel1);
-            this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Controls.Add(this.ValidateBox);
             this.groupBox3.Controls.Add(this.DeleteServerButton);
             this.groupBox3.Controls.Add(this.InstallServerButton);
@@ -192,7 +190,7 @@ namespace SteamServerCreationTool.Forms
             this.linkLabel2.TabIndex = 19;
             this.linkLabel2.TabStop = true;
             this.linkLabel2.Text = "Server Setup";
-            this.toolTip1.SetToolTip(this.linkLabel2, "This will launch the selected server as a google query for server setup. \r\nSome s" +
+            this.Tooltipper.SetToolTip(this.linkLabel2, "This will launch the selected server as a google query for server setup. \r\nSome s" +
         "ervers have the same name and you may need to add the app id to the query.");
             this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
             // 
@@ -201,24 +199,14 @@ namespace SteamServerCreationTool.Forms
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic);
-            this.linkLabel1.Location = new System.Drawing.Point(190, 107);
+            this.linkLabel1.Location = new System.Drawing.Point(6, 103);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(59, 13);
+            this.linkLabel1.Size = new System.Drawing.Size(174, 13);
             this.linkLabel1.TabIndex = 18;
             this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Get it here!";
-            this.toolTip1.SetToolTip(this.linkLabel1, "This will direct you to the steam token page.");
+            this.linkLabel1.Text = "Gameserver Login Tokens (GSLTs)";
+            this.Tooltipper.SetToolTip(this.linkLabel1, resources.GetString("linkLabel1.ToolTip"));
             this.linkLabel1.Click += new System.EventHandler(this.linkLabel1_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(4, 107);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(190, 13);
-            this.label4.TabIndex = 17;
-            this.label4.Text = "Some servers require a \"server token\".";
             // 
             // ValidateBox
             // 
@@ -231,7 +219,7 @@ namespace SteamServerCreationTool.Forms
             this.ValidateBox.Size = new System.Drawing.Size(94, 17);
             this.ValidateBox.TabIndex = 16;
             this.ValidateBox.Text = "Validate Install";
-            this.toolTip1.SetToolTip(this.ValidateBox, "Should SteamCMD validate installation after completion?");
+            this.Tooltipper.SetToolTip(this.ValidateBox, "Should SteamCMD validate installation after completion?");
             this.ValidateBox.UseVisualStyleBackColor = true;
             // 
             // DeleteServerButton
@@ -244,7 +232,7 @@ namespace SteamServerCreationTool.Forms
             this.DeleteServerButton.Size = new System.Drawing.Size(103, 24);
             this.DeleteServerButton.TabIndex = 15;
             this.DeleteServerButton.Text = "Delete Server";
-            this.toolTip1.SetToolTip(this.DeleteServerButton, "This will delete all the server files and the install directory.\r\nIt will also de" +
+            this.Tooltipper.SetToolTip(this.DeleteServerButton, "This will delete all the server files and the install directory.\r\nIt will also de" +
         "lete the database entry for the server.\r\n");
             this.DeleteServerButton.UseVisualStyleBackColor = true;
             this.DeleteServerButton.Click += new System.EventHandler(this.DeleteServerButton_Click);
@@ -257,7 +245,7 @@ namespace SteamServerCreationTool.Forms
             this.InstallServerButton.Size = new System.Drawing.Size(93, 24);
             this.InstallServerButton.TabIndex = 13;
             this.InstallServerButton.Text = "Install Server";
-            this.toolTip1.SetToolTip(this.InstallServerButton, resources.GetString("InstallServerButton.ToolTip"));
+            this.Tooltipper.SetToolTip(this.InstallServerButton, resources.GetString("InstallServerButton.ToolTip"));
             this.InstallServerButton.UseVisualStyleBackColor = true;
             this.InstallServerButton.Click += new System.EventHandler(this.InstallServerButton_Click);
             // 
@@ -314,7 +302,7 @@ namespace SteamServerCreationTool.Forms
             this.App_InstallLocationBox.Name = "App_InstallLocationBox";
             this.App_InstallLocationBox.Size = new System.Drawing.Size(341, 20);
             this.App_InstallLocationBox.TabIndex = 2;
-            this.toolTip1.SetToolTip(this.App_InstallLocationBox, "This field requires a valid directory in which to install selected server.\r\nIf a " +
+            this.Tooltipper.SetToolTip(this.App_InstallLocationBox, "This field requires a valid directory in which to install selected server.\r\nIf a " +
         "server is already installed you will get an option to move install directory.");
             this.App_InstallLocationBox.Click += new System.EventHandler(this.App_InstallLocationBox_Click);
             // 
@@ -337,6 +325,14 @@ namespace SteamServerCreationTool.Forms
             this.label1.Size = new System.Drawing.Size(50, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "App ID:";
+            // 
+            // Tooltipper
+            // 
+            this.Tooltipper.AutoPopDelay = 10000;
+            this.Tooltipper.InitialDelay = 500;
+            this.Tooltipper.ReshowDelay = 100;
+            this.Tooltipper.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.Tooltipper.ToolTipTitle = "Information";
             // 
             // BottomLabel
             // 
@@ -382,7 +378,7 @@ namespace SteamServerCreationTool.Forms
             this.WindowExpander.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.WindowExpander.TabIndex = 14;
             this.WindowExpander.TabStop = false;
-            this.toolTip1.SetToolTip(this.WindowExpander, "View application information...");
+            this.Tooltipper.SetToolTip(this.WindowExpander, "View application information...");
             this.WindowExpander.Click += new System.EventHandler(this.WindowExpander_Click);
             // 
             // OpenServerButton
@@ -393,7 +389,7 @@ namespace SteamServerCreationTool.Forms
             this.OpenServerButton.Name = "OpenServerButton";
             this.OpenServerButton.Size = new System.Drawing.Size(27, 22);
             this.OpenServerButton.TabIndex = 5;
-            this.toolTip1.SetToolTip(this.OpenServerButton, "Open Directory");
+            this.Tooltipper.SetToolTip(this.OpenServerButton, "Open Directory");
             this.OpenServerButton.UseVisualStyleBackColor = true;
             this.OpenServerButton.Click += new System.EventHandler(this.OpenServerButton_Click);
             // 
@@ -405,7 +401,7 @@ namespace SteamServerCreationTool.Forms
             this.ServersRefreshButton.Name = "ServersRefreshButton";
             this.ServersRefreshButton.Size = new System.Drawing.Size(27, 23);
             this.ServersRefreshButton.TabIndex = 9;
-            this.toolTip1.SetToolTip(this.ServersRefreshButton, "Refresh server list by downloading the new list from steam api.");
+            this.Tooltipper.SetToolTip(this.ServersRefreshButton, "Refresh server list by downloading the new list from steam api.");
             this.ServersRefreshButton.UseVisualStyleBackColor = true;
             this.ServersRefreshButton.Click += new System.EventHandler(this.ServersRefreshButton_Click);
             // 
@@ -426,7 +422,7 @@ namespace SteamServerCreationTool.Forms
             this.OpenSteamCMDButton.Name = "OpenSteamCMDButton";
             this.OpenSteamCMDButton.Size = new System.Drawing.Size(27, 24);
             this.OpenSteamCMDButton.TabIndex = 4;
-            this.toolTip1.SetToolTip(this.OpenSteamCMDButton, "Open Directory");
+            this.Tooltipper.SetToolTip(this.OpenSteamCMDButton, "Open Directory");
             this.OpenSteamCMDButton.UseVisualStyleBackColor = true;
             this.OpenSteamCMDButton.Click += new System.EventHandler(this.OpenSteamCMDButton_Click);
             // 
@@ -484,10 +480,9 @@ namespace SteamServerCreationTool.Forms
         private System.Windows.Forms.Label App_installedLabel;
         private System.Windows.Forms.Button InstallServerButton;
         private System.Windows.Forms.Button DeleteServerButton;
-        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.ToolTip Tooltipper;
         private System.Windows.Forms.CheckBox ValidateBox;
         private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.PictureBox WindowExpander;
         private System.Windows.Forms.Label BottomLabel;
