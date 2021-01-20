@@ -32,7 +32,7 @@ namespace SteamServerCreationTool
         public static BuildTypes buildType = BuildTypes.Alpha;
         public static int majorVersion = 0;
         public static int minorVersion = 1;
-        public static int buildVersion = 1;
+        public static int buildVersion = 2;
 
         public enum BuildTypes
         {
@@ -42,6 +42,21 @@ namespace SteamServerCreationTool
         }
 
         public static string GetVersion() => majorVersion.ToString() + "." + minorVersion.ToString() + "." + buildVersion.ToString() + " " + buildType.ToString();
+
+        public static bool IsApplicationVersionCurrent()
+        {
+            using (WebClient wc = new WebClient())
+            {
+                wc.Headers.Add("User-Agent", "Other");
+                try
+                {
+                    if (wc.DownloadString(new Uri("https://raw.githubusercontent.com/n0tic/SteamServerCreationTool/master/SteamServerCreationTool/version.txt")) == GetVersion())
+                        return true;
+                    else return false;
+                }
+                catch { return false; }
+            }
+        }
 
         #endregion Version
 
@@ -172,16 +187,6 @@ namespace SteamServerCreationTool
             foreach (FileInfo file in source.GetFiles())
             {
                 file.MoveTo(Path.Combine(target.FullName, file.Name));
-            }
-        }
-
-        public static bool IsApplicationVersionCurrent()
-        {
-            //Try downloading the list of apps from steam
-            using (WebClient wc = new WebClient())
-            {
-                wc.Headers.Add("User-Agent", "Other");
-                wc.DownloadString(new Uri(""));
             }
         }
 

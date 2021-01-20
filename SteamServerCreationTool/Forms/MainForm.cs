@@ -518,6 +518,8 @@ namespace SteamServerCreationTool.Forms
                 {
                     NewReleaseButton.Enabled = true;
                     NewReleaseButton.Visible = true;
+
+                    WindowExpander_Click(null, EventArgs.Empty);
                 }
 
                 //Get steam apps list refreshed
