@@ -479,6 +479,8 @@ namespace SteamServerCreationTool.Forms
             InstallServerButton.Enabled = false;
             DeleteServerButton.Enabled = false;
 
+            Clipboard.SetText(Core.GetVersion());
+
             //Set author/app information
             BottomLabel.Text = "(" + Core.softwareNameShort + ") " + Core.softwareName + " " + Core.GetVersion() + "\n\rCreated by " + Core.authorName + " AKA " + Core.authorRealName + "";
             ProjectLink.Text = "Github: n0tic/SteamServerCreationTool";
@@ -511,6 +513,12 @@ namespace SteamServerCreationTool.Forms
                 InstallCMDButton.Enabled = true;
                 ServersRefreshButton.Enabled = false;
                 SteamServerList.Enabled = false;
+
+                if(!Core.IsApplicationVersionCurrent())
+                {
+                    NewReleaseButton.Enabled = true;
+                    NewReleaseButton.Visible = true;
+                }
 
                 //Get steam apps list refreshed
                 ServersRefreshButton_Click(null, EventArgs.Empty);
@@ -578,6 +586,13 @@ namespace SteamServerCreationTool.Forms
             //If button text is set to "Move Server"
             if (InstallServerButton.Text == "Move Server")
             {
+
+                if(MessageBox.Show("Make sure the server is offline before proceeding.\n\rProceeding with a server being online may result in server destruction. \n\r\n\rAre you sure you want to proceed?", "SteamCMD Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.Cancel)
+                {
+                    InstallServerButton.Enabled = true; // Disable button untill features are done.
+                    return;
+                }
+
                 //Initiate new Thread to async the move of server files.
                 new Thread(() =>
                 {
@@ -837,5 +852,7 @@ namespace SteamServerCreationTool.Forms
                 WindowExpander.Image = Properties.Resources.Up;
             }
         }
+
+        private void NewReleaseButton_Click(object sender, EventArgs e) => Process.Start(Core.projectURL + "/releases");
     }
 }

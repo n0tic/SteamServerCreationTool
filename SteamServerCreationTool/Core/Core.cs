@@ -175,6 +175,16 @@ namespace SteamServerCreationTool
             }
         }
 
+        public static bool IsApplicationVersionCurrent()
+        {
+            //Try downloading the list of apps from steam
+            using (WebClient wc = new WebClient())
+            {
+                wc.Headers.Add("User-Agent", "Other");
+                wc.DownloadString(new Uri(""));
+            }
+        }
+
         #endregion IO
     }
 }
