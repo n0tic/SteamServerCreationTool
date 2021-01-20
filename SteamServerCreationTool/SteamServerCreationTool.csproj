@@ -106,6 +106,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="026-cloud-computing-12.ico" />
+    <None Include="Resources\Up.png" />
+    <None Include="Resources\Down.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

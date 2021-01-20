@@ -15,13 +15,16 @@ namespace SteamServerCreationTool
     {
         public static bool debug = false;
 
-        public static string softwareName = "StarterPack";
+        public static string softwareName = "Steam Server Creation Tool";
+        public static string softwareNameShort = "SSCT";
 
         public static string authorRealName = "Victor Rimsby";
         public static string authorName = "N0tiC";
-        public static string companyName = "ByteVault Studio";
-        public static string authorContact = "contact@bytevaultstudio.se";
-        public static string companyWebsite = "http://bytevaultstudio.se/";
+        //public static string companyName = "ByteVault Studio";
+        //public static string authorContact = "contact@bytevaultstudio.se";
+        //public static string companyWebsite = "http://bytevaultstudio.se/";
+
+        public static string projectURL = "https://github.com/n0tic/SteamServerCreationTool";
 
         public static string steamCMDURL = "https://steamcdn-a.akamaihd.net/client/installer/steamcmd.zip";
         public static string serversURL = "https://api.steampowered.com/ISteamApps/GetAppList/v2/";
@@ -133,6 +136,44 @@ namespace SteamServerCreationTool
         {
             if (File.Exists("data")) using (StreamReader streamReader = new StreamReader("data", Encoding.UTF8)) return JsonConvert.DeserializeObject<Settings>(streamReader.ReadToEnd());
             else return null;
+        }
+
+        public static bool IsFolderEmpty(string path)
+        {
+            if (Directory.GetFiles(path).Length > 0) return true;
+            else return false;
+        }
+
+        public static void MoveFolder(string sourceDirectoryName, string targetDirectoryName)
+        {
+            Directory.CreateDirectory(targetDirectoryName);
+
+            DirectoryInfo source = new DirectoryInfo(sourceDirectoryName);
+            DirectoryInfo target = new DirectoryInfo(targetDirectoryName);
+
+            MoveWork(source, target);
+
+            foreach (var item in source.GetDirectories("*", SearchOption.AllDirectories))
+            {
+                try
+                {
+                    item.Delete(true);
+                }
+                catch { }
+            }
+        }
+
+        private static void MoveWork(DirectoryInfo source, DirectoryInfo target)
+        {
+            foreach (DirectoryInfo dir in source.GetDirectories())
+            {
+                MoveWork(dir, target.CreateSubdirectory(dir.Name));
+            }
+
+            foreach (FileInfo file in source.GetFiles())
+            {
+                file.MoveTo(Path.Combine(target.FullName, file.Name));
+            }
         }
 
         #endregion
