@@ -19,6 +19,9 @@ namespace SteamServerCreationTool.Forms
             InitializeComponent();
             this.main = main;
 
+            //We have a weird duplication bug somewhere. This should not fix that but Im just trying a quick "fix"...
+            ResultsList.Items.Clear();
+
             foreach (var item in main.SteamServerList.Items)
             {
                 ResultsList.Items.Add(item.ToString());

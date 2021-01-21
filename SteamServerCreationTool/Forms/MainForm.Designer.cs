@@ -60,15 +60,37 @@ namespace SteamServerCreationTool.Forms
             this.Tooltipper = new System.Windows.Forms.ToolTip(this.components);
             this.NewReleaseButton = new System.Windows.Forms.Button();
             this.WindowExpander = new System.Windows.Forms.PictureBox();
+            this.UpdateAllServersButton = new System.Windows.Forms.Button();
+            this.DeleteAllServersButton = new System.Windows.Forms.Button();
+            this.ClearDatabaseSaveServerData = new System.Windows.Forms.Button();
+            this.SequentialBox = new System.Windows.Forms.CheckBox();
             this.BottomLabel = new System.Windows.Forms.Label();
             this.ProjectLink = new System.Windows.Forms.LinkLabel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripDropDownButton3 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.checkForUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ExitButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.ExpandToSaveData = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.githubProjectHomeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
+            this.GrayBackgroundPanel = new System.Windows.Forms.Panel();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.InstalledServerList = new System.Windows.Forms.ListBox();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.WindowExpander)).BeginInit();
             this.groupBox4.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // InstallCMDButton
@@ -115,7 +137,7 @@ namespace SteamServerCreationTool.Forms
             this.groupBox1.Controls.Add(this.OpenSteamCMDHelp);
             this.groupBox1.Controls.Add(this.LocateSteamCMDButton);
             this.groupBox1.Controls.Add(this.OpenSteamCMDButton);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Location = new System.Drawing.Point(12, 31);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(389, 51);
             this.groupBox1.TabIndex = 7;
@@ -157,10 +179,10 @@ namespace SteamServerCreationTool.Forms
             // 
             // ProgressBarInfo
             // 
-            this.ProgressBarInfo.Dock = System.Windows.Forms.DockStyle.Top;
             this.ProgressBarInfo.Enabled = false;
             this.ProgressBarInfo.Location = new System.Drawing.Point(0, 0);
-            this.ProgressBarInfo.MarqueeAnimationSpeed = 5;
+            this.ProgressBarInfo.MarqueeAnimationSpeed = 1;
+            this.ProgressBarInfo.Maximum = 10;
             this.ProgressBarInfo.Name = "ProgressBarInfo";
             this.ProgressBarInfo.Size = new System.Drawing.Size(413, 2);
             this.ProgressBarInfo.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
@@ -172,7 +194,7 @@ namespace SteamServerCreationTool.Forms
             this.groupBox2.Controls.Add(this.SearchButton);
             this.groupBox2.Controls.Add(this.ServersRefreshButton);
             this.groupBox2.Controls.Add(this.SteamServerList);
-            this.groupBox2.Location = new System.Drawing.Point(12, 69);
+            this.groupBox2.Location = new System.Drawing.Point(12, 88);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(389, 54);
             this.groupBox2.TabIndex = 10;
@@ -220,7 +242,7 @@ namespace SteamServerCreationTool.Forms
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.groupBox3.Location = new System.Drawing.Point(12, 129);
+            this.groupBox3.Location = new System.Drawing.Point(12, 148);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(389, 160);
             this.groupBox3.TabIndex = 11;
@@ -416,7 +438,7 @@ namespace SteamServerCreationTool.Forms
             // 
             this.WindowExpander.Cursor = System.Windows.Forms.Cursors.Hand;
             this.WindowExpander.Image = global::SteamServerCreationTool.Properties.Resources.Down;
-            this.WindowExpander.Location = new System.Drawing.Point(205, 283);
+            this.WindowExpander.Location = new System.Drawing.Point(197, 285);
             this.WindowExpander.Name = "WindowExpander";
             this.WindowExpander.Size = new System.Drawing.Size(15, 15);
             this.WindowExpander.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -424,6 +446,56 @@ namespace SteamServerCreationTool.Forms
             this.WindowExpander.TabStop = false;
             this.Tooltipper.SetToolTip(this.WindowExpander, "View application information...");
             this.WindowExpander.Click += new System.EventHandler(this.WindowExpander_Click);
+            // 
+            // UpdateAllServersButton
+            // 
+            this.UpdateAllServersButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UpdateAllServersButton.Location = new System.Drawing.Point(6, 19);
+            this.UpdateAllServersButton.Name = "UpdateAllServersButton";
+            this.UpdateAllServersButton.Size = new System.Drawing.Size(121, 24);
+            this.UpdateAllServersButton.TabIndex = 13;
+            this.UpdateAllServersButton.Text = "Update All Servers";
+            this.Tooltipper.SetToolTip(this.UpdateAllServersButton, "Install SteamCMD by selecting install location. Download and unpacking starts imm" +
+        "ediately.");
+            this.UpdateAllServersButton.UseVisualStyleBackColor = true;
+            this.UpdateAllServersButton.Click += new System.EventHandler(this.UpdateAllServersButton_Click);
+            // 
+            // DeleteAllServersButton
+            // 
+            this.DeleteAllServersButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeleteAllServersButton.Location = new System.Drawing.Point(133, 19);
+            this.DeleteAllServersButton.Name = "DeleteAllServersButton";
+            this.DeleteAllServersButton.Size = new System.Drawing.Size(121, 24);
+            this.DeleteAllServersButton.TabIndex = 13;
+            this.DeleteAllServersButton.Text = "Delete All Servers";
+            this.Tooltipper.SetToolTip(this.DeleteAllServersButton, "Install SteamCMD by selecting install location. Download and unpacking starts imm" +
+        "ediately.");
+            this.DeleteAllServersButton.UseVisualStyleBackColor = true;
+            this.DeleteAllServersButton.Click += new System.EventHandler(this.DeleteAllServersButton_Click);
+            // 
+            // ClearDatabaseSaveServerData
+            // 
+            this.ClearDatabaseSaveServerData.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ClearDatabaseSaveServerData.Location = new System.Drawing.Point(24, 49);
+            this.ClearDatabaseSaveServerData.Name = "ClearDatabaseSaveServerData";
+            this.ClearDatabaseSaveServerData.Size = new System.Drawing.Size(212, 24);
+            this.ClearDatabaseSaveServerData.TabIndex = 15;
+            this.ClearDatabaseSaveServerData.Text = "Clear Database, Save Server Data";
+            this.Tooltipper.SetToolTip(this.ClearDatabaseSaveServerData, "Install SteamCMD by selecting install location. Download and unpacking starts imm" +
+        "ediately.");
+            this.ClearDatabaseSaveServerData.UseVisualStyleBackColor = true;
+            this.ClearDatabaseSaveServerData.Click += new System.EventHandler(this.ClearDatabaseSaveServerData_Click);
+            // 
+            // SequentialBox
+            // 
+            this.SequentialBox.AutoSize = true;
+            this.SequentialBox.Location = new System.Drawing.Point(51, 0);
+            this.SequentialBox.Name = "SequentialBox";
+            this.SequentialBox.Size = new System.Drawing.Size(76, 17);
+            this.SequentialBox.TabIndex = 19;
+            this.SequentialBox.Text = "Sequential";
+            this.Tooltipper.SetToolTip(this.SequentialBox, "Should the actions run sequentially or paralell.");
+            this.SequentialBox.UseVisualStyleBackColor = true;
             // 
             // BottomLabel
             // 
@@ -440,36 +512,183 @@ namespace SteamServerCreationTool.Forms
             // 
             this.ProjectLink.AutoSize = true;
             this.ProjectLink.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ProjectLink.Location = new System.Drawing.Point(157, 378);
+            this.ProjectLink.Location = new System.Drawing.Point(157, 397);
             this.ProjectLink.Name = "ProjectLink";
             this.ProjectLink.Size = new System.Drawing.Size(107, 13);
             this.ProjectLink.TabIndex = 13;
             this.ProjectLink.TabStop = true;
             this.ProjectLink.Text = "Github/Project Home";
-            this.ProjectLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ProjectLink_LinkClicked);
+            this.ProjectLink.Click += new System.EventHandler(this.ProjectLink_Click);
             // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.NewReleaseButton);
             this.groupBox4.Controls.Add(this.BottomLabel);
-            this.groupBox4.Location = new System.Drawing.Point(12, 316);
+            this.groupBox4.Location = new System.Drawing.Point(12, 335);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(389, 63);
             this.groupBox4.TabIndex = 13;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Application Information";
             // 
+            // toolStrip1
+            // 
+            this.toolStrip1.AutoSize = false;
+            this.toolStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.toolStrip1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripDropDownButton3,
+            this.toolStripSeparator2,
+            this.ExpandToSaveData,
+            this.toolStripSeparator1,
+            this.toolStripDropDownButton1,
+            this.toolStripProgressBar1});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 2);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(693, 25);
+            this.toolStrip1.TabIndex = 15;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripDropDownButton3
+            // 
+            this.toolStripDropDownButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripDropDownButton3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.checkForUpdatesToolStripMenuItem,
+            this.ExitButton});
+            this.toolStripDropDownButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton3.Image")));
+            this.toolStripDropDownButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton3.Name = "toolStripDropDownButton3";
+            this.toolStripDropDownButton3.Size = new System.Drawing.Size(81, 22);
+            this.toolStripDropDownButton3.Text = "Application";
+            // 
+            // checkForUpdatesToolStripMenuItem
+            // 
+            this.checkForUpdatesToolStripMenuItem.Name = "checkForUpdatesToolStripMenuItem";
+            this.checkForUpdatesToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.checkForUpdatesToolStripMenuItem.Text = "Check For Updates";
+            this.checkForUpdatesToolStripMenuItem.Click += new System.EventHandler(this.checkForUpdatesToolStripMenuItem_Click);
+            // 
+            // ExitButton
+            // 
+            this.ExitButton.Name = "ExitButton";
+            this.ExitButton.Size = new System.Drawing.Size(173, 22);
+            this.ExitButton.Text = "Exit";
+            this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // ExpandToSaveData
+            // 
+            this.ExpandToSaveData.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.ExpandToSaveData.Image = ((System.Drawing.Image)(resources.GetObject("ExpandToSaveData.Image")));
+            this.ExpandToSaveData.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ExpandToSaveData.Name = "ExpandToSaveData";
+            this.ExpandToSaveData.Size = new System.Drawing.Size(107, 22);
+            this.ExpandToSaveData.Text = "Toggle Saved Data";
+            this.ExpandToSaveData.Click += new System.EventHandler(this.InstalledServersButton_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripDropDownButton1
+            // 
+            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.githubProjectHomeToolStripMenuItem,
+            this.aboutToolStripMenuItem});
+            this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
+            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(83, 22);
+            this.toolStripDropDownButton1.Text = "Information";
+            // 
+            // githubProjectHomeToolStripMenuItem
+            // 
+            this.githubProjectHomeToolStripMenuItem.Name = "githubProjectHomeToolStripMenuItem";
+            this.githubProjectHomeToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.githubProjectHomeToolStripMenuItem.Text = "Github / Project Home";
+            this.githubProjectHomeToolStripMenuItem.Click += new System.EventHandler(this.ProjectLink_Click);
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.WindowExpander_Click);
+            // 
+            // toolStripProgressBar1
+            // 
+            this.toolStripProgressBar1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripProgressBar1.Enabled = false;
+            this.toolStripProgressBar1.Margin = new System.Windows.Forms.Padding(1, 0, 17, 4);
+            this.toolStripProgressBar1.Name = "toolStripProgressBar1";
+            this.toolStripProgressBar1.Size = new System.Drawing.Size(260, 21);
+            this.toolStripProgressBar1.Visible = false;
+            // 
+            // GrayBackgroundPanel
+            // 
+            this.GrayBackgroundPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.GrayBackgroundPanel.Location = new System.Drawing.Point(0, 0);
+            this.GrayBackgroundPanel.Name = "GrayBackgroundPanel";
+            this.GrayBackgroundPanel.Size = new System.Drawing.Size(413, 2);
+            this.GrayBackgroundPanel.TabIndex = 16;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.InstalledServerList);
+            this.groupBox5.Location = new System.Drawing.Point(415, 117);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(260, 191);
+            this.groupBox5.TabIndex = 17;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Installed Server List";
+            // 
+            // InstalledServerList
+            // 
+            this.InstalledServerList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.InstalledServerList.FormattingEnabled = true;
+            this.InstalledServerList.Location = new System.Drawing.Point(3, 16);
+            this.InstalledServerList.Name = "InstalledServerList";
+            this.InstalledServerList.ScrollAlwaysVisible = true;
+            this.InstalledServerList.Size = new System.Drawing.Size(254, 172);
+            this.InstalledServerList.TabIndex = 1;
+            this.InstalledServerList.SelectedIndexChanged += new System.EventHandler(this.InstalledServerList_SelectedIndexChanged);
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.SequentialBox);
+            this.groupBox6.Controls.Add(this.ClearDatabaseSaveServerData);
+            this.groupBox6.Controls.Add(this.UpdateAllServersButton);
+            this.groupBox6.Controls.Add(this.DeleteAllServersButton);
+            this.groupBox6.Location = new System.Drawing.Point(415, 31);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(260, 80);
+            this.groupBox6.TabIndex = 18;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Actions";
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(413, 390);
+            this.ClientSize = new System.Drawing.Size(688, 414);
+            this.Controls.Add(this.groupBox5);
+            this.Controls.Add(this.groupBox6);
+            this.Controls.Add(this.ProgressBarInfo);
+            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.WindowExpander);
             this.Controls.Add(this.ProjectLink);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.ProgressBarInfo);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.GrayBackgroundPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -477,7 +696,7 @@ namespace SteamServerCreationTool.Forms
             this.Name = "MainForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Steam Server Creation Tool";
+            this.Text = "SSCT Steam Server Creation Tool";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -486,6 +705,11 @@ namespace SteamServerCreationTool.Forms
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.WindowExpander)).EndInit();
             this.groupBox4.ResumeLayout(false);
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -525,5 +749,24 @@ namespace SteamServerCreationTool.Forms
         private System.Windows.Forms.Button NewReleaseButton;
         private System.Windows.Forms.Button SearchButton;
         public System.Windows.Forms.ComboBox SteamServerList;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton3;
+        private System.Windows.Forms.ToolStripMenuItem ExitButton;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
+        private System.Windows.Forms.ToolStripMenuItem githubProjectHomeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.Panel GrayBackgroundPanel;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.ListBox InstalledServerList;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.Button UpdateAllServersButton;
+        private System.Windows.Forms.Button DeleteAllServersButton;
+        private System.Windows.Forms.Button ClearDatabaseSaveServerData;
+        private System.Windows.Forms.ToolStripMenuItem checkForUpdatesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton ExpandToSaveData;
+        private System.Windows.Forms.CheckBox SequentialBox;
+        private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
     }
 }

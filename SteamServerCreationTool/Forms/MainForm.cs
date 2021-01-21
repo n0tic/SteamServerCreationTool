@@ -10,6 +10,7 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Net;
+using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -66,7 +67,7 @@ namespace SteamServerCreationTool.Forms
 
                         //Setup and start download
                         wc.DownloadFileCompleted += Wc_DownloadFileCompleted; ;
-                        wc.DownloadFileAsync(new Uri("https://steamcdn-a.akamaihd.net/client/installer/steamcmd.zip"), steamCMDFolderPath + "\\steamcmd.zip");
+                        wc.DownloadFileAsync(new Uri("https://steamcdn-a.akamaihd.net/client/installer/steamcmd.zip?=" + Core.GetUTCTime()), steamCMDFolderPath + "\\steamcmd.zip");
                     }
                     else
                     {
@@ -196,7 +197,7 @@ namespace SteamServerCreationTool.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OpenSteamCMDHelp_Click(object sender, EventArgs e) => Process.Start("https://developer.valvesoftware.com/wiki/SteamCMD");
+        private void OpenSteamCMDHelp_Click(object sender, EventArgs e) => Process.Start("https://developer.valvesoftware.com/wiki/SteamCMD?=" + Core.GetUTCTime());
 
         /// <summary>
         /// Selected server changed
@@ -258,6 +259,7 @@ namespace SteamServerCreationTool.Forms
                         //Delete references, folder etc - Refresh
                         MessageBox.Show("The server is registered as installed but the folder could not be found. Removing database entry...", "Install Directory Missing!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         DeleteServer(selectedInstalledApp);
+                        PopulateDataField();
                         RefreshSelectedServerList();
                         return;
                     }
@@ -382,8 +384,11 @@ namespace SteamServerCreationTool.Forms
                 {
                     wc.Headers.Add("User-Agent", "Other");
 
+                    wc.Encoding = Encoding.UTF8;
                     wc.DownloadStringCompleted += Wc_DownloadStringCompletedList;
-                    wc.DownloadStringAsync(new Uri("https://api.steampowered.com/ISteamApps/GetAppList/v2/"));
+                    string url = "https://api.steampowered.com/ISteamApps/GetAppList/v2/";
+                    Clipboard.SetText(url);
+                    wc.DownloadStringAsync(new Uri(url));
                 }
             }
             catch (Exception ex)
@@ -423,6 +428,10 @@ namespace SteamServerCreationTool.Forms
                     List<int> removeIndexes = new List<int>();
                     for (int i = 0; i < apps.Applist.Apps.Count; i++)
                     {
+                        // Super weird, 90 Half-Life Server was not in the list and a lot of other was also missing.
+                        //{"appid":90,"name":"Half-Life Dedicated Server"}
+                        //if (apps.Applist.Apps[i].Appid == 90) MessageBox.Show(apps.Applist.Apps[i].Name);
+
                         if (!apps.Applist.Apps[i].Name.Contains("Server") || apps.Applist.Apps[i].Name.Contains("linux")) removeIndexes.Add(i);
                     }
 
@@ -473,8 +482,10 @@ namespace SteamServerCreationTool.Forms
         /// <param name="e"></param>
         private void MainForm_Load(object sender, EventArgs e)
         {
-            //Make sure size is correct
-            this.Size = new Size(429, 339);
+            //Make sure initial size is correct
+            this.Size = new Size(429, 358);
+            ProgressBarInfo.Size = new Size(429, 2);
+            GrayBackgroundPanel.Size = new Size(429, 2);
 
             //Disable buttons
             InstallServerButton.Enabled = false;
@@ -602,8 +613,7 @@ namespace SteamServerCreationTool.Forms
                 new Thread(() =>
                 {
                     //Start progressbar
-                    Invoke(new Action(() =>
-                    {
+                    Invoke(new Action(() => {
                         ShowProgressbar(true);
                     }));
 
@@ -639,32 +649,39 @@ namespace SteamServerCreationTool.Forms
             }
             else // Fresh install
             {
-                //Keep track of success
-                bool install = true;
+                StartSteamCMDServerDownload(selectedInstalledApp);
+            }
+        }
 
-                //This needs no explanation, no? It simply updates data with provided defaults if new install
-                string validated = "";
-                if (ValidateBox.Checked) validated = "validate ";
-                else validated = "";
+        private void StartSteamCMDServerDownload(InstalledServer _app, bool skip = false)
+        {
+            //Keep track of success
+            bool install = true;
 
-                //This needs no explanation, no? It simply updates data with provided defaults if new install
-                string installDir = "";
-                string appID = "";
-                if (selectedInstalledApp != null)
-                {
-                    appID = selectedInstalledApp.app.Appid.ToString();
-                    installDir = selectedInstalledApp.installPath;
-                }
-                else
-                {
-                    appID = selectedApp.Appid.ToString();
-                    installDir = App_InstallLocationBox.Text;
-                }
+            //This needs no explanation, no? It simply updates data with provided defaults if new install
+            string validated = "";
+            if (ValidateBox.Checked) validated = "validate ";
+            else validated = "";
 
-                /*
-                 * if server was deleted and for some reason, fields were not nullified. Create the directory.
-                 */
+            //This needs no explanation, no? It simply updates data with provided defaults if new install
+            string installDir = "";
+            string appID = "";
+            if (_app != null)
+            {
+                installDir = _app.installPath;
+                appID = _app.app.Appid.ToString();
+            }
+            else
+            {
+                installDir = App_InstallLocationBox.Text;
+                appID = selectedApp.Appid.ToString();
+            }
 
+            /*
+             * if server was deleted and for some reason, fields were not nullified. Create the directory.
+             */
+            if(!skip)
+            {
                 if (!Directory.Exists(installDir))
                 {
                     try
@@ -678,12 +695,15 @@ namespace SteamServerCreationTool.Forms
                         return;
                     }
                 }
+            }
 
-                /*
-                 * Give the user a warning if the install directory is not empty.
-                 * A precaution so that the user dont install eg. CSGO server onto a Ark Server
-                 * which may have conflicting files, which in return, destroys another server.
-                */
+            /*
+             * Give the user a warning if the install directory is not empty.
+             * A precaution so that the user dont install eg. CSGO server onto a Ark Server
+             * which may have conflicting files, which in return, destroys another server.
+            */
+            if (!skip)
+            {
                 if (Core.IsFolderEmpty(installDir))
                 {
                     if (MessageBox.Show("It appears the installation folder is not empty.\n\rAre you sure you want to continue installing/updating this server?", "Directory Not Empty!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
@@ -692,58 +712,60 @@ namespace SteamServerCreationTool.Forms
                         return;
                     }
                 }
+            }
 
-                // Start a new thread with the installation as async using user input
-                new Thread(() =>
+            // Start a new thread with the installation as async using user input
+            new Thread(() =>
+            {
+                //Initiating process
+                using (Process process = new Process
                 {
-                    //Initiating process
-                    using (Process process = new Process
-                    {
-                        //Setting startinfo
-                        StartInfo =
+                    //Setting startinfo
+                    StartInfo =
                         {
                             UseShellExecute = false,
                             FileName = settings.steamCMD_installLocation,
                             Arguments = "+login anonymous +force_install_dir \"" + installDir + "\" +app_update " + appID + " " + validated + "+quit" // Building argument string
                         }
-                    })
+                })
+                {
+                    //Try starting the process
+                    try
                     {
-                        //Try starting the process
-                        try
-                        {
-                            process.Start();
-                        }
-                        catch (ObjectDisposedException x) { MessageBox.Show(x.Message); install = false; }
-                        catch (InvalidOperationException x) { MessageBox.Show(x.Message); install = false; }
-                        catch (Win32Exception x) { MessageBox.Show(x.Message); install = false; }
-
-                        //Wait for process to stop, if it exists.
-                        try
-                        {
-                            process?.WaitForExit();
-                        }
-                        catch (Win32Exception x) { MessageBox.Show(x.Message); install = false; }
-                        catch (OutOfMemoryException x) { MessageBox.Show(x.Message); install = false; }
-                        catch (IOException x) { MessageBox.Show(x.Message); install = false; }
-                        catch (SystemException x) { MessageBox.Show(x.Message); install = false; }
-
-                        // Register installation if new and save settings.
-                        if (install && selectedInstalledApp == null)
-                        {
-                            settings.installedServer.Add(new InstalledServer(installDir, selectedApp));
-                            Core.SaveCurrentSettings(settings);
-                        }
-
-                        Invoke(new Action(() =>
-                        {
-                            //Refresh data regardless of success.
-                            RefreshSelectedServerList();
-
-                            InstallServerButton.Enabled = true;
-                        }));
+                        process.Start();
                     }
-                }).Start();
-            }
+                    catch (ObjectDisposedException x) { MessageBox.Show(x.Message); install = false; }
+                    catch (InvalidOperationException x) { MessageBox.Show(x.Message); install = false; }
+                    catch (Win32Exception x) { MessageBox.Show(x.Message); install = false; }
+
+                    //Wait for process to stop, if it exists.
+                    try
+                    {
+                        process?.WaitForExit();
+                    }
+                    catch (Win32Exception x) { MessageBox.Show(x.Message); install = false; }
+                    catch (OutOfMemoryException x) { MessageBox.Show(x.Message); install = false; }
+                    catch (IOException x) { MessageBox.Show(x.Message); install = false; }
+                    catch (SystemException x) { MessageBox.Show(x.Message); install = false; }
+
+                    // Register installation if new and save settings.
+                    if (install && _app == null)
+                    {
+                        settings.installedServer.Add(new InstalledServer(installDir, selectedApp));
+                        Core.SaveCurrentSettings(settings);
+                    }
+
+                    Invoke(new Action(() =>
+                    {
+                        PopulateDataField();
+
+                        //Refresh data regardless of success.
+                        RefreshSelectedServerList();
+
+                        InstallServerButton.Enabled = true;
+                    }));
+                }
+            }).Start();
         }
 
         /// <summary>
@@ -768,7 +790,16 @@ namespace SteamServerCreationTool.Forms
                 try
                 {
                     //Delete directory with all files.
-                    Directory.Delete(selectedInstalledApp.installPath, true);
+                    try
+                    {
+                        Directory.Delete(selectedInstalledApp.installPath, true);
+                    }
+                    catch (PathTooLongException x) { MessageBox.Show(x.Message); }
+                    catch (DirectoryNotFoundException x) { MessageBox.Show(x.Message); }
+                    catch (IOException x) { MessageBox.Show(x.Message); }
+                    catch (UnauthorizedAccessException x) { MessageBox.Show(x.Message); }
+                    catch (ArgumentNullException x) { MessageBox.Show(x.Message); }
+                    catch (ArgumentException x) { MessageBox.Show(x.Message); }
 
                     //Get index of installed app
                     int tmpInt = -1;
@@ -786,6 +817,7 @@ namespace SteamServerCreationTool.Forms
 
                     //Refresh and save
                     RefreshSelectedServerList();
+                    PopulateDataField();
                     Core.SaveCurrentSettings(settings);
                 }
                 catch (ArgumentNullException x) { MessageBox.Show(x.Message); }
@@ -833,27 +865,20 @@ namespace SteamServerCreationTool.Forms
         }
 
         /// <summary>
-        /// Open Github link
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ProjectLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) => Process.Start(Core.projectURL);
-
-        /// <summary>
         /// Toggle window size
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void WindowExpander_Click(object sender, EventArgs e)
         {
-            if (this.Size == new Size(429, 429))
+            if (this.Size == new Size(this.Size.Width, 450))
             {
-                this.Size = new Size(429, 339);
+                this.Size = new Size(this.Size.Width, 358);
                 WindowExpander.Image = Properties.Resources.Down;
             }
             else
             {
-                this.Size = new Size(429, 429);
+                this.Size = new Size(this.Size.Width, 450);
                 WindowExpander.Image = Properties.Resources.Up;
             }
         }
@@ -867,5 +892,248 @@ namespace SteamServerCreationTool.Forms
                 form.ShowDialog();
             }
         }
+
+        private void InstalledServersButton_Click(object sender, EventArgs e)
+        {
+            if(this.Size.Width == 704)
+            {
+                this.Size = new Size(429, this.Size.Height);
+                ProgressBarInfo.Size = new Size(429, 2);
+                GrayBackgroundPanel.Size = new Size(429, 2);
+            }
+            else // This is where we should load and fill fields.
+            {
+                this.Size = new Size(704, this.Size.Height);
+                ProgressBarInfo.Size = new Size(704, 2);
+                GrayBackgroundPanel.Size = new Size(704, 2);
+
+                PopulateDataField();
+            }
+        }
+
+        private void PopulateDataField()
+        {
+            InstalledServerList.Items.Clear();
+
+            foreach (var item in settings.installedServer)
+            {
+                InstalledServerList.Items.Add("[" + item.app.Appid + "] " + item.app.Name);
+            }
+        }
+
+        private void InstalledServerList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                SteamServerList.SelectedIndex = SteamServerList.FindStringExact(InstalledServerList.Items[InstalledServerList.SelectedIndex].ToString());
+            }
+            catch { }
+        }
+
+        private void UpdateAllServersButton_Click(object sender, EventArgs e)
+        {
+            UpdateAllServersButton.Enabled = false;
+            DeleteAllServersButton.Enabled = false;
+            ClearDatabaseSaveServerData.Enabled = false;
+
+            toolStripProgressBar1.Enabled = true;
+            toolStripProgressBar1.Visible = true;
+            toolStripProgressBar1.Value = 0;
+            toolStripProgressBar1.Maximum = settings.installedServer.Count;
+
+            if (SequentialBox.Checked)
+            {
+                string validated = "";
+                if (ValidateBox.Checked) validated = "validate ";
+                else validated = "";
+
+                // Start a new thread with the installation as async using user input
+                new Thread(() =>
+                {
+                    for (int i = 0; i < settings.installedServer.Count; i++)
+                    {
+                        //settings.installedServer[i]
+                        Thread processX = new Thread(() =>
+                        {
+                            //Initiating process
+                            using (Process process = new Process
+                            {
+                                //Setting startinfo
+                                StartInfo =
+                        {
+                            UseShellExecute = false,
+                            FileName = settings.steamCMD_installLocation,
+                            Arguments = "+login anonymous +force_install_dir \"" + settings.installedServer[i].installPath + "\" +app_update " + settings.installedServer[i].app.Appid + " " + validated + "+quit" // Building argument string
+                        }
+                            })
+                            {
+                                //Try starting the process
+                                try
+                                {
+                                    process.Start();
+                                }
+                                catch (ObjectDisposedException x) { MessageBox.Show(x.Message); }
+                                catch (InvalidOperationException x) { MessageBox.Show(x.Message); }
+                                catch (Win32Exception x) { MessageBox.Show(x.Message); }
+
+                                //Wait for process to stop, if it exists.
+                                try
+                                {
+                                    process?.WaitForExit();
+                                }
+                                catch (Win32Exception x) { MessageBox.Show(x.Message); }
+                                catch (OutOfMemoryException x) { MessageBox.Show(x.Message); }
+                                catch (IOException x) { MessageBox.Show(x.Message); }
+                                catch (SystemException x) { MessageBox.Show(x.Message); }
+                            }
+                        });
+
+                        processX.Start();
+
+                        while (processX.IsAlive) Thread.Sleep(1000);
+
+                        Invoke(new Action(() => {
+                            toolStripProgressBar1.Value++;
+                        }));
+                    }
+
+                    Invoke(new Action(() => {
+                        UpdateAllServersButton.Enabled = true;
+                        DeleteAllServersButton.Enabled = true;
+                        ClearDatabaseSaveServerData.Enabled = true;
+
+                        toolStripProgressBar1.Enabled = false;
+                        toolStripProgressBar1.Visible = false;
+                    }));
+
+                }).Start();
+            }
+            else
+            {
+                for (int i = 0; i < settings.installedServer.Count; i++)
+                {
+                    StartSteamCMDServerDownload(settings.installedServer[i], true);
+                }
+
+                UpdateAllServersButton.Enabled = true;
+                DeleteAllServersButton.Enabled = true;
+                ClearDatabaseSaveServerData.Enabled = true;
+
+                toolStripProgressBar1.Enabled = false;
+                toolStripProgressBar1.Visible = false;
+            }
+        }
+
+        private void DeleteAllServersButton_Click(object sender, EventArgs e)
+        {
+            UpdateAllServersButton.Enabled = false;
+            DeleteAllServersButton.Enabled = false;
+            ClearDatabaseSaveServerData.Enabled = false;
+
+            toolStripProgressBar1.Enabled = true;
+            toolStripProgressBar1.Visible = true;
+            toolStripProgressBar1.Value = 0;
+            toolStripProgressBar1.Maximum = settings.installedServer.Count;
+
+            new Thread(() =>
+            {
+                for (int i = 0; i < settings.installedServer.Count; i++)
+                {
+                    //settings.installedServer[i]
+                    Thread processX = new Thread(() => {
+                        try
+                        {
+                            Directory.Delete(settings.installedServer[i].installPath, true);
+                        }
+                        catch (PathTooLongException x) { MessageBox.Show(x.Message); }
+                        catch (DirectoryNotFoundException x) { MessageBox.Show(x.Message); }
+                        catch (IOException x) { MessageBox.Show(x.Message); }
+                        catch (UnauthorizedAccessException x) { MessageBox.Show(x.Message); }
+                        catch (ArgumentNullException x) { MessageBox.Show(x.Message); }
+                        catch (ArgumentException x) { MessageBox.Show(x.Message); }
+
+                        //Get index of installed app
+                        int tmpInt = -1;
+                        for (int x = 0; x < settings.installedServer.Count; x++)
+                        {
+                            if (settings.installedServer[x].app.Appid == settings.installedServer[i].app.Appid)
+                            {
+                                tmpInt = x;
+                                break;
+                            }
+                        }
+
+                        //Remove index
+                        if (tmpInt != -1) settings.installedServer.RemoveAt(tmpInt);
+
+                        //Refresh and save
+                        Invoke(new Action(() => {
+                            RefreshSelectedServerList();
+                            Core.SaveCurrentSettings(settings);
+                        }));
+                    });
+
+                    processX.Start();
+
+                    MessageBox.Show(processX.IsAlive.ToString() + " " + i.ToString());
+
+                    while (processX.IsAlive)
+                    {
+                        MessageBox.Show("waiting...");
+                        Thread.Sleep(10);
+                    }
+
+                    Invoke(new Action(() => {
+                        toolStripProgressBar1.Value++;
+                        PopulateDataField();
+                    }));
+                }
+
+                Invoke(new Action(() => {
+                    UpdateAllServersButton.Enabled = true;
+                    DeleteAllServersButton.Enabled = true;
+                    ClearDatabaseSaveServerData.Enabled = true;
+
+                    toolStripProgressBar1.Enabled = false;
+                    toolStripProgressBar1.Visible = false;
+                }));
+
+            }).Start();
+        }
+
+        private void ClearDatabaseSaveServerData_Click(object sender, EventArgs e)
+        {
+            //Clear and lastly, refresh.
+            InstalledServerList.Items.Clear();
+            settings.installedServer.Clear();
+            RefreshSelectedServerList();
+
+            //Save
+            Core.SaveCurrentSettings(settings);
+        }
+
+        private void ExitButton_Click(object sender, EventArgs e) => Environment.Exit(0);
+
+        private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Core.CheckNetwork())
+            {
+                if(Core.IsApplicationVersionCurrent())
+                {
+                    MessageBox.Show("Application seems up-to-date!");
+                }
+                else
+                {
+                    NewReleaseButton.Enabled = true;
+                    NewReleaseButton.Visible = true;
+
+                    WindowExpander_Click(null, EventArgs.Empty);
+
+                    MessageBox.Show("There seems to be an update available!");
+                }
+            }
+        }
+
+        private void ProjectLink_Click(object sender, EventArgs e) => Process.Start(Core.projectURL);
     }
 }
