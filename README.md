@@ -11,12 +11,12 @@ Initially to get the application up and running you need "steamcmd.exe".
   - If you don't already have "steamcmd.exe" on your system you can download it manually:
     - Direct download: https://steamcdn-a.akamaihd.net/client/installer/steamcmd.zip
     - Page with download link: https://developer.valvesoftware.com/wiki/SteamCMD
-- "steamcmd.exe" has been located by the application, whats the next step?
-  - Step one, find your desired server in the list and select it. Information bellow should update with "App ID, App Name" etc.
-  - Step two, click on the textfield to get the folder browser dialogue to open, create or select a desired install folder.
-  - Step three, click "Install Server" button to start the installation of the server. The cmd window (Black box window) will disappear once the install is completed. 
+- "steamcmd.exe" has been located by the application. Whats the next step?
+  - Step one: Find your desired server in the list and select it. Information bellow should update with "App ID, App Name" etc.
+  - Step two: Click on the textfield to get the folder browser dialogue to open. Create or select a desired install folder.
+  - Step three: Click "Install Server" button to start the installation of the server. The cmd window (Black box window) will disappear once the install is completed. 
     - Closing the cmd window (Black box window) prematurely will result in installation failure. SSCT have no way of detecting a successful installation so be careful.
-  - Step four, once the server has been installed your next mission will be to setup the server and if the idea is to lauch a server publicly, you need to open server-specific ports.
+  - Step four: Once the server has been installed your next mission will be to setup the server and if the idea is to lauch a server publicly, you need to open server-specific ports. If you run any firewalls you may need to accept them there too.
   
 # Requirements
 - Internet Connection
