@@ -385,8 +385,9 @@ namespace SteamServerCreationTool.Forms
                     wc.Headers.Add("User-Agent", "Other");
 
                     wc.Encoding = Encoding.UTF8;
+                    wc.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.NoCacheNoStore);
                     wc.DownloadStringCompleted += Wc_DownloadStringCompletedList;
-                    string url = "https://api.steampowered.com/ISteamApps/GetAppList/v2/";
+                    string url = "https://api.steampowered.com/ISteamApps/GetAppList/v2?utc=" + Core.GetUTCTime();
                     Clipboard.SetText(url);
                     wc.DownloadStringAsync(new Uri(url));
                 }
@@ -1026,6 +1027,11 @@ namespace SteamServerCreationTool.Forms
 
         private void DeleteAllServersButton_Click(object sender, EventArgs e)
         {
+            if(MessageBox.Show("For now, this feature is running on the main thread; meaning that this feature will temporarily freeze the application from user inputs until the process has finished. Do not close the application. Are you sure you want to continue?", "BEFORE PROCEEDING!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+            {
+                return;
+            }
+
             UpdateAllServersButton.Enabled = false;
             DeleteAllServersButton.Enabled = false;
             ClearDatabaseSaveServerData.Enabled = false;
@@ -1035,70 +1041,50 @@ namespace SteamServerCreationTool.Forms
             toolStripProgressBar1.Value = 0;
             toolStripProgressBar1.Maximum = settings.installedServer.Count;
 
-            new Thread(() =>
+            List<int> tmpInt = new List<int>();
+
+            foreach (var item in settings.installedServer)
             {
-                for (int i = 0; i < settings.installedServer.Count; i++)
+                try
                 {
-                    //settings.installedServer[i]
-                    Thread processX = new Thread(() => {
-                        try
-                        {
-                            Directory.Delete(settings.installedServer[i].installPath, true);
-                        }
-                        catch (PathTooLongException x) { MessageBox.Show(x.Message); }
-                        catch (DirectoryNotFoundException x) { MessageBox.Show(x.Message); }
-                        catch (IOException x) { MessageBox.Show(x.Message); }
-                        catch (UnauthorizedAccessException x) { MessageBox.Show(x.Message); }
-                        catch (ArgumentNullException x) { MessageBox.Show(x.Message); }
-                        catch (ArgumentException x) { MessageBox.Show(x.Message); }
-
-                        //Get index of installed app
-                        int tmpInt = -1;
-                        for (int x = 0; x < settings.installedServer.Count; x++)
-                        {
-                            if (settings.installedServer[x].app.Appid == settings.installedServer[i].app.Appid)
-                            {
-                                tmpInt = x;
-                                break;
-                            }
-                        }
-
-                        //Remove index
-                        if (tmpInt != -1) settings.installedServer.RemoveAt(tmpInt);
-
-                        //Refresh and save
-                        Invoke(new Action(() => {
-                            RefreshSelectedServerList();
-                            Core.SaveCurrentSettings(settings);
-                        }));
-                    });
-
-                    processX.Start();
-
-                    MessageBox.Show(processX.IsAlive.ToString() + " " + i.ToString());
-
-                    while (processX.IsAlive)
-                    {
-                        MessageBox.Show("waiting...");
-                        Thread.Sleep(10);
-                    }
-
-                    Invoke(new Action(() => {
-                        toolStripProgressBar1.Value++;
-                        PopulateDataField();
-                    }));
+                    Directory.Delete(item.installPath, true);
                 }
+                catch (PathTooLongException x) { MessageBox.Show(x.Message); }
+                catch (DirectoryNotFoundException x) { MessageBox.Show(x.Message); }
+                catch (IOException x) { MessageBox.Show(x.Message); }
+                catch (UnauthorizedAccessException x) { MessageBox.Show(x.Message); }
+                catch (ArgumentNullException x) { MessageBox.Show(x.Message); }
+                catch (ArgumentException x) { MessageBox.Show(x.Message); }
 
-                Invoke(new Action(() => {
-                    UpdateAllServersButton.Enabled = true;
-                    DeleteAllServersButton.Enabled = true;
-                    ClearDatabaseSaveServerData.Enabled = true;
+                //Get index of installed app
+                for (int x = 0; x < settings.installedServer.Count; x++)
+                {
+                    if (settings.installedServer[x].app.Appid == item.app.Appid)
+                    {
+                        tmpInt.Add(x);
+                        break;
+                    }
+                }
+            }
 
-                    toolStripProgressBar1.Enabled = false;
-                    toolStripProgressBar1.Visible = false;
-                }));
+            tmpInt.Sort();
+            tmpInt.Reverse();
 
-            }).Start();
+            foreach (var item in tmpInt)
+            {
+                settings.installedServer.RemoveAt(item);
+            }
+
+            UpdateAllServersButton.Enabled = true;
+            DeleteAllServersButton.Enabled = true;
+            ClearDatabaseSaveServerData.Enabled = true;
+
+            toolStripProgressBar1.Enabled = false;
+            toolStripProgressBar1.Visible = false;
+
+            RefreshSelectedServerList();
+            PopulateDataField();
+            Core.SaveCurrentSettings(settings);
         }
 
         private void ClearDatabaseSaveServerData_Click(object sender, EventArgs e)

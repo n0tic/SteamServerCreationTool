@@ -504,7 +504,7 @@ namespace SteamServerCreationTool.Forms
             this.BottomLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
             this.BottomLabel.Location = new System.Drawing.Point(3, 16);
             this.BottomLabel.Name = "BottomLabel";
-            this.BottomLabel.Size = new System.Drawing.Size(383, 44);
+            this.BottomLabel.Size = new System.Drawing.Size(383, 64);
             this.BottomLabel.TabIndex = 12;
             this.BottomLabel.Text = "label5";
             // 
@@ -512,7 +512,7 @@ namespace SteamServerCreationTool.Forms
             // 
             this.ProjectLink.AutoSize = true;
             this.ProjectLink.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ProjectLink.Location = new System.Drawing.Point(157, 397);
+            this.ProjectLink.Location = new System.Drawing.Point(3, 67);
             this.ProjectLink.Name = "ProjectLink";
             this.ProjectLink.Size = new System.Drawing.Size(107, 13);
             this.ProjectLink.TabIndex = 13;
@@ -522,11 +522,12 @@ namespace SteamServerCreationTool.Forms
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.ProjectLink);
             this.groupBox4.Controls.Add(this.NewReleaseButton);
             this.groupBox4.Controls.Add(this.BottomLabel);
-            this.groupBox4.Location = new System.Drawing.Point(12, 335);
+            this.groupBox4.Location = new System.Drawing.Point(12, 319);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(389, 63);
+            this.groupBox4.Size = new System.Drawing.Size(389, 83);
             this.groupBox4.TabIndex = 13;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Application Information";
@@ -683,7 +684,6 @@ namespace SteamServerCreationTool.Forms
             this.Controls.Add(this.ProgressBarInfo);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.WindowExpander);
-            this.Controls.Add(this.ProjectLink);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -705,13 +705,13 @@ namespace SteamServerCreationTool.Forms
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.WindowExpander)).EndInit();
             this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
