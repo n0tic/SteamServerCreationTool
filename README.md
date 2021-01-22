@@ -1,11 +1,16 @@
 # SSCT | Steam Server Creation Tool
-![](http://bytevaultstudio.se/ShareX/devenv_XJ7W63mwm0.png)
+![](http://bytevaultstudio.se/ShareX/notepad%2B%2B_JfE5NwvIZa.png)
 
 Steam Server Creation Tool is a simple GUI based server installation tool for servers hosted at steam. 
 It automates downloading and the usage of steamCMD to install servers extrapolated from steams API so it will always dynamically stay up-to-date if there are any servers added or removed.
 
 # How does it work?
-Initially to get the application up and running you need "steamcmd.exe".
+The only thing you NEED in order to get going with the application is "steamcmd.exe".
+This application comes with auto-downlaod-and-reference feature so just press "Install SteamCMD".
+This application is completely portable so it doesn't add or make any changes to regedit or such.
+The application uses json data to store and load your data between sessions. The data will be in app root folder.
+
+Step-by-Step, how do I use this application:
 - Install and reference "steamcmd.exe" automatically by pressing "Install SteamCMD" button and selecting a install directory.
 - Additionally you can locate "steamcmd.exe" manually by using the button "Locate SteamCMD".
   - If you don't already have "steamcmd.exe" on your system you can download it manually:
