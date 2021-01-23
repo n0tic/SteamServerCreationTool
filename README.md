@@ -25,9 +25,8 @@ Step-by-Step, how do I use this application:
   
 # Requirements
 - Internet Connection
-- .NET Framework 4.7.2
-- System.IO.Compression (.Net 4.5+ should suffice)
-- Newtonsoft Json
+- .NET Framework 4.7.2 (+System.IO.Compression)
+- Newtonsoft Json (Included)
 
 # Disclamer
 Newtonsoft Json:
