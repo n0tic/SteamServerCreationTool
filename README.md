@@ -27,6 +27,9 @@ Step-by-Step, how do I use this application:
 - .NET Framework 4.7.2 (+System.IO.Compression)
 - Newtonsoft Json (Included)
 
+# Bugs?
+I've noticed the application not getting a response from the API causing the application to end up looping forever. Will look into this in the future.
+
 # Disclamer
 Newtonsoft Json:
 ```
