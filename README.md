@@ -1,13 +1,13 @@
 # SSCT | Steam Server Creation Tool
-![](http://bytevaultstudio.se/ShareX/notepad_DNxlHmvIRR.png)
+![](http://bytevaultstudio.se/ShareX/SteamServerCreationTool_CluFOHDCZu.png)
 
 Steam Server Creation Tool is a simple GUI based server installation tool for servers hosted at steam. 
-It automates downloading and the usage of steamCMD to install servers extrapolated from steams API so it will always dynamically stay up-to-date if there are any servers added or removed.
+It automates downloading and the usage of steamCMD to install servers extrapolated from steams API so it will always stay up-to-date with what steam has to offer.
+This is key in keeping the application up-to-date, always.
 
 # How does it work?
-The only thing you NEED in order to get going with the application is "steamcmd.exe".
-This application comes with auto-download-and-reference feature so just press "Install SteamCMD".
-This application is completely portable and is using json data to store and load your data between sessions. The data will be in application root folder.
+The application is requesting a full list of applications from the steams API so it will always stay up-to-date with what steam has to offer.
+It extrapolates servers from that list using the keyword "server", creates a database with IDs and names which the application then uses.
 
 Step-by-Step, how do I use this application:
 - Install and reference "steamcmd.exe" automatically by pressing "Install SteamCMD" button and selecting a install directory.
@@ -17,7 +17,7 @@ Step-by-Step, how do I use this application:
     - Page with download link: https://developer.valvesoftware.com/wiki/SteamCMD
 - "steamcmd.exe" has been located by the application. Whats the next step?
   - Step one: Find your desired server in the list and select it. Information bellow should update with "App ID, App Name" etc.
-  - Step two: Click on the textfield to get the folder browser dialogue to open. Create or select a desired install folder.
+  - Step two: Click on the textfield/inputfield to get the folder browser dialogue to open. Create or select a desired install folder.
   - Step three: Click "Install Server" button to start the installation of the server. The cmd window (Black box window) will disappear once the install is completed. 
     - Closing the cmd window (Black box window) prematurely will result in installation failure. SSCT have no way of detecting a successful installation so be careful.
   - Step four: Once the server has been installed your next mission will be to setup the server and if the idea is to lauch a server publicly, you need to open server-specific ports. If you run any firewalls you may need to accept them there too.
