@@ -135,6 +135,8 @@ namespace SteamServerCreationTool.Forms
                 //Set settings, save.
                 settings.steamCMD_installLocation = installedSteamCMDPath;
                 Core.SaveCurrentSettings(settings);
+
+                MessageBox.Show("SteamCMD installation was successful! Enjoy!", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
