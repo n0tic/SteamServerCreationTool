@@ -437,6 +437,7 @@ namespace SteamServerCreationTool.Forms
             // WindowExpander
             // 
             this.WindowExpander.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.WindowExpander.Enabled = false;
             this.WindowExpander.Image = global::SteamServerCreationTool.Properties.Resources.Down;
             this.WindowExpander.Location = new System.Drawing.Point(197, 285);
             this.WindowExpander.Name = "WindowExpander";
@@ -445,6 +446,7 @@ namespace SteamServerCreationTool.Forms
             this.WindowExpander.TabIndex = 14;
             this.WindowExpander.TabStop = false;
             this.Tooltipper.SetToolTip(this.WindowExpander, "View application information...");
+            this.WindowExpander.Visible = false;
             this.WindowExpander.Click += new System.EventHandler(this.WindowExpander_Click);
             // 
             // UpdateAllServersButton
@@ -489,7 +491,7 @@ namespace SteamServerCreationTool.Forms
             // SequentialBox
             // 
             this.SequentialBox.AutoSize = true;
-            this.SequentialBox.Location = new System.Drawing.Point(51, 0);
+            this.SequentialBox.Location = new System.Drawing.Point(177, 0);
             this.SequentialBox.Name = "SequentialBox";
             this.SequentialBox.Size = new System.Drawing.Size(76, 17);
             this.SequentialBox.TabIndex = 19;
@@ -501,7 +503,7 @@ namespace SteamServerCreationTool.Forms
             // 
             this.BottomLabel.Cursor = System.Windows.Forms.Cursors.Default;
             this.BottomLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BottomLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            this.BottomLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.BottomLabel.Location = new System.Drawing.Point(3, 16);
             this.BottomLabel.Name = "BottomLabel";
             this.BottomLabel.Size = new System.Drawing.Size(383, 64);
@@ -566,8 +568,9 @@ namespace SteamServerCreationTool.Forms
             // 
             // checkForUpdatesToolStripMenuItem
             // 
+            this.checkForUpdatesToolStripMenuItem.Enabled = false;
             this.checkForUpdatesToolStripMenuItem.Name = "checkForUpdatesToolStripMenuItem";
-            this.checkForUpdatesToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.checkForUpdatesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.checkForUpdatesToolStripMenuItem.Text = "Check For Updates";
             this.checkForUpdatesToolStripMenuItem.Click += new System.EventHandler(this.checkForUpdatesToolStripMenuItem_Click);
             // 

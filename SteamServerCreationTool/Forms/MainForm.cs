@@ -67,7 +67,7 @@ namespace SteamServerCreationTool.Forms
 
                         //Setup and start download
                         wc.DownloadFileCompleted += Wc_DownloadFileCompleted; ;
-                        wc.DownloadFileAsync(new Uri("https://steamcdn-a.akamaihd.net/client/installer/steamcmd.zip?=" + Core.GetUTCTime()), steamCMDFolderPath + "\\steamcmd.zip");
+                        wc.DownloadFileAsync(new Uri("https://steamcdn-a.akamaihd.net/client/installer/steamcmd.zip?utc=" + Core.GetUTCTime()), steamCMDFolderPath + "\\steamcmd.zip");
                     }
                     else
                     {
@@ -361,7 +361,7 @@ namespace SteamServerCreationTool.Forms
             SteamServerList.Enabled = false;
 
             // Update title to show what the application is working on
-            this.Text = Core.softwareNameShort + " " + Core.softwareName + " - Updating server list...";
+            this.Text = Core.softwareNameShort + " " + Core.softwareName + " - Getting server list...";
 
             //Nullify app information
             App_installedLabel.Text = "";
@@ -407,12 +407,34 @@ namespace SteamServerCreationTool.Forms
         {
             if (e.Cancelled)
             {
+                ShowProgressbar(false);
+
+                OpenServerButton.Enabled = true;
+                SteamServerList.Enabled = true;
+                ServersRefreshButton.Enabled = true;
+                SearchButton.Enabled = true;
+                App_InstallLocationBox.Enabled = true;
+
+                // Update title to show what the application is working on
+                this.Text = Core.softwareNameShort + " " + Core.softwareName;
+
                 MessageBox.Show("Steam API apps download cancelled...");
                 return;
             }
 
             if (e.Error != null)
             {
+                ShowProgressbar(false);
+
+                OpenServerButton.Enabled = true;
+                SteamServerList.Enabled = true;
+                ServersRefreshButton.Enabled = true;
+                SearchButton.Enabled = true;
+                App_InstallLocationBox.Enabled = true;
+
+                // Update title to show what the application is working on
+                this.Text = Core.softwareNameShort + " " + Core.softwareName;
+
                 MessageBox.Show(e.Error.Message, "Steam API Apps Download Error");
                 return;
             }
@@ -483,6 +505,8 @@ namespace SteamServerCreationTool.Forms
         /// <param name="e"></param>
         private void MainForm_Load(object sender, EventArgs e)
         {
+            MessageBox.Show("WARNING: This is an Alpha build. Not all features have been polished or tested 100%. Report any problems on the Github project issues page.", "Alpha Release", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
             //Make sure initial size is correct
             this.Size = new Size(429, 358);
             ProgressBarInfo.Size = new Size(429, 2);
@@ -491,8 +515,6 @@ namespace SteamServerCreationTool.Forms
             //Disable buttons
             InstallServerButton.Enabled = false;
             DeleteServerButton.Enabled = false;
-
-            Clipboard.SetText(Core.GetVersion());
 
             //Set author/app information
             BottomLabel.Text = "(" + Core.softwareNameShort + ") " + Core.softwareName + " " + Core.GetVersion() + "\n\rCreated by " + Core.authorName + " AKA " + Core.authorRealName + "\n\rContact: " + Core.authorContact;
@@ -521,6 +543,8 @@ namespace SteamServerCreationTool.Forms
                 ServersRefreshButton.Enabled = false;
                 SearchButton.Enabled = false;
                 SteamServerList.Enabled = false;
+
+                MessageBox.Show("No internet connection was detected. Disabling network features.", "No internet detected", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
@@ -529,13 +553,13 @@ namespace SteamServerCreationTool.Forms
                 SearchButton.Enabled = false;
                 SteamServerList.Enabled = false;
 
-                if(!Core.IsApplicationVersionCurrent())
+                /*if(!Core.IsApplicationVersionCurrent())
                 {
                     NewReleaseButton.Enabled = true;
                     NewReleaseButton.Visible = true;
 
                     WindowExpander_Click(null, EventArgs.Empty);
-                }
+                }*/
 
                 //Get steam apps list refreshed
                 ServersRefreshButton_Click(null, EventArgs.Empty);
@@ -884,7 +908,10 @@ namespace SteamServerCreationTool.Forms
             }
         }
 
-        private void NewReleaseButton_Click(object sender, EventArgs e) => Process.Start(Core.projectURL + "/releases");
+        private void NewReleaseButton_Click(object sender, EventArgs e)
+        {
+            //Process.Start(Core.projectURL + "/releases");
+        }
 
         private void SearchButton_Click(object sender, EventArgs e)
         {
@@ -909,6 +936,8 @@ namespace SteamServerCreationTool.Forms
                 GrayBackgroundPanel.Size = new Size(704, 2);
 
                 PopulateDataField();
+
+                MessageBox.Show("This feature has experimental features and may not work 100%.");
             }
         }
 
