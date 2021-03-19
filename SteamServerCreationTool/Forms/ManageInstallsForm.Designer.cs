@@ -39,6 +39,8 @@ namespace SteamServerCreationTool.Forms
             this.ProgressBarInfo = new System.Windows.Forms.ProgressBar();
             this.UpdateSelectedButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.app_name_label = new System.Windows.Forms.Label();
+            this.app_id_label = new System.Windows.Forms.Label();
             this.OpenServerButton = new System.Windows.Forms.Button();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.InstallDirButton = new System.Windows.Forms.Button();
@@ -47,11 +49,9 @@ namespace SteamServerCreationTool.Forms
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.app_id_label = new System.Windows.Forms.Label();
-            this.app_name_label = new System.Windows.Forms.Label();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.UpdateServerNameButton = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -62,9 +62,9 @@ namespace SteamServerCreationTool.Forms
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.InstalledServerList);
-            this.groupBox5.Location = new System.Drawing.Point(12, 68);
+            this.groupBox5.Location = new System.Drawing.Point(12, 12);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(260, 148);
+            this.groupBox5.Size = new System.Drawing.Size(260, 204);
             this.groupBox5.TabIndex = 19;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Installed Server List";
@@ -76,7 +76,7 @@ namespace SteamServerCreationTool.Forms
             this.InstalledServerList.Location = new System.Drawing.Point(3, 16);
             this.InstalledServerList.Name = "InstalledServerList";
             this.InstalledServerList.ScrollAlwaysVisible = true;
-            this.InstalledServerList.Size = new System.Drawing.Size(254, 129);
+            this.InstalledServerList.Size = new System.Drawing.Size(254, 185);
             this.InstalledServerList.TabIndex = 1;
             this.InstalledServerList.SelectedIndexChanged += new System.EventHandler(this.InstalledServerList_SelectedIndexChanged);
             // 
@@ -84,12 +84,14 @@ namespace SteamServerCreationTool.Forms
             // 
             this.groupBox6.Controls.Add(this.UpdateAllServersButton);
             this.groupBox6.Controls.Add(this.DeleteAllServersButton);
+            this.groupBox6.Enabled = false;
             this.groupBox6.Location = new System.Drawing.Point(12, 12);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(260, 50);
             this.groupBox6.TabIndex = 20;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Actions";
+            this.groupBox6.Visible = false;
             // 
             // UpdateAllServersButton
             // 
@@ -149,6 +151,7 @@ namespace SteamServerCreationTool.Forms
             this.UpdateSelectedButton.TabIndex = 22;
             this.UpdateSelectedButton.Text = "Update Selected Server";
             this.UpdateSelectedButton.UseVisualStyleBackColor = true;
+            this.UpdateSelectedButton.Click += new System.EventHandler(this.UpdateSelectedButton_Click);
             // 
             // groupBox1
             // 
@@ -168,8 +171,29 @@ namespace SteamServerCreationTool.Forms
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Server Information";
             // 
+            // app_name_label
+            // 
+            this.app_name_label.AutoSize = true;
+            this.app_name_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.app_name_label.Location = new System.Drawing.Point(81, 31);
+            this.app_name_label.Name = "app_name_label";
+            this.app_name_label.Size = new System.Drawing.Size(57, 13);
+            this.app_name_label.TabIndex = 28;
+            this.app_name_label.Text = "App Name";
+            // 
+            // app_id_label
+            // 
+            this.app_id_label.AutoSize = true;
+            this.app_id_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.app_id_label.Location = new System.Drawing.Point(62, 16);
+            this.app_id_label.Name = "app_id_label";
+            this.app_id_label.Size = new System.Drawing.Size(43, 13);
+            this.app_id_label.TabIndex = 27;
+            this.app_id_label.Text = "App ID:";
+            // 
             // OpenServerButton
             // 
+            this.OpenServerButton.Enabled = false;
             this.OpenServerButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OpenServerButton.Image = global::SteamServerCreationTool.Properties.Resources._016_folder_24_EDIT;
             this.OpenServerButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -196,6 +220,7 @@ namespace SteamServerCreationTool.Forms
             // 
             // InstallDirButton
             // 
+            this.InstallDirButton.Enabled = false;
             this.InstallDirButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.InstallDirButton.Image = global::SteamServerCreationTool.Properties.Resources._033_folder_7_EDIT;
             this.InstallDirButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -258,32 +283,25 @@ namespace SteamServerCreationTool.Forms
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Server Name";
             // 
+            // UpdateServerNameButton
+            // 
+            this.UpdateServerNameButton.Enabled = false;
+            this.UpdateServerNameButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UpdateServerNameButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.UpdateServerNameButton.Location = new System.Drawing.Point(371, 16);
+            this.UpdateServerNameButton.Name = "UpdateServerNameButton";
+            this.UpdateServerNameButton.Size = new System.Drawing.Size(83, 26);
+            this.UpdateServerNameButton.TabIndex = 29;
+            this.UpdateServerNameButton.Text = "Update Name";
+            this.UpdateServerNameButton.UseVisualStyleBackColor = true;
+            this.UpdateServerNameButton.Click += new System.EventHandler(this.UpdateServerNameButton_Click);
+            // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(6, 19);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(359, 20);
             this.textBox1.TabIndex = 24;
-            // 
-            // app_id_label
-            // 
-            this.app_id_label.AutoSize = true;
-            this.app_id_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.app_id_label.Location = new System.Drawing.Point(62, 16);
-            this.app_id_label.Name = "app_id_label";
-            this.app_id_label.Size = new System.Drawing.Size(43, 13);
-            this.app_id_label.TabIndex = 27;
-            this.app_id_label.Text = "App ID:";
-            // 
-            // app_name_label
-            // 
-            this.app_name_label.AutoSize = true;
-            this.app_name_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.app_name_label.Location = new System.Drawing.Point(81, 31);
-            this.app_name_label.Name = "app_name_label";
-            this.app_name_label.Size = new System.Drawing.Size(57, 13);
-            this.app_name_label.TabIndex = 28;
-            this.app_name_label.Text = "App Name";
             // 
             // groupBox3
             // 
@@ -295,18 +313,6 @@ namespace SteamServerCreationTool.Forms
             this.groupBox3.TabIndex = 28;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Server Actions";
-            // 
-            // UpdateServerNameButton
-            // 
-            this.UpdateServerNameButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UpdateServerNameButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.UpdateServerNameButton.Location = new System.Drawing.Point(371, 16);
-            this.UpdateServerNameButton.Name = "UpdateServerNameButton";
-            this.UpdateServerNameButton.Size = new System.Drawing.Size(83, 26);
-            this.UpdateServerNameButton.TabIndex = 29;
-            this.UpdateServerNameButton.Text = "Update Name";
-            this.UpdateServerNameButton.UseVisualStyleBackColor = true;
-            this.UpdateServerNameButton.Click += new System.EventHandler(this.UpdateServerNameButton_Click);
             // 
             // ManageInstallsForm
             // 

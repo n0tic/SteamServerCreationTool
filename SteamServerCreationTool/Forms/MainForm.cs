@@ -236,12 +236,10 @@ namespace SteamServerCreationTool.Forms
                 selectedApp = app;
 
                 //Check if server is installed
-                bool installed = false;
                 for (int i = 0; i < settings.installedServer.Count; i++)
                 {
                     if (settings.installedServer[i].app.Appid == app.Appid)
                     {
-                        installed = true;
                         selectedInstalledApp = settings.installedServer[i];
                         break;
                     }
@@ -263,6 +261,8 @@ namespace SteamServerCreationTool.Forms
                         return;
                     }
                 }
+
+                InstallServerButton.Enabled = true;
             }
             else
             {
@@ -276,9 +276,6 @@ namespace SteamServerCreationTool.Forms
 
                 InstallServerButton.Enabled = true;
             }
-
-            // TODO: Fix later
-            InstallServerButton.Enabled = true;
         }
 
         /// <summary>
@@ -419,6 +416,7 @@ namespace SteamServerCreationTool.Forms
                     for (int i = 0; i < apps.Applist.Apps.Count; i++)
                     {
                         // Super weird, 90 Half-Life Server was not in the list and a lot of other was also missing.
+                        // Denied response? Timed for "spamming"?
                         //{"appid":90,"name":"Half-Life Dedicated Server"}
                         //if (apps.Applist.Apps[i].Appid == 90) MessageBox.Show(apps.Applist.Apps[i].Name);
 
@@ -509,27 +507,9 @@ namespace SteamServerCreationTool.Forms
                 SearchButton.Enabled = false;
                 SteamServerList.Enabled = false;
 
-                /*if(!Core.IsApplicationVersionCurrent())
-                {
-                    NewReleaseButton.Enabled = true;
-                    NewReleaseButton.Visible = true;
-
-                    WindowExpander_Click(null, EventArgs.Empty);
-                }*/
-
                 //Get steam apps list refreshed
                 ServersRefreshButton_Click(null, EventArgs.Empty);
             }
-        }
-
-        /// <summary>
-        /// Select app install location
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void App_InstallLocationBox_Click(object sender, EventArgs e)
-        {
-            
         }
 
         /// <summary>

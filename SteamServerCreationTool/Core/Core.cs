@@ -33,7 +33,7 @@ namespace SteamServerCreationTool
         public static BuildTypes buildType = BuildTypes.Alpha;
         public static int majorVersion = 0;
         public static int minorVersion = 1;
-        public static int buildVersion = 4;
+        public static int buildVersion = 5;
 
         public enum BuildTypes
         {
@@ -44,44 +44,7 @@ namespace SteamServerCreationTool
 
         public static string GetVersion() => majorVersion.ToString() + "." + minorVersion.ToString() + "." + buildVersion.ToString() + " " + buildType.ToString();
 
-        public static bool IsApplicationVersionCurrent()
-        {
-            using (WebClient wc = new WebClient())
-            {
-                wc.Headers.Add("User-Agent", "Other");
-                try
-                {
-                    if (wc.DownloadString(new Uri("https://raw.githubusercontent.com/n0tic/SteamServerCreationTool/master/SteamServerCreationTool/version.txt?=" + GetUTCTime())) == GetVersion())
-                        return true;
-                    else return false;
-                }
-                catch { return false; }
-            }
-        }
-
         #endregion Version
-
-        #region Move Window
-
-        public const int WM_NCLBUTTONDOWN = 0xA1;
-        public const int HT_CAPTION = 0x2;
-
-        [System.Runtime.InteropServices.DllImport("user32.dll")]
-        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
-
-        [System.Runtime.InteropServices.DllImport("user32.dll")]
-        public static extern bool ReleaseCapture();
-
-        public static void MoveWindow(Form window, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                ReleaseCapture();
-                SendMessage(window.Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
-            }
-        }
-
-        #endregion Move Window
 
         #region Network
 
@@ -105,27 +68,6 @@ namespace SteamServerCreationTool
             catch
             {
                 MessageBox.Show("Could not detect a valid ethernet connection. Networking disabled.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-        }
-
-        public static bool RemoteFileExists(string url)
-        {
-            try
-            {
-                //Creating the HttpWebRequest
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-                //Setting the Request method HEAD, you can also use GET too.
-                request.Method = "HEAD";
-                //Getting the Web Response.
-                HttpWebResponse response = request.GetResponse() as HttpWebResponse;
-                //Returns TRUE if the Status code == 200
-                response.Close();
-                return (response.StatusCode == HttpStatusCode.OK);
-            }
-            catch
-            {
-                //Any exception will returns false.
                 return false;
             }
         }

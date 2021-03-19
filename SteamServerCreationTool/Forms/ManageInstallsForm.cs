@@ -58,6 +58,8 @@ namespace SteamServerCreationTool.Forms
                     UpdateSelectedButton.Enabled = true;
                     DeleteSelectedButton.Enabled = true;
                     UpdateServerNameButton.Enabled = true;
+                    InstallDirButton.Enabled = true;
+                    OpenServerButton.Enabled = true;
 
                     if(!Directory.Exists(app.installPath))
                     {
@@ -131,7 +133,7 @@ namespace SteamServerCreationTool.Forms
             ProgressBarInfo.Value = 0;
             ProgressBarInfo.Maximum = main.settings.installedServer.Count;
 
-            // TODO: fix later
+            // TODO: Perhaps we enable these buttons later.
             /*
             if (SequentialBox.Checked)
             {
@@ -289,7 +291,7 @@ namespace SteamServerCreationTool.Forms
 
         private void InstallDirButton_Click(object sender, EventArgs e)
         {
-            if(MessageBox.Show("Make sure the server is offline before proceeding. This may result in server corruption.", "Directory Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.Cancel)
+            if(MessageBox.Show("Make sure the server is offline before proceeding. Otherwise, this may result in server corruption.", "Directory Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.Cancel)
             {
                 return;
             }
@@ -307,13 +309,15 @@ namespace SteamServerCreationTool.Forms
 
                     if(app!= null && app.installPath != fbd.SelectedPath)
                     {
-                        if (MessageBox.Show("Are you sure you want to move the install directory of this server?", "Directory Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                        if (MessageBox.Show("Are you sure you want to move the install directory of this server?", "Directory Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                         {
                             //Initiate new Thread to async the move of server files.
                             new Thread(() =>
                             {
                                 //Start progressbar
                                 Invoke(new Action(() => {
+                                    InstalledServerList.Enabled = false;
+
                                     UpdateAllServersButton.Enabled = false;
                                     DeleteAllServersButton.Enabled = false;
                                     UpdateSelectedButton.Enabled = false;
@@ -330,22 +334,10 @@ namespace SteamServerCreationTool.Forms
                                 Core.MoveFolder(app.installPath, fbd.SelectedPath);
                                 app.installPath = fbd.SelectedPath;
 
-                                //Get install index
-                                /*int tmpInt = -1;
-                                for (int i = 0; i < settings.installedServer.Count; i++)
-                                {
-                                    if (settings.installedServer[i].app.Appid == selectedInstalledApp.app.Appid)
-                                    {
-                                        tmpInt = i;
-                                        break;
-                                    }
-                                }*/
-
-                                //If we found installation, change installed directory
-                                //if (tmpInt != -1) settings.installedServer[tmpInt].installPath = App_InstallLocationBox.Text;
-
                                 //Stop progressbar, modify button, save new settings and lastly, refresh list.
                                 Invoke(new Action(() => {
+                                    InstalledServerList.Enabled = true;
+
                                     UpdateAllServersButton.Enabled = true;
                                     DeleteAllServersButton.Enabled = true;
                                     UpdateSelectedButton.Enabled = true;
@@ -407,44 +399,138 @@ namespace SteamServerCreationTool.Forms
         {
             if (app != null)
             {
-                try
+                if (MessageBox.Show("Are you sure you want to delete the install server?\n\rThis will completely remove files and database references.", "Deletion Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
-                    //Delete directory with all files.
+                    //Initiate new Thread to async the move of server files.
+                    new Thread(() =>
+                    {
+                        //Start progressbar
+                        Invoke(new Action(() => {
+                            InstalledServerList.Enabled = false;
+                            UpdateAllServersButton.Enabled = false;
+                            DeleteAllServersButton.Enabled = false;
+                            UpdateSelectedButton.Enabled = false;
+                            DeleteSelectedButton.Enabled = false;
+                            UpdateServerNameButton.Enabled = false;
+                            InstallDirButton.Enabled = false;
+                            OpenServerButton.Enabled = false;
+
+                            ProgressBarInfo.Enabled = true;
+                            ProgressBarInfo.Visible = true;
+                        }));
+
+                        try
+                        {
+                            //Delete directory with all files.
+                            try
+                            {
+                                Directory.Delete(app.installPath, true);
+                            }
+                            catch (PathTooLongException x) { MessageBox.Show(x.Message); }
+                            catch (DirectoryNotFoundException x) { MessageBox.Show(x.Message); }
+                            catch (IOException x) { MessageBox.Show(x.Message); }
+                            catch (UnauthorizedAccessException x) { MessageBox.Show(x.Message); }
+                            catch (ArgumentNullException x) { MessageBox.Show(x.Message); }
+                            catch (ArgumentException x) { MessageBox.Show(x.Message); }
+
+                            main.settings.installedServer.Remove(app);
+                        }
+                        catch (ArgumentNullException x) { MessageBox.Show(x.Message); }
+                        catch (PathTooLongException x) { MessageBox.Show(x.Message); }
+                        catch (DirectoryNotFoundException x) { MessageBox.Show(x.Message); }
+                        catch (IOException x) { MessageBox.Show(x.Message); }
+                        catch (UnauthorizedAccessException x) { MessageBox.Show(x.Message); }
+                        catch (ArgumentException x) { MessageBox.Show(x.Message); }
+
+                        //Stop progressbar, modify button, save new settings and lastly, refresh list.
+                        Invoke(new Action(() => {
+                            InstalledServerList.Enabled = true;
+
+                            UpdateAllServersButton.Enabled = true;
+                            DeleteAllServersButton.Enabled = true;
+                            UpdateSelectedButton.Enabled = true;
+                            DeleteSelectedButton.Enabled = true;
+                            UpdateServerNameButton.Enabled = true;
+                            InstallDirButton.Enabled = true;
+                            OpenServerButton.Enabled = true;
+
+                            ProgressBarInfo.Enabled = false;
+                            ProgressBarInfo.Visible = false;
+
+                            Core.SaveCurrentSettings(main.settings);
+
+                            PopulateDataField();
+                        }));
+                    }).Start();
+                }
+            }
+        }
+
+        private void UpdateSelectedButton_Click(object sender, EventArgs e)
+        {
+            if(app != null)
+            {
+                if (MessageBox.Show("Make sure the server is offline before proceeding. Otherwise, this may result in server corruption.", "Server Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.Cancel)
+                {
+                    return;
+                }
+
+                StartSteamCMDServerDownload(app);
+            }
+        }
+
+        void StartSteamCMDServerDownload(Data.InstalledServer app, bool skip = false)
+        {
+            //Keep track of success
+            bool install = true;
+
+            //This needs no explanation, no? It simply updates data with provided defaults if new install
+            string validated = "validate ";
+
+            string installDir = app.installPath;
+            string appID = app.app.Appid.ToString();
+
+            // Start a new thread with the installation as async using user input
+            new Thread(() =>
+            {
+                //Initiating process
+                using (Process process = new Process
+                {
+                    //Setting startinfo
+                    StartInfo =
+                        {
+                            UseShellExecute = false,
+                            FileName = main.settings.steamCMD_installLocation,
+                            Arguments = "+login anonymous +force_install_dir \"" + installDir + "\" +app_update " + appID + " " + validated + "+quit" // Building argument string
+                        }
+                })
+                {
+                    //Try starting the process
                     try
                     {
-                        Directory.Delete(app.installPath, true);
+                        process.Start();
                     }
-                    catch (PathTooLongException x) { MessageBox.Show(x.Message); }
-                    catch (DirectoryNotFoundException x) { MessageBox.Show(x.Message); }
-                    catch (IOException x) { MessageBox.Show(x.Message); }
-                    catch (UnauthorizedAccessException x) { MessageBox.Show(x.Message); }
-                    catch (ArgumentNullException x) { MessageBox.Show(x.Message); }
-                    catch (ArgumentException x) { MessageBox.Show(x.Message); }
+                    catch (ObjectDisposedException x) { MessageBox.Show(x.Message); install = false; }
+                    catch (InvalidOperationException x) { MessageBox.Show(x.Message); install = false; }
+                    catch (Win32Exception x) { MessageBox.Show(x.Message); install = false; }
 
-                    //Get index of installed app
-                    int tmpInt = -1;
-                    for (int i = 0; i < main.settings.installedServer.Count; i++)
+                    //Wait for process to stop, if it exists.
+                    try
                     {
-                        if (main.settings.installedServer[i].name == app.name)
-                        {
-                            tmpInt = i;
-                            break;
-                        }
+                        process?.WaitForExit();
                     }
+                    catch (Win32Exception x) { MessageBox.Show(x.Message); install = false; }
+                    catch (OutOfMemoryException x) { MessageBox.Show(x.Message); install = false; }
+                    catch (IOException x) { MessageBox.Show(x.Message); install = false; }
+                    catch (SystemException x) { MessageBox.Show(x.Message); install = false; }
 
-                    //Remove index
-                    if (tmpInt != -1) main.settings.installedServer.RemoveAt(tmpInt);
-
-                    //Refresh and save
-                    Core.SaveCurrentSettings(main.settings);
+                    // Register installation if new and save settings.
+                    if (install)
+                    {
+                        MessageBox.Show("Update is completed!", "Update Finished!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
-                catch (ArgumentNullException x) { MessageBox.Show(x.Message); }
-                catch (PathTooLongException x) { MessageBox.Show(x.Message); }
-                catch (DirectoryNotFoundException x) { MessageBox.Show(x.Message); }
-                catch (IOException x) { MessageBox.Show(x.Message); }
-                catch (UnauthorizedAccessException x) { MessageBox.Show(x.Message); }
-                catch (ArgumentException x) { MessageBox.Show(x.Message); }
-            }
+            }).Start();
         }
     }
 }
