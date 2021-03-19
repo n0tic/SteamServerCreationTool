@@ -65,11 +65,29 @@
     <Compile Include="Core\Core.cs" />
     <Compile Include="Data\Settings.cs" />
     <Compile Include="Data\SteamApps.cs" />
+    <Compile Include="Forms\AboutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AboutForm.Designer.cs">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CreateServerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CreateServerForm.Designer.cs">
+      <DependentUpon>CreateServerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ManageInstallsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ManageInstallsForm.Designer.cs">
+      <DependentUpon>ManageInstallsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\ServerListSearchForm.cs">
       <SubType>Form</SubType>
@@ -79,8 +97,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\AboutForm.resx">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CreateServerForm.resx">
+      <DependentUpon>CreateServerForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ManageInstallsForm.resx">
+      <DependentUpon>ManageInstallsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ServerListSearchForm.resx">
       <DependentUpon>ServerListSearchForm.cs</DependentUpon>
@@ -118,9 +145,8 @@
   <ItemGroup>
     <Content Include="026-cloud-computing-12.ico" />
     <None Include="Resources\079-search-EDIT.png" />
+    <None Include="Resources\033-folder-7-EDIT.png" />
     <Content Include="version.txt" />
-    <None Include="Resources\Up.png" />
-    <None Include="Resources\Down.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

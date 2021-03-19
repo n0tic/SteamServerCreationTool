@@ -17,11 +17,13 @@ namespace SteamServerCreationTool.Data
     /// </summary>
     public class InstalledServer
     {
+        public string name;
         public string installPath;
         public App app;
 
-        public InstalledServer(string installPath, App app)
+        public InstalledServer(string name, string installPath, App app)
         {
+            this.name = name;
             this.installPath = installPath;
             this.app = app;
         }
