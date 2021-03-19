@@ -1,15 +1,9 @@
 ﻿using SteamServerCreationTool.Data;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SteamServerCreationTool.Forms
@@ -17,8 +11,8 @@ namespace SteamServerCreationTool.Forms
     public partial class CreateServerForm : Form
     {
         public bool ok = false;
-        MainForm main;
-        Data.App app;
+        private MainForm main;
+        private Data.App app;
 
         public CreateServerForm(MainForm main, Data.App app)
         {
@@ -29,7 +23,7 @@ namespace SteamServerCreationTool.Forms
 
         private void CreateServerForm_Load(object sender, EventArgs e)
         {
-            if(app != null)
+            if (app != null)
             {
                 NameTextbox.Text = app.Name;
                 app_name.Text = app.Name;
@@ -72,7 +66,7 @@ namespace SteamServerCreationTool.Forms
             bool unique = true;
             foreach (var installed in main.settings.installedServer)
             {
-                if(installed.name == NameTextbox.Text)
+                if (installed.name == NameTextbox.Text)
                 {
                     unique = false;
                     break;
@@ -113,7 +107,7 @@ namespace SteamServerCreationTool.Forms
             Close();
         }
 
-        void StartSteamCMDServerDownload(Data.App app, bool skip = false)
+        private void StartSteamCMDServerDownload(Data.App app, bool skip = false)
         {
             //Keep track of success
             bool install = true;

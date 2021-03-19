@@ -1,18 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SteamServerCreationTool.Forms
 {
     public partial class ServerListSearchForm : Form
     {
-        MainForm main;
+        private MainForm main;
 
         public ServerListSearchForm(MainForm main)
         {
@@ -47,7 +41,7 @@ namespace SteamServerCreationTool.Forms
 
         private void ResultsList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(ResultsList.SelectedIndex != -1)
+            if (ResultsList.SelectedIndex != -1)
             {
                 main.SteamServerList.SelectedIndex = main.SteamServerList.FindStringExact(ResultsList.Items[ResultsList.SelectedIndex].ToString());
             }

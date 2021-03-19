@@ -11,7 +11,6 @@ using System.IO.Compression;
 using System.Linq;
 using System.Net;
 using System.Text;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace SteamServerCreationTool.Forms
@@ -20,10 +19,11 @@ namespace SteamServerCreationTool.Forms
     {
         //Stored Information
         internal Settings settings;
+
         public SteamApps apps = null; // All apps from api (Only "server" and excludes "linux")
 
         //Forms
-        ManageInstallsForm mif;
+        private ManageInstallsForm mif;
 
         //Temporary information
         private App selectedApp = null;
@@ -488,7 +488,7 @@ namespace SteamServerCreationTool.Forms
             {
                 settings = new Settings(); // New settings file
                 MessageBox.Show("WARNING: This is an Alpha build. Not all features have been polished or tested 100%. Report any problems on the Github project issues page.", "Alpha Release", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            } 
+            }
 
             //Do we have an ethernet connection?
             if (!Core.CheckNetwork())
@@ -529,23 +529,18 @@ namespace SteamServerCreationTool.Forms
             using (CreateServerForm csf = new CreateServerForm(this, selectedApp))
             {
                 DialogResult res = csf.ShowDialog();
-                if(res == DialogResult.OK && csf.ok)
+                if (res == DialogResult.OK && csf.ok)
                 {
-
                 }
             }
 
             return;
-            
-            
 
             InstallServerButton.Enabled = false; // Disable button untill features are done.
 
             //If button text is set to "Move Server"
             if (InstallServerButton.Text == "Move Server")
             {
-
-                
             }
             else // Fresh install
             {
@@ -570,7 +565,6 @@ namespace SteamServerCreationTool.Forms
         /// <param name="e"></param>
         private void DeleteServerButton_Click(object sender, EventArgs e)
         {
-            
         }
 
         /// <summary>
@@ -612,7 +606,7 @@ namespace SteamServerCreationTool.Forms
         /// <param name="e"></param>
         private void WindowExpander_Click(object sender, EventArgs e)
         {
-            using(AboutForm af = new AboutForm())
+            using (AboutForm af = new AboutForm())
             {
                 af.ShowDialog();
             }
@@ -620,7 +614,7 @@ namespace SteamServerCreationTool.Forms
 
         private void SearchButton_Click(object sender, EventArgs e)
         {
-            using(ServerListSearchForm form = new ServerListSearchForm(this))
+            using (ServerListSearchForm form = new ServerListSearchForm(this))
             {
                 form.ShowDialog();
             }
@@ -628,7 +622,7 @@ namespace SteamServerCreationTool.Forms
 
         private void InstalledServersButton_Click(object sender, EventArgs e)
         {
-            if(mif == null || mif.IsDisposed) mif = new ManageInstallsForm(this);
+            if (mif == null || mif.IsDisposed) mif = new ManageInstallsForm(this);
 
             mif.Show();
         }

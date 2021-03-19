@@ -1,23 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SteamServerCreationTool.Forms
 {
     public partial class ManageInstallsForm : Form
     {
-        MainForm main;
+        private MainForm main;
 
-        Data.InstalledServer app = null;
+        private Data.InstalledServer app = null;
 
         public ManageInstallsForm(MainForm main)
         {
@@ -41,14 +36,14 @@ namespace SteamServerCreationTool.Forms
                 app = null;
                 foreach (var item in main.settings.installedServer)
                 {
-                    if(InstalledServerList.Items[InstalledServerList.SelectedIndex].ToString() == item.name)
+                    if (InstalledServerList.Items[InstalledServerList.SelectedIndex].ToString() == item.name)
                     {
                         app = item;
                         break;
                     }
                 }
 
-                if(app != null)
+                if (app != null)
                 {
                     textBox1.Text = app.name;
                     app_id_label.Text = app.app.Appid.ToString();
@@ -61,10 +56,10 @@ namespace SteamServerCreationTool.Forms
                     InstallDirButton.Enabled = true;
                     OpenServerButton.Enabled = true;
 
-                    if(!Directory.Exists(app.installPath))
+                    if (!Directory.Exists(app.installPath))
                     {
                         DialogResult test = MessageBox.Show("The installation folder was not found!\n\rDo you want to remove this database entry?", "Directory Error!", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
-                        switch(test)
+                        switch (test)
                         {
                             case DialogResult.Yes:
                                 DeleteServer(app);
@@ -81,6 +76,7 @@ namespace SteamServerCreationTool.Forms
                                 UpdateServerNameButton.Enabled = false;
 
                                 break;
+
                             case DialogResult.No: return;
                         }
                     }
@@ -199,7 +195,6 @@ namespace SteamServerCreationTool.Forms
                         ProgressBarInfo.Enabled = false;
                         ProgressBarInfo.Visible = false;
                     }));
-
                 }).Start();
             }
             else
@@ -291,11 +286,11 @@ namespace SteamServerCreationTool.Forms
 
         private void InstallDirButton_Click(object sender, EventArgs e)
         {
-            if(MessageBox.Show("Make sure the server is offline before proceeding. Otherwise, this may result in server corruption.", "Directory Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.Cancel)
+            if (MessageBox.Show("Make sure the server is offline before proceeding. Otherwise, this may result in server corruption.", "Directory Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.Cancel)
             {
                 return;
             }
-            
+
             //Initialize FolderBrowserDialog
             using (FolderBrowserDialog fbd = new FolderBrowserDialog())
             {
@@ -306,8 +301,7 @@ namespace SteamServerCreationTool.Forms
                 // Show FolderBrowserDialog dialogue and check if selection is valid
                 if (fbd.ShowDialog() == DialogResult.OK && Directory.Exists(fbd.SelectedPath))
                 {
-
-                    if(app!= null && app.installPath != fbd.SelectedPath)
+                    if (app != null && app.installPath != fbd.SelectedPath)
                     {
                         if (MessageBox.Show("Are you sure you want to move the install directory of this server?", "Directory Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                         {
@@ -315,7 +309,8 @@ namespace SteamServerCreationTool.Forms
                             new Thread(() =>
                             {
                                 //Start progressbar
-                                Invoke(new Action(() => {
+                                Invoke(new Action(() =>
+                                {
                                     InstalledServerList.Enabled = false;
 
                                     UpdateAllServersButton.Enabled = false;
@@ -335,7 +330,8 @@ namespace SteamServerCreationTool.Forms
                                 app.installPath = fbd.SelectedPath;
 
                                 //Stop progressbar, modify button, save new settings and lastly, refresh list.
-                                Invoke(new Action(() => {
+                                Invoke(new Action(() =>
+                                {
                                     InstalledServerList.Enabled = true;
 
                                     UpdateAllServersButton.Enabled = true;
@@ -366,9 +362,9 @@ namespace SteamServerCreationTool.Forms
 
         private void UpdateServerNameButton_Click(object sender, EventArgs e)
         {
-            if(app != null)
+            if (app != null)
             {
-                if(!string.IsNullOrWhiteSpace(textBox1.Text))
+                if (!string.IsNullOrWhiteSpace(textBox1.Text))
                 {
                     bool unique = true;
                     foreach (var installed in main.settings.installedServer)
@@ -380,7 +376,7 @@ namespace SteamServerCreationTool.Forms
                         }
                     }
 
-                    if(unique)
+                    if (unique)
                     {
                         app.name = textBox1.Text;
                         PopulateDataField();
@@ -405,7 +401,8 @@ namespace SteamServerCreationTool.Forms
                     new Thread(() =>
                     {
                         //Start progressbar
-                        Invoke(new Action(() => {
+                        Invoke(new Action(() =>
+                        {
                             InstalledServerList.Enabled = false;
                             UpdateAllServersButton.Enabled = false;
                             DeleteAllServersButton.Enabled = false;
@@ -443,7 +440,8 @@ namespace SteamServerCreationTool.Forms
                         catch (ArgumentException x) { MessageBox.Show(x.Message); }
 
                         //Stop progressbar, modify button, save new settings and lastly, refresh list.
-                        Invoke(new Action(() => {
+                        Invoke(new Action(() =>
+                        {
                             InstalledServerList.Enabled = true;
 
                             UpdateAllServersButton.Enabled = true;
@@ -468,7 +466,7 @@ namespace SteamServerCreationTool.Forms
 
         private void UpdateSelectedButton_Click(object sender, EventArgs e)
         {
-            if(app != null)
+            if (app != null)
             {
                 if (MessageBox.Show("Make sure the server is offline before proceeding. Otherwise, this may result in server corruption.", "Server Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.Cancel)
                 {
@@ -479,7 +477,7 @@ namespace SteamServerCreationTool.Forms
             }
         }
 
-        void StartSteamCMDServerDownload(Data.InstalledServer app, bool skip = false)
+        private void StartSteamCMDServerDownload(Data.InstalledServer app, bool skip = false)
         {
             //Keep track of success
             bool install = true;
