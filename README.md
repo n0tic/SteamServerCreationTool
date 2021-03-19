@@ -1,6 +1,6 @@
 # SSCT | Steam Server Creation Tool
-![](http://bytevaultstudio.se/ShareX/SteamServerCreationTool_kBDq9EGsNC.png)
-![](http://bytevaultstudio.se/ShareX/SteamServerCreationTool_TSwIBYJCS1.png)
+
+### WIP : UI Design Overhaul incoming
 
 Steam Server Creation Tool is a simple GUI based server installation tool for servers hosted at steam. 
 It automates downloading and the usage of steamCMD to install servers extrapolated from steams API so it will always stay up-to-date with what steam has to offer.
