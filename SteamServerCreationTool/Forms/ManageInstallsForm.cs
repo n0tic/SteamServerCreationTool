@@ -509,6 +509,20 @@ namespace SteamServerCreationTool.Forms
                     try
                     {
                         process.Start();
+                        Invoke(new Action(() =>
+                        {
+                            InstalledServerList.Enabled = false;
+                            UpdateAllServersButton.Enabled = false;
+                            DeleteAllServersButton.Enabled = false;
+                            UpdateSelectedButton.Enabled = false;
+                            DeleteSelectedButton.Enabled = false;
+                            UpdateServerNameButton.Enabled = false;
+                            InstallDirButton.Enabled = false;
+                            OpenServerButton.Enabled = false;
+
+                            ProgressBarInfo.Enabled = true;
+                            ProgressBarInfo.Visible = true;
+                        }));
                     }
                     catch (ObjectDisposedException x) { MessageBox.Show(x.Message); install = false; }
                     catch (InvalidOperationException x) { MessageBox.Show(x.Message); install = false; }
@@ -518,6 +532,20 @@ namespace SteamServerCreationTool.Forms
                     try
                     {
                         process?.WaitForExit();
+                        Invoke(new Action(() =>
+                        {
+                            InstalledServerList.Enabled = true;
+                            UpdateAllServersButton.Enabled = true;
+                            DeleteAllServersButton.Enabled = true;
+                            UpdateSelectedButton.Enabled = true;
+                            DeleteSelectedButton.Enabled = true;
+                            UpdateServerNameButton.Enabled = true;
+                            InstallDirButton.Enabled = true;
+                            OpenServerButton.Enabled = true;
+
+                            ProgressBarInfo.Enabled = false;
+                            ProgressBarInfo.Visible = false;
+                        }));
                     }
                     catch (Win32Exception x) { MessageBox.Show(x.Message); install = false; }
                     catch (OutOfMemoryException x) { MessageBox.Show(x.Message); install = false; }
