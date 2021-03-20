@@ -249,19 +249,6 @@ namespace SteamServerCreationTool.Forms
                 App_idLabel.Text = app.Appid.ToString();
                 App_nameLabel.Text = app.Name;
 
-                if (selectedInstalledApp != null)
-                {
-                    //If the app is installed but the directory is missing
-                    if (!Directory.Exists(selectedInstalledApp.installPath))
-                    {
-                        //Delete references, folder etc - Refresh
-                        MessageBox.Show("The server is registered as installed but the folder could not be found. Removing database entry...", "Install Directory Missing!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        DeleteServer(selectedInstalledApp);
-                        RefreshSelectedServerList();
-                        return;
-                    }
-                }
-
                 InstallServerButton.Enabled = true;
             }
             else

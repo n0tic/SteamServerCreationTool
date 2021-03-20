@@ -146,7 +146,6 @@
     <Content Include="026-cloud-computing-12.ico" />
     <None Include="Resources\079-search-EDIT.png" />
     <None Include="Resources\033-folder-7-EDIT.png" />
-    <Content Include="version.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -345,6 +345,8 @@ namespace SteamServerCreationTool.Forms
                                     ProgressBarInfo.Enabled = false;
                                     ProgressBarInfo.Visible = false;
 
+                                    App_InstallLocationBox.Text = fbd.SelectedPath;
+
                                     Core.SaveCurrentSettings(main.settings);
                                 }));
                             }).Start();
