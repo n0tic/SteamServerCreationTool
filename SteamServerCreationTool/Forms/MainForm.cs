@@ -518,22 +518,6 @@ namespace SteamServerCreationTool.Forms
             using (CreateServerForm csf = new CreateServerForm(this, selectedApp))
             {
                 DialogResult res = csf.ShowDialog();
-                if (res == DialogResult.OK && csf.ok)
-                {
-                }
-            }
-
-            return;
-
-            InstallServerButton.Enabled = false; // Disable button untill features are done.
-
-            //If button text is set to "Move Server"
-            if (InstallServerButton.Text == "Move Server")
-            {
-            }
-            else // Fresh install
-            {
-                //StartSteamCMDServerDownload(selectedInstalledApp);
             }
         }
 
