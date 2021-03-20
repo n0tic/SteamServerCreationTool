@@ -160,7 +160,7 @@ namespace SteamServerCreationTool.Forms
                         main.settings.installedServer.Add(new InstalledServer(NameTextbox.Text, installDir, app));
                         Core.SaveCurrentSettings(main.settings);
 
-                        MessageBox.Show("Installation manager (SteamCMD) was exited. Adding server to the database.", "Installation Completed!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        System.Media.SystemSounds.Exclamation.Play();
                     }
                 }
             }).Start();

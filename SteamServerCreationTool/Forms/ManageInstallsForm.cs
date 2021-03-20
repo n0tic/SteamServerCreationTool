@@ -525,10 +525,7 @@ namespace SteamServerCreationTool.Forms
                     catch (SystemException x) { MessageBox.Show(x.Message); install = false; }
 
                     // Register installation if new and save settings.
-                    if (install)
-                    {
-                        MessageBox.Show("Update is completed!", "Update Finished!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
+                    if (install) System.Media.SystemSounds.Exclamation.Play();
                 }
             }).Start();
         }
