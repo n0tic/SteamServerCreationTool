@@ -18,10 +18,10 @@ Step-by-Step, how do I use this application:
     - Page with download link: https://developer.valvesoftware.com/wiki/SteamCMD
 - "steamcmd.exe" has been located by the application. Whats the next step?
   - Step one: Find your desired server in the list and select it. Information bellow should update with "App ID, App Name" etc.
-  - Step two: Click on the textfield/inputfield to get the folder browser dialogue to open. Create or select a desired install folder.
-  - Step three: Click "Install Server" button to start the installation of the server. The cmd window (Black box window) will disappear once the install is completed. 
-    - Closing the cmd window (Black box window) prematurely will result in installation failure. SSCT have no way of detecting a successful installation so be careful.
-  - Step four: Once the server has been installed your next mission will be to setup the server and if the idea is to lauch a server publicly, you need to open server-specific ports. If you run any firewalls you may need to accept them there too.
+  - Step two: Click on the button "Create Server" and a dialogue/form will open. Give the server a name, install directory and complete creation by pressing "Install Server".
+  - Step three: The cmd window (Black box window) will appear and install the server. The cmd window will disappear once the install has completed. 
+    - Closing the cmd window (Black box window) prematurely will result in installation failure. However, SSCT have no way of detecting a successful installation so be careful. Let the installation window (cmd) close itself.
+  - Step four: Once the server has been installed your next mission will be to setup the server and if the idea is to lauch a server publicly, you need to open specific ports related to the server. If you run any firewalls you may need to accept them there too.
   
 # Requirements
 - Internet Connection
