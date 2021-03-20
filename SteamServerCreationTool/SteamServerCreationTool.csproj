@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Core.cs" />
+    <Compile Include="Data\GithubReleaseData.cs" />
     <Compile Include="Data\Settings.cs" />
     <Compile Include="Data\SteamApps.cs" />
     <Compile Include="Forms\AboutForm.cs">
@@ -144,6 +145,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="026-cloud-computing-12.ico" />
+    <Content Include="NewtonsoftJson_LICENSE.txt" />
+    <Content Include="SSCT_LICENCE.txt" />
     <None Include="Resources\079-search-EDIT.png" />
     <None Include="Resources\033-folder-7-EDIT.png" />
   </ItemGroup>

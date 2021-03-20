@@ -489,6 +489,8 @@ namespace SteamServerCreationTool.Forms
             }
             else
             {
+                Core.CheckForUpdates();
+
                 InstallCMDButton.Enabled = true;
                 ServersRefreshButton.Enabled = false;
                 SearchButton.Enabled = false;

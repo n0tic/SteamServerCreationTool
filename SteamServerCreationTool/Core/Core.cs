@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using SteamServerCreationTool.Data;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -48,6 +49,29 @@ namespace SteamServerCreationTool
 
         #region Network
 
+        public static void CheckForUpdates()
+        {
+            using (WebClient wc = new WebClient())
+            {
+                wc.Headers.Add("User-Agent", "request");
+                var data = GithubReleasesData.FromJson(wc.DownloadString("https://api.github.com/repos/n0tic/SteamServerCreationTool/releases"));
+                if (data != null)
+                {
+                    int majorversion = Int32.Parse(data[0].TagName.Split('.')[0]), minorversion = Int32.Parse(data[0].TagName.Split('.')[1]), buildversion = Int32.Parse(data[0].TagName.Split('.')[2]);
+                    int version = majorversion + minorversion + buildversion;
+                    int currentVersion = majorVersion + minorVersion + buildVersion;
+
+                    if (currentVersion >= version) return;
+                    else
+                    {
+                        if (MessageBox.Show("There seem to be an update available.\n\rWould you like to go to the download location?", "Update Available!", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                        {
+                            Process.Start(projectURL + "/releases");
+                        }
+                    }
+                }
+            }
+        }
         public static bool CheckNetwork()
         {
             try
