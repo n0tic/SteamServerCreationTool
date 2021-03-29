@@ -1,7 +1,61 @@
+::===============================================================
+:: This batch-script will run the server in a "loop" meaning that
+:: the server will restart automatically if crashing or exited.
+:: NOTE: Be sure to close this cmd/window before the server.
+:: 
+:: You will need to edit the 3 lines below with valid information
+::
+:: Examples:
+:: 
+:: SET serverExecutablePath=D:\Valheim Server
+:: SET serverExecutableFileName=valheim_server.exe
+:: SET serverLaunchOptions=-nographics -batchmode -name "My First Server" -port 2456 -world "DedicatedServer" -password "SomePasswordHere"
+::===============================================================
+
 @ECHO OFF
 SET serverExecutablePath={server_dir}
 SET serverExecutableFileName=StartServerExecutable.exe
 SET serverLaunchOptions=-Some -Launch Options
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+::================================================================
+:: DO NOT EDIT BELOW THIS LINE; UNLESS YOU KNOW WHAT YOU ARE DOING
+::================================================================
+
 
 SET pathExist=%serverExecutablePath%\%serverExecutableFileName%
 
