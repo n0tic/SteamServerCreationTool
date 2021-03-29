@@ -61,6 +61,8 @@ namespace SteamServerCreationTool
                     int version = majorversion + minorversion + buildversion;
                     int currentVersion = majorVersion + minorVersion + buildVersion;
 
+                    //MessageBox.Show(currentVersion + " vs " + version);
+
                     if (currentVersion >= version) return;
                     else
                     {
@@ -107,6 +109,11 @@ namespace SteamServerCreationTool
         #region IO
 
         public static string GetCurrentDirectory() => @AppDomain.CurrentDomain.BaseDirectory;
+
+        public static void SaveToFile(string fullPath, string data)
+        {
+            using (StreamWriter writer = new StreamWriter(fullPath)) writer.Write(data);
+        }
 
         public static void SaveCurrentSettings(Settings applications)
         {

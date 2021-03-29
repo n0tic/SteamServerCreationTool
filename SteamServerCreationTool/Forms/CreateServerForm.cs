@@ -157,6 +157,14 @@ namespace SteamServerCreationTool.Forms
                     // Register installation if new and save settings.
                     if (install)
                     {
+                        string startScript = Properties.Resources.StartServerScript;
+                        startScript = startScript.Replace("{steamcmd_dir}", "\"" + Path.GetDirectoryName(main.settings.steamCMD_installLocation) + "\"");
+                        startScript = startScript.Replace("{server_dir}", installDir);
+                        startScript = startScript.Replace("{app_id}", appID);
+                        startScript = startScript.Replace("{app_name}", app.Name);
+
+                        Core.SaveToFile(installDir + @"\StartServerScript.bat", startScript);
+
                         main.settings.installedServer.Add(new InstalledServer(NameTextbox.Text, installDir, app));
                         Core.SaveCurrentSettings(main.settings);
 

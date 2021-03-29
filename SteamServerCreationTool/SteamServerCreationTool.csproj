@@ -148,6 +148,9 @@
     <Content Include="NewtonsoftJson_LICENSE.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\StartServerScript.bmp" />
+    <None Include="Resources\StartServerScript.bat.bmp" />
+    <None Include="Resources\StartServerScript.txt" />
     <Content Include="SSCT_LICENCE.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
