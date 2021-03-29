@@ -99,20 +99,9 @@ namespace SteamServerCreationTool.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-        
+
         /// <summary>
-        ///   Looks up a localized string similar to @echo off
-        ///cd {steamcmd_dir}
-        ///start /wait steamcmd +login anonymous +force_install_dir {server_dir} +app_update {app_id} validated +quit
-        ///pushd {server_dir}
-        ///echo Protecting {app_name} from crashes...
-        ///echo To exit {app_name}, close this window first. It will restart otherwise.
-        ///title {app_name}
-        ///:server
-        ///echo (%time%) {app_name} started.
-        ///start /wait ExeToLaunch -LaunchOptions
-        ///echo (%time%) WARNING: {app_name} closed or crashed, restarting.
-        ///goto server.
+        ///   Looks up a localized string from Properties.Resources.StartServerScript
         /// </summary>
         internal static string StartServerScript {
             get {
