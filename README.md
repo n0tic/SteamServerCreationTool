@@ -10,8 +10,9 @@
 
 ![Image Preview](http://bytevaultstudio.se/ShareX/SteamServerCreationTool_D6oDqkanhq.png)
 
-Steam Server Creation Tool is a simple GUI based server installation tool.
-It automates downloading and the usage of SteamCMD to install servers extrapolated from SteamAPI so it will always stay up-to-date with what steam has to offer. This should keep the application up-to-date, forever.
+Steam Server Creation Tool is a simple GUI based server installation tool. 
+It automates downloading and the usage of SteamCMD to install servers extrapolated from SteamAPI. 
+This way it should always stay up-to-date with what steam has to offer.
 
 # How does it work?
 The application is requesting a full list of applications from the steams API so it will always stay up-to-date with what steam has to offer.
