@@ -5,10 +5,10 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("SteamServerCreationTool")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Steam Server Creation Tool is a simple GUI based server installation tool. It automates downloading and the usage of SteamCMD to install servers extrapolated from SteamAPI. This way it should always stay up-to-date with what steam has to offer.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SteamServerCreationTool")]
+[assembly: AssemblyCompany("ByteVault Studio")]
+[assembly: AssemblyProduct("Steam Server Creation Tool")]
 [assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
