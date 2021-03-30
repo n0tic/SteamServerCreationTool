@@ -36,9 +36,9 @@ This file will be a supplement for the server. If the generation was successfull
 This file will automatically update the server and validate files before trying to start the server.
 This file will need to be updated with valid information. You need to edit rows 19, 20, 21. In this case I demo the valheim server.
 ```
-19 : SET serverExecutablePath=D:\Valheim Server
-20 : SET serverExecutableFileName=valheim_server.exe
-21 : SET serverLaunchOptions=-nographics -batchmode -name "MyFirstServer" -port 2456 -world "DedicatedServer" -password "SomePasswordHere"
+SET serverExecutablePath=D:\Valheim Server
+SET serverExecutableFileName=valheim_server.exe
+SET serverLaunchOptions=-nographics -batchmode -name "MyFirstServer" -port 2456 -world "DedicatedServer" -password "SomePasswordHere"
 ```
 From what we can see above we have the valheim server located at the "D:\" drive and inside the folder "Valheim Server".
 The server is set to launch the file "valheim_server.exe" with the launch options:
