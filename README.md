@@ -30,6 +30,25 @@ Step-by-Step, how do I use this application:
     - Closing the cmd window (Black box window) prematurely will result in installation failure. However, SSCT have no way of detecting a successful installation so be careful. Let the installation window (cmd) close itself.
   - Step four: Once the server has been installed your next mission will be to setup the server and if the idea is to lauch a server publicly, you need to open specific ports related to the server. If you run any firewalls you may need to accept them there too.
   
+# How to use the StartServerScript?
+Inside the root folder for the server there will be a batch (.bat) file called "StartServerScript.bat".
+This file will be a supplement for the server. If the generation was successfull and the server supports this feature, this is gold.
+This file will automatically update the server and validate files before trying to start the server.
+This file will need to be updated with valid information. You need to edit rows 19, 20, 21. In this case I demo the valheim server.
+```
+19 : SET serverExecutablePath=D:\Valheim Server
+20 : SET serverExecutableFileName=valheim_server.exe
+21 : SET serverLaunchOptions=-nographics -batchmode -name "MyFirstServer" -port 2456 -world "DedicatedServer" -password "SomePasswordHere"
+```
+From what we can see above we have the valheim server located at the "D:\" drive and inside the folder "Valheim Server".
+The server is set to launch the file "valheim_server.exe" with the launch options:
+
+-nographics -batchmode -name "MyFirstServer" -port 2456 -world "DedicatedServer" -password "SomePasswordHere"
+
+If this would be valid information the server would then run the server and monitor that process. If this window is closed or the server is crashed, the server will automatically be restarted as the StartServerScript is protecting the process. In order to stop the server from restarting you need to close the StartServerScript first.
+
+NOTE: The StartServerScript will only cover the update and the server protection loop (launch of the server). If there are any problems connecting to the server, server crashes or the server is miss configured. You'll need to configure that yourself by looking up a guide. Good luck!
+  
 # Requirements
 - Internet Connection
 - .NET Framework 4.7.2 (+System.IO.Compression)
