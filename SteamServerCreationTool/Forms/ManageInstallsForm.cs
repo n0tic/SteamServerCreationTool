@@ -50,6 +50,7 @@ namespace SteamServerCreationTool.Forms
                     app_name_label.Text = app.app.Name;
                     App_InstallLocationBox.Text = app.installPath;
 
+                    GenerateScriptButton.Enabled = true;
                     UpdateSelectedButton.Enabled = true;
                     DeleteSelectedButton.Enabled = true;
                     UpdateServerNameButton.Enabled = true;
@@ -71,6 +72,7 @@ namespace SteamServerCreationTool.Forms
                                 app_name_label.Text = "";
                                 App_InstallLocationBox.Text = "";
 
+                                GenerateScriptButton.Enabled = false;
                                 UpdateSelectedButton.Enabled = false;
                                 DeleteSelectedButton.Enabled = false;
                                 UpdateServerNameButton.Enabled = false;
@@ -88,6 +90,7 @@ namespace SteamServerCreationTool.Forms
                     app_name_label.Text = "";
                     App_InstallLocationBox.Text = "";
 
+                    GenerateScriptButton.Enabled = false;
                     UpdateSelectedButton.Enabled = false;
                     DeleteSelectedButton.Enabled = false;
                     UpdateServerNameButton.Enabled = false;
@@ -114,7 +117,7 @@ namespace SteamServerCreationTool.Forms
             {
                 //Remove index, save.
                 main.settings.installedServer.RemoveAt(removeID);
-                Core.SaveCurrentSettings(main.settings);
+                Core.SaveSettings(main.settings);
             }
         }
 
@@ -271,7 +274,7 @@ namespace SteamServerCreationTool.Forms
             ProgressBarInfo.Visible = false;
 
             PopulateDataField();
-            Core.SaveCurrentSettings(main.settings);
+            Core.SaveSettings(main.settings);
         }
 
         private void ClearDatabaseSaveServerData_Click(object sender, EventArgs e)
@@ -281,7 +284,7 @@ namespace SteamServerCreationTool.Forms
             main.settings.installedServer.Clear();
 
             //Save
-            Core.SaveCurrentSettings(main.settings);
+            Core.SaveSettings(main.settings);
         }
 
         private void InstallDirButton_Click(object sender, EventArgs e)
@@ -347,7 +350,7 @@ namespace SteamServerCreationTool.Forms
 
                                     App_InstallLocationBox.Text = fbd.SelectedPath;
 
-                                    Core.SaveCurrentSettings(main.settings);
+                                    Core.SaveSettings(main.settings);
                                 }));
                             }).Start();
                         }
@@ -457,7 +460,7 @@ namespace SteamServerCreationTool.Forms
                             ProgressBarInfo.Enabled = false;
                             ProgressBarInfo.Visible = false;
 
-                            Core.SaveCurrentSettings(main.settings);
+                            Core.SaveSettings(main.settings);
 
                             PopulateDataField();
                         }));
@@ -490,6 +493,9 @@ namespace SteamServerCreationTool.Forms
             string installDir = app.installPath;
             string appID = app.app.Appid.ToString();
 
+            string login = main.settings.GetLogin();
+            if (login == null) if (MessageBox.Show("Login information has failed validation.\n\rContinue with anonymous download?", "Login Information Error!", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.No) return;
+
             // Start a new thread with the installation as async using user input
             new Thread(() =>
             {
@@ -501,7 +507,7 @@ namespace SteamServerCreationTool.Forms
                         {
                             UseShellExecute = false,
                             FileName = main.settings.steamCMD_installLocation,
-                            Arguments = "+login anonymous +force_install_dir \"" + installDir + "\" +app_update " + appID + " " + validated + "+quit" // Building argument string
+                            Arguments = "+login " + login + " +force_install_dir \"" + installDir + "\" +app_update " + appID + " " + validated + "+quit" // Building argument string
                         }
                 })
                 {
@@ -556,6 +562,28 @@ namespace SteamServerCreationTool.Forms
                     if (install) System.Media.SystemSounds.Exclamation.Play();
                 }
             }).Start();
+        }
+
+        private void GenerateScriptButton_Click(object sender, EventArgs e)
+        {
+            if(app != null)
+            {
+                if(File.Exists(app.installPath + @"\StartServerScript.bat"))
+                {
+                    if(MessageBox.Show("There is already a generated script in this directory. \n\rAre you sure you want to overwrite?", "Overwrite Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                    {
+                        return;
+                    }
+                }
+
+                string startScript = Properties.Resources.StartServerScript;
+                startScript = startScript.Replace("{steamcmd_dir}", "\"" + Path.GetDirectoryName(main.settings.steamCMD_installLocation) + "\"");
+                startScript = startScript.Replace("{server_dir}", app.installPath);
+                startScript = startScript.Replace("{app_id}", app.app.Appid.ToString());
+                startScript = startScript.Replace("{app_name}", app.app.Name);
+
+                Core.SaveToFile(app.installPath + @"\StartServerScript.bat", startScript);
+            }
         }
     }
 }

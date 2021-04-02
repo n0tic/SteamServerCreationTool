@@ -1,20 +1,24 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
+using System;
 
 namespace SteamServerCreationTool.Data
 {
+    [Serializable]
     public partial class SteamApps
     {
         [JsonProperty("applist")]
         public Applist Applist { get; set; }
     }
 
+    [Serializable]
     public partial class Applist
     {
         [JsonProperty("apps")]
         public List<App> Apps { get; set; }
     }
 
+    [Serializable]
     public partial class App
     {
         [JsonProperty("appid")]

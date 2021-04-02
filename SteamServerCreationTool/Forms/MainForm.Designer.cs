@@ -60,6 +60,7 @@ namespace SteamServerCreationTool.Forms
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.githubProjectHomeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SettingsButton = new System.Windows.Forms.ToolStripButton();
             this.GrayBackgroundPanel = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -316,7 +317,8 @@ namespace SteamServerCreationTool.Forms
             this.toolStripSeparator2,
             this.ExpandToSaveData,
             this.toolStripSeparator1,
-            this.toolStripDropDownButton1});
+            this.toolStripDropDownButton1,
+            this.SettingsButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 2);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(419, 25);
@@ -386,6 +388,19 @@ namespace SteamServerCreationTool.Forms
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.WindowExpander_Click);
+            // 
+            // SettingsButton
+            // 
+            this.SettingsButton.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.SettingsButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.SettingsButton.Image = global::SteamServerCreationTool.Properties.Resources._012_cogwheel;
+            this.SettingsButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.SettingsButton.Margin = new System.Windows.Forms.Padding(0, 1, 5, 2);
+            this.SettingsButton.Name = "SettingsButton";
+            this.SettingsButton.Size = new System.Drawing.Size(23, 22);
+            this.SettingsButton.Text = "toolStripButton1";
+            this.SettingsButton.ToolTipText = "Global Settings";
+            this.SettingsButton.Click += new System.EventHandler(this.SettingsButton_Click);
             // 
             // GrayBackgroundPanel
             // 
@@ -457,5 +472,6 @@ namespace SteamServerCreationTool.Forms
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton ExpandToSaveData;
+        private System.Windows.Forms.ToolStripButton SettingsButton;
     }
 }

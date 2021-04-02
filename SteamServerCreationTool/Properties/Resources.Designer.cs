@@ -63,6 +63,16 @@ namespace SteamServerCreationTool.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _012_cogwheel {
+            get {
+                object obj = ResourceManager.GetObject("012-cogwheel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _016_folder_24_EDIT {
             get {
                 object obj = ResourceManager.GetObject("016-folder-24-EDIT", resourceCulture);
@@ -99,9 +109,21 @@ namespace SteamServerCreationTool.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
+        
         /// <summary>
-        ///   Looks up a localized string from Properties.Resources.StartServerScript
+        ///   Looks up a localized string similar to @ECHO OFF
+        ///::===============================================================
+        ///:: This batch-script will run the server in a &quot;loop&quot; meaning that
+        ///:: the server will restart automatically if crashing or exited.
+        ///:: NOTE: Be sure to close this cmd/window before the server.
+        ///:: 
+        ///:: You will need to edit the 3 lines below with valid information
+        ///:: Row: 19, 20, 21
+        ///::
+        ///:: Examples:
+        ///:: SET serverExecutablePath=D:\Valheim Server
+        ///:: SET serverExecutableFileName=valheim_server.exe
+        ///:: SET serverLaunchOptions=-nog [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string StartServerScript {
             get {

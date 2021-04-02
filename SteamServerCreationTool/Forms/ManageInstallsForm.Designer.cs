@@ -52,6 +52,7 @@ namespace SteamServerCreationTool.Forms
             this.UpdateServerNameButton = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.GenerateScriptButton = new System.Windows.Forms.Button();
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -119,9 +120,9 @@ namespace SteamServerCreationTool.Forms
             this.DeleteSelectedButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.DeleteSelectedButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DeleteSelectedButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DeleteSelectedButton.Location = new System.Drawing.Point(234, 17);
+            this.DeleteSelectedButton.Location = new System.Drawing.Point(305, 17);
             this.DeleteSelectedButton.Name = "DeleteSelectedButton";
-            this.DeleteSelectedButton.Size = new System.Drawing.Size(220, 24);
+            this.DeleteSelectedButton.Size = new System.Drawing.Size(149, 24);
             this.DeleteSelectedButton.TabIndex = 15;
             this.DeleteSelectedButton.Text = "Delete Selected Server";
             this.DeleteSelectedButton.UseVisualStyleBackColor = true;
@@ -145,9 +146,9 @@ namespace SteamServerCreationTool.Forms
             this.UpdateSelectedButton.FlatAppearance.BorderColor = System.Drawing.Color.MediumTurquoise;
             this.UpdateSelectedButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.UpdateSelectedButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UpdateSelectedButton.Location = new System.Drawing.Point(6, 17);
+            this.UpdateSelectedButton.Location = new System.Drawing.Point(146, 17);
             this.UpdateSelectedButton.Name = "UpdateSelectedButton";
-            this.UpdateSelectedButton.Size = new System.Drawing.Size(220, 24);
+            this.UpdateSelectedButton.Size = new System.Drawing.Size(153, 24);
             this.UpdateSelectedButton.TabIndex = 22;
             this.UpdateSelectedButton.Text = "Update Selected Server";
             this.UpdateSelectedButton.UseVisualStyleBackColor = true;
@@ -305,6 +306,7 @@ namespace SteamServerCreationTool.Forms
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.GenerateScriptButton);
             this.groupBox3.Controls.Add(this.UpdateSelectedButton);
             this.groupBox3.Controls.Add(this.DeleteSelectedButton);
             this.groupBox3.Location = new System.Drawing.Point(285, 12);
@@ -313,6 +315,20 @@ namespace SteamServerCreationTool.Forms
             this.groupBox3.TabIndex = 28;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Server Actions";
+            // 
+            // GenerateScriptButton
+            // 
+            this.GenerateScriptButton.Enabled = false;
+            this.GenerateScriptButton.FlatAppearance.BorderColor = System.Drawing.Color.DeepSkyBlue;
+            this.GenerateScriptButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.GenerateScriptButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GenerateScriptButton.Location = new System.Drawing.Point(6, 17);
+            this.GenerateScriptButton.Name = "GenerateScriptButton";
+            this.GenerateScriptButton.Size = new System.Drawing.Size(108, 24);
+            this.GenerateScriptButton.TabIndex = 23;
+            this.GenerateScriptButton.Text = "Generate Script";
+            this.GenerateScriptButton.UseVisualStyleBackColor = true;
+            this.GenerateScriptButton.Click += new System.EventHandler(this.GenerateScriptButton_Click);
             // 
             // ManageInstallsForm
             // 
@@ -367,5 +383,6 @@ namespace SteamServerCreationTool.Forms
         private System.Windows.Forms.Label app_id_label;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button UpdateServerNameButton;
+        private System.Windows.Forms.Button GenerateScriptButton;
     }
 }

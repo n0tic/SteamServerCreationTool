@@ -4,6 +4,9 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Security;
 using System.Text;
 using System.Windows.Forms;
 
@@ -34,7 +37,7 @@ namespace SteamServerCreationTool
         public static BuildTypes buildType = BuildTypes.Alpha;
         public static int majorVersion = 0;
         public static int minorVersion = 1;
-        public static int buildVersion = 7;
+        public static int buildVersion = 8;
 
         public enum BuildTypes
         {
@@ -115,14 +118,38 @@ namespace SteamServerCreationTool
             using (StreamWriter writer = new StreamWriter(fullPath)) writer.Write(data);
         }
 
-        public static void SaveCurrentSettings(Settings applications)
+        public static void SaveSettings(Settings data)
         {
-            using (StreamWriter writer = new StreamWriter("data")) writer.Write(JsonConvert.SerializeObject(applications));
+            using(FileStream dataStream = new FileStream("data", FileMode.Create))
+            {
+                BinaryFormatter converter = new BinaryFormatter();
+                try
+                {
+                    converter.Serialize(dataStream, data);
+                }
+                catch (ArgumentNullException x) { MessageBox.Show(x.Message); }
+                catch (SerializationException x) { MessageBox.Show(x.Message); }
+                catch (SecurityException x) { MessageBox.Show(x.Message); }
+            }
         }
 
-        public static Settings LoadData()
+        public static Settings LoadSettings()
         {
-            if (File.Exists("data")) using (StreamReader streamReader = new StreamReader("data", Encoding.UTF8)) return JsonConvert.DeserializeObject<Settings>(streamReader.ReadToEnd());
+            if (File.Exists("data"))
+            {
+                using (FileStream dataStream = new FileStream("data", FileMode.Open))
+                {
+                    BinaryFormatter converter = new BinaryFormatter();
+                    try
+                    {
+                        Settings data = converter.Deserialize(dataStream) as Settings;
+                        return data;
+                    }
+                    catch (ArgumentNullException x) { MessageBox.Show(x.Message); return null; }
+                    catch (SerializationException x) { MessageBox.Show("Saved data is corrupt and could not be loaded.\n\rSave file will automatically be overwritten on next save.", "Load Data Error!", MessageBoxButtons.OK, MessageBoxIcon.Error); return null; }
+                    catch (SecurityException x) { MessageBox.Show(x.Message); return null; }
+                }
+            }
             else return null;
         }
 
@@ -168,9 +195,17 @@ namespace SteamServerCreationTool
 
         #region Extra
 
-        public static bool Contains(this string source, string toCheck, StringComparison comp)
+        public static bool Contains(this string source, string toCheck, StringComparison comp) => source?.IndexOf(toCheck, comp) >= 0;
+
+        public static string Base64Decode(string base64EncodedData)
         {
-            return source?.IndexOf(toCheck, comp) >= 0;
+            var base64EncodedBytes = System.Convert.FromBase64String(base64EncodedData);
+            return System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
+        }
+        public static string Base64Encode(string plainText)
+        {
+            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(plainText);
+            return System.Convert.ToBase64String(plainTextBytes);
         }
 
         #endregion Extra

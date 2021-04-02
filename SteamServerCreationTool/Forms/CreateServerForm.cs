@@ -120,6 +120,9 @@ namespace SteamServerCreationTool.Forms
             string installDir = App_InstallLocationBox.Text;
             string appID = app.Appid.ToString();
 
+            string login = main.settings.GetLogin();
+            if(login == null) if (MessageBox.Show("Login information has failed validation.\n\rContinue with anonymous download?", "Login Information Error!", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.No) return;
+
             // Start a new thread with the installation as async using user input
             new Thread(() =>
             {
@@ -131,7 +134,7 @@ namespace SteamServerCreationTool.Forms
                         {
                             UseShellExecute = false,
                             FileName = main.settings.steamCMD_installLocation,
-                            Arguments = "+login anonymous +force_install_dir \"" + installDir + "\" +app_update " + appID + " " + validated + "+quit" // Building argument string
+                            Arguments = "+login " + login + " +force_install_dir \"" + installDir + "\" +app_update " + appID + " " + validated + "+quit" // Building argument string
                         }
                 })
                 {
@@ -166,7 +169,7 @@ namespace SteamServerCreationTool.Forms
                         Core.SaveToFile(installDir + @"\StartServerScript.bat", startScript);
 
                         main.settings.installedServer.Add(new InstalledServer(NameTextbox.Text, installDir, app));
-                        Core.SaveCurrentSettings(main.settings);
+                        Core.SaveSettings(main.settings);
 
                         System.Media.SystemSounds.Exclamation.Play();
                     }

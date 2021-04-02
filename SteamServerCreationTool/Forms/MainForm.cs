@@ -18,7 +18,7 @@ namespace SteamServerCreationTool.Forms
     public partial class MainForm : Form
     {
         //Stored Information
-        internal Settings settings;
+        public Settings settings;
 
         public SteamApps apps = null; // All apps from api (Only "server" and excludes "linux")
 
@@ -137,7 +137,7 @@ namespace SteamServerCreationTool.Forms
 
                 //Set settings, save.
                 settings.steamCMD_installLocation = installedSteamCMDPath;
-                Core.SaveCurrentSettings(settings);
+                Core.SaveSettings(settings);
 
                 MessageBox.Show("SteamCMD installation was successful! Enjoy!", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -179,7 +179,7 @@ namespace SteamServerCreationTool.Forms
                     LocateSteamCMDButton.Text = "SteamCMD Located ✓";
                     LocateSteamCMDButton.ForeColor = Color.Green;
 
-                    Core.SaveCurrentSettings(settings);
+                    Core.SaveSettings(settings);
                 }
             }
         }
@@ -302,7 +302,7 @@ namespace SteamServerCreationTool.Forms
             {
                 //Remove index, save.
                 settings.installedServer.RemoveAt(removeID);
-                Core.SaveCurrentSettings(settings);
+                Core.SaveSettings(settings);
             }
         }
 
@@ -343,8 +343,7 @@ namespace SteamServerCreationTool.Forms
                     wc.Encoding = Encoding.UTF8;
                     wc.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.NoCacheNoStore);
                     wc.DownloadStringCompleted += Wc_DownloadStringCompletedList;
-                    string url = "https://api.steampowered.com/ISteamApps/GetAppList/v2?utc=" + Core.GetUTCTime();
-                    wc.DownloadStringAsync(new Uri(url));
+                    wc.DownloadStringAsync(new Uri("https://api.steampowered.com/ISteamApps/GetAppList/v2?utc=" + Core.GetUTCTime()));
                 }
             }
             catch (Exception ex)
@@ -407,6 +406,8 @@ namespace SteamServerCreationTool.Forms
                         //{"appid":90,"name":"Half-Life Dedicated Server"}
                         //if (apps.Applist.Apps[i].Appid == 90) MessageBox.Show(apps.Applist.Apps[i].Name);
 
+                        if (apps.Applist.Apps[i].Appid == 570) continue; //Allow Dota 2 to be downloaded.
+
                         if (!apps.Applist.Apps[i].Name.Contains("Server") || apps.Applist.Apps[i].Name.Contains("linux")) removeIndexes.Add(i);
                     }
 
@@ -459,7 +460,7 @@ namespace SteamServerCreationTool.Forms
             InstallServerButton.Enabled = false;
 
             //Load settings
-            settings = Core.LoadData();
+            settings = Core.LoadSettings();
 
             //If we have settings
             if (settings != null)
@@ -474,6 +475,7 @@ namespace SteamServerCreationTool.Forms
             else
             {
                 settings = new Settings(); // New settings file
+                settings.userData = new UserData();
                 MessageBox.Show("WARNING: This is an Alpha build. Not all features have been polished or tested 100%. Report any problems on the Github project issues page.", "Alpha Release", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
@@ -603,5 +605,13 @@ namespace SteamServerCreationTool.Forms
         private void ExitButton_Click(object sender, EventArgs e) => Environment.Exit(0);
 
         private void ProjectLink_Click(object sender, EventArgs e) => Process.Start(Core.projectURL);
+
+        private void SettingsButton_Click(object sender, EventArgs e)
+        {
+            using(SettingsForm sf = new SettingsForm(this))
+            {
+                sf.ShowDialog();
+            }
+        }
     }
 }
