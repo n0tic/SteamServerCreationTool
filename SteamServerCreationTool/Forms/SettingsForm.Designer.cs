@@ -42,12 +42,14 @@ namespace SteamServerCreationTool.Forms
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.SaveSettingsButton = new System.Windows.Forms.Button();
             this.TogglePassword = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.TogglePassword);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.radio_UseUser);
@@ -59,7 +61,7 @@ namespace SteamServerCreationTool.Forms
             this.groupBox1.Controls.Add(this.username_inputbox);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(538, 191);
+            this.groupBox1.Size = new System.Drawing.Size(538, 209);
             this.groupBox1.TabIndex = 28;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Steam Account Information";
@@ -128,7 +130,7 @@ namespace SteamServerCreationTool.Forms
             // 
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(3, 130);
+            this.label1.Location = new System.Drawing.Point(4, 145);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(524, 56);
             this.label1.TabIndex = 28;
@@ -144,7 +146,7 @@ namespace SteamServerCreationTool.Forms
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.SaveSettingsButton);
-            this.groupBox3.Location = new System.Drawing.Point(12, 209);
+            this.groupBox3.Location = new System.Drawing.Point(12, 216);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(538, 41);
             this.groupBox3.TabIndex = 30;
@@ -176,10 +178,21 @@ namespace SteamServerCreationTool.Forms
             this.TogglePassword.UseVisualStyleBackColor = true;
             this.TogglePassword.Click += new System.EventHandler(this.TogglePassword_Click);
             // 
+            // label5
+            // 
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.Red;
+            this.label5.Location = new System.Drawing.Point(6, 119);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(491, 16);
+            this.label5.TabIndex = 35;
+            this.label5.Text = "Note: It is recommended to use Anonymous download unless a download requires user" +
+    " information.\r\n";
+            // 
             // SettingsForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(563, 261);
+            this.ClientSize = new System.Drawing.Size(563, 269);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -210,5 +223,6 @@ namespace SteamServerCreationTool.Forms
         private System.Windows.Forms.RadioButton radio_UseUser;
         private System.Windows.Forms.RadioButton radio_UseAnon;
         private System.Windows.Forms.Button TogglePassword;
+        private System.Windows.Forms.Label label5;
     }
 }
