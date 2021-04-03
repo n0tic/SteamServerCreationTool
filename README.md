@@ -11,7 +11,7 @@
 ![Image Preview](http://bytevaultstudio.se/ShareX/SteamServerCreationTool_D6oDqkanhq.png)
 
 ### WIP : Work In Progress
-Please note that during the process the save data and save file may become corrupt between updates as data changes.
+Please note that during the development process your save data and save file may become corrupt between updates as data changes.
 
 ---------------------------------------------------------------------------------------------------------------------------------
 
