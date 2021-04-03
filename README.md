@@ -10,6 +10,11 @@
 
 ![Image Preview](http://bytevaultstudio.se/ShareX/SteamServerCreationTool_D6oDqkanhq.png)
 
+### WIP : Work In Progress
+Please note that during the process the save data and save file may become corrupt between updates as data changes.
+
+---------------------------------------------------------------------------------------------------------------------------------
+
 Steam Server Creation Tool is a simple GUI based server installation tool. 
 It automates downloading and the usage of SteamCMD to install servers extrapolated from SteamAPI. 
 This way it should always stay up-to-date with what steam has to offer.
