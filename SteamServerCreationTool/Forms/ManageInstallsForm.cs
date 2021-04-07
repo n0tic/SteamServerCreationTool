@@ -488,13 +488,19 @@ namespace SteamServerCreationTool.Forms
             bool install = true;
 
             //This needs no explanation, no? It simply updates data with provided defaults if new install
-            string validated = "validate ";
+            string validated = "";
+            if (main.settings.validate) validated = "validate ";
+            else validated = "";
 
             string installDir = app.installPath;
             string appID = app.app.Appid.ToString();
 
             string login = main.settings.GetLogin();
             if (login == null) if (MessageBox.Show("Login information has failed validation.\n\rContinue with anonymous download?", "Login Information Error!", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.No) return;
+
+            string quit = "";
+            if (main.settings.autoQuit) quit = "+quit";
+            else quit = "";
 
             // Start a new thread with the installation as async using user input
             new Thread(() =>
@@ -507,7 +513,7 @@ namespace SteamServerCreationTool.Forms
                         {
                             UseShellExecute = false,
                             FileName = main.settings.steamCMD_installLocation,
-                            Arguments = "+login " + login + " +force_install_dir \"" + installDir + "\" +app_update " + appID + " " + validated + "+quit" // Building argument string
+                            Arguments = "+login " + login + " +force_install_dir \"" + installDir + "\" +app_update " + appID + " " + validated + quit // Building argument string
                         }
                 })
                 {
@@ -566,11 +572,11 @@ namespace SteamServerCreationTool.Forms
 
         private void GenerateScriptButton_Click(object sender, EventArgs e)
         {
-            if(app != null)
+            if (app != null)
             {
-                if(File.Exists(app.installPath + @"\StartServerScript.bat"))
+                if (File.Exists(app.installPath + @"\StartServerScript.bat"))
                 {
-                    if(MessageBox.Show("There is already a generated script in this directory. \n\rAre you sure you want to overwrite?", "Overwrite Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                    if (MessageBox.Show("There is already a generated script in this directory. \n\rAre you sure you want to overwrite?", "Overwrite Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                     {
                         return;
                     }

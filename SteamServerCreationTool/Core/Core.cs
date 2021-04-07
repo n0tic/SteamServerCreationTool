@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using SteamServerCreationTool.Data;
+﻿using SteamServerCreationTool.Data;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -7,7 +6,6 @@ using System.Net;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Security;
-using System.Text;
 using System.Windows.Forms;
 
 /*
@@ -77,6 +75,7 @@ namespace SteamServerCreationTool
                 }
             }
         }
+
         public static bool CheckNetwork()
         {
             try
@@ -120,7 +119,7 @@ namespace SteamServerCreationTool
 
         public static void SaveSettings(Settings data)
         {
-            using(FileStream dataStream = new FileStream("data", FileMode.Create))
+            using (FileStream dataStream = new FileStream("data", FileMode.Create))
             {
                 BinaryFormatter converter = new BinaryFormatter();
                 try
@@ -139,14 +138,14 @@ namespace SteamServerCreationTool
             {
                 using (FileStream dataStream = new FileStream("data", FileMode.Open))
                 {
-                    BinaryFormatter converter = new BinaryFormatter();
                     try
                     {
+                        BinaryFormatter converter = new BinaryFormatter();
                         Settings data = converter.Deserialize(dataStream) as Settings;
                         return data;
                     }
                     catch (ArgumentNullException x) { MessageBox.Show(x.Message); return null; }
-                    catch (SerializationException x) { MessageBox.Show("Saved data is corrupt and could not be loaded.\n\rSave file will automatically be overwritten on next save.", "Load Data Error!", MessageBoxButtons.OK, MessageBoxIcon.Error); return null; }
+                    catch (SerializationException x) { MessageBox.Show("Saved data is corrupt and could not be loaded.\n\rSave file will automatically be overwritten on next save. \n\r\n\r" + x.Message, "Load Data Error!", MessageBoxButtons.OK, MessageBoxIcon.Error); return null; }
                     catch (SecurityException x) { MessageBox.Show(x.Message); return null; }
                 }
             }
@@ -202,6 +201,7 @@ namespace SteamServerCreationTool
             var base64EncodedBytes = System.Convert.FromBase64String(base64EncodedData);
             return System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
         }
+
         public static string Base64Encode(string plainText)
         {
             var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(plainText);

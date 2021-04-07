@@ -121,7 +121,7 @@
     <value>* Some servers require you to login with a Steam Account. Dota 2 (570), as an example.
 * For security reasons it is recommended that you create a new Steam account just for your dedicated servers.
 * A user can only be logged in once at any time. (counting both graphical client as well as SteamCMD logins).
-* 2FA (Two-factor authentication) is not currently supported.</value>
+* 2FA (Two-factor authentication) is currently supported by SteamCMD - Needs manual input.</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

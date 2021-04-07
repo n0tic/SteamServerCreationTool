@@ -114,14 +114,18 @@ namespace SteamServerCreationTool.Forms
 
             //This needs no explanation, no? It simply updates data with provided defaults if new install
             string validated = "";
-            if (ValidateBox.Checked) validated = "validate ";
+            if (main.settings.validate) validated = "validate ";
             else validated = "";
 
             string installDir = App_InstallLocationBox.Text;
             string appID = app.Appid.ToString();
 
             string login = main.settings.GetLogin();
-            if(login == null) if (MessageBox.Show("Login information has failed validation.\n\rContinue with anonymous download?", "Login Information Error!", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.No) return;
+            if (login == null) if (MessageBox.Show("Login information has failed validation.\n\rContinue with anonymous download?", "Login Information Error!", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.No) return;
+
+            string quit = "";
+            if (main.settings.autoQuit) quit = "+quit";
+            else quit = "";
 
             // Start a new thread with the installation as async using user input
             new Thread(() =>
@@ -134,7 +138,7 @@ namespace SteamServerCreationTool.Forms
                         {
                             UseShellExecute = false,
                             FileName = main.settings.steamCMD_installLocation,
-                            Arguments = "+login " + login + " +force_install_dir \"" + installDir + "\" +app_update " + appID + " " + validated + "+quit" // Building argument string
+                            Arguments = "+login " + login + " +force_install_dir \"" + installDir + "\" +app_update " + appID + " " + validated + quit // Building argument string
                         }
                 })
                 {

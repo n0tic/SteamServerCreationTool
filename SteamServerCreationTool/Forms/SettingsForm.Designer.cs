@@ -31,6 +31,8 @@ namespace SteamServerCreationTool.Forms
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.TogglePassword = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.radio_UseUser = new System.Windows.Forms.RadioButton();
             this.radio_UseAnon = new System.Windows.Forms.RadioButton();
@@ -40,9 +42,9 @@ namespace SteamServerCreationTool.Forms
             this.label1 = new System.Windows.Forms.Label();
             this.username_inputbox = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.AutoCloseBox = new System.Windows.Forms.CheckBox();
             this.SaveSettingsButton = new System.Windows.Forms.Button();
-            this.TogglePassword = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
+            this.ValidateBox = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
@@ -61,10 +63,34 @@ namespace SteamServerCreationTool.Forms
             this.groupBox1.Controls.Add(this.username_inputbox);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(538, 209);
+            this.groupBox1.Size = new System.Drawing.Size(538, 205);
             this.groupBox1.TabIndex = 28;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Steam Account Information";
+            // 
+            // label5
+            // 
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.Red;
+            this.label5.Location = new System.Drawing.Point(6, 119);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(491, 16);
+            this.label5.TabIndex = 35;
+            this.label5.Text = "Note: It is recommended to use Anonymous download unless a download requires user" +
+    " information.\r\n";
+            // 
+            // TogglePassword
+            // 
+            this.TogglePassword.FlatAppearance.BorderColor = System.Drawing.Color.DeepSkyBlue;
+            this.TogglePassword.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.TogglePassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TogglePassword.Location = new System.Drawing.Point(419, 71);
+            this.TogglePassword.Name = "TogglePassword";
+            this.TogglePassword.Size = new System.Drawing.Size(113, 24);
+            this.TogglePassword.TabIndex = 34;
+            this.TogglePassword.Text = "Show Password";
+            this.TogglePassword.UseVisualStyleBackColor = true;
+            this.TogglePassword.Click += new System.EventHandler(this.TogglePassword_Click);
             // 
             // label4
             // 
@@ -145,12 +171,24 @@ namespace SteamServerCreationTool.Forms
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.ValidateBox);
+            this.groupBox3.Controls.Add(this.AutoCloseBox);
             this.groupBox3.Controls.Add(this.SaveSettingsButton);
             this.groupBox3.Location = new System.Drawing.Point(12, 216);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(538, 41);
             this.groupBox3.TabIndex = 30;
             this.groupBox3.TabStop = false;
+            // 
+            // AutoCloseBox
+            // 
+            this.AutoCloseBox.AutoSize = true;
+            this.AutoCloseBox.Location = new System.Drawing.Point(106, 16);
+            this.AutoCloseBox.Name = "AutoCloseBox";
+            this.AutoCloseBox.Size = new System.Drawing.Size(237, 17);
+            this.AutoCloseBox.TabIndex = 34;
+            this.AutoCloseBox.Text = "Automatically close SteamCMD on complete.";
+            this.AutoCloseBox.UseVisualStyleBackColor = true;
             // 
             // SaveSettingsButton
             // 
@@ -165,29 +203,18 @@ namespace SteamServerCreationTool.Forms
             this.SaveSettingsButton.UseVisualStyleBackColor = true;
             this.SaveSettingsButton.Click += new System.EventHandler(this.InstallButton_Click);
             // 
-            // TogglePassword
+            // ValidateBox
             // 
-            this.TogglePassword.FlatAppearance.BorderColor = System.Drawing.Color.DeepSkyBlue;
-            this.TogglePassword.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.TogglePassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TogglePassword.Location = new System.Drawing.Point(419, 71);
-            this.TogglePassword.Name = "TogglePassword";
-            this.TogglePassword.Size = new System.Drawing.Size(113, 24);
-            this.TogglePassword.TabIndex = 34;
-            this.TogglePassword.Text = "Show Password";
-            this.TogglePassword.UseVisualStyleBackColor = true;
-            this.TogglePassword.Click += new System.EventHandler(this.TogglePassword_Click);
-            // 
-            // label5
-            // 
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.Red;
-            this.label5.Location = new System.Drawing.Point(6, 119);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(491, 16);
-            this.label5.TabIndex = 35;
-            this.label5.Text = "Note: It is recommended to use Anonymous download unless a download requires user" +
-    " information.\r\n";
+            this.ValidateBox.AutoSize = true;
+            this.ValidateBox.Checked = true;
+            this.ValidateBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ValidateBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ValidateBox.Location = new System.Drawing.Point(6, 16);
+            this.ValidateBox.Name = "ValidateBox";
+            this.ValidateBox.Size = new System.Drawing.Size(94, 17);
+            this.ValidateBox.TabIndex = 35;
+            this.ValidateBox.Text = "Validate Install";
+            this.ValidateBox.UseVisualStyleBackColor = true;
             // 
             // SettingsForm
             // 
@@ -206,6 +233,7 @@ namespace SteamServerCreationTool.Forms
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -224,5 +252,7 @@ namespace SteamServerCreationTool.Forms
         private System.Windows.Forms.RadioButton radio_UseAnon;
         private System.Windows.Forms.Button TogglePassword;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.CheckBox AutoCloseBox;
+        public System.Windows.Forms.CheckBox ValidateBox;
     }
 }

@@ -47,7 +47,6 @@ namespace SteamServerCreationTool.Forms
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
             this.DeleteServerButton = new System.Windows.Forms.Button();
-            this.ValidateBox = new System.Windows.Forms.CheckBox();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -208,7 +207,6 @@ namespace SteamServerCreationTool.Forms
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.ValidateBox);
             this.groupBox3.Controls.Add(this.button1);
             this.groupBox3.Controls.Add(this.DeleteServerButton);
             this.groupBox3.Location = new System.Drawing.Point(12, 206);
@@ -243,19 +241,6 @@ namespace SteamServerCreationTool.Forms
             this.DeleteServerButton.UseVisualStyleBackColor = true;
             this.DeleteServerButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
-            // ValidateBox
-            // 
-            this.ValidateBox.AutoSize = true;
-            this.ValidateBox.Checked = true;
-            this.ValidateBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ValidateBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ValidateBox.Location = new System.Drawing.Point(251, 16);
-            this.ValidateBox.Name = "ValidateBox";
-            this.ValidateBox.Size = new System.Drawing.Size(94, 17);
-            this.ValidateBox.TabIndex = 34;
-            this.ValidateBox.Text = "Validate Install";
-            this.ValidateBox.UseVisualStyleBackColor = true;
-            // 
             // CreateServerForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -276,7 +261,6 @@ namespace SteamServerCreationTool.Forms
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -300,6 +284,5 @@ namespace SteamServerCreationTool.Forms
         private System.Windows.Forms.Button DeleteServerButton;
         private System.Windows.Forms.Label app_id;
         private System.Windows.Forms.Label app_name;
-        public System.Windows.Forms.CheckBox ValidateBox;
     }
 }

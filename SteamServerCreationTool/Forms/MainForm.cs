@@ -608,7 +608,7 @@ namespace SteamServerCreationTool.Forms
 
         private void SettingsButton_Click(object sender, EventArgs e)
         {
-            using(SettingsForm sf = new SettingsForm(this))
+            using (SettingsForm sf = new SettingsForm(this))
             {
                 sf.ShowDialog();
             }

@@ -1,9 +1,4 @@
-﻿using SteamServerCreationTool.Data;
-using System;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.IO;
-using System.Threading;
+﻿using System;
 using System.Windows.Forms;
 
 namespace SteamServerCreationTool.Forms
@@ -23,7 +18,7 @@ namespace SteamServerCreationTool.Forms
             username_inputbox.Text = main.settings.userData.username;
 
             string pass = main.settings.userData.GetPassword();
-            if(pass != null) password_inputbox.Text = pass;
+            if (pass != null) password_inputbox.Text = pass;
 
             if (main.settings.useUserData)
             {
@@ -35,6 +30,9 @@ namespace SteamServerCreationTool.Forms
                 radio_UseAnon.Checked = true;
                 radio_UseUser.Checked = false;
             }
+
+            AutoCloseBox.Checked = main.settings.autoQuit;
+            ValidateBox.Checked = main.settings.validate;
         }
 
         private void InstallButton_Click(object sender, EventArgs e)
@@ -44,6 +42,9 @@ namespace SteamServerCreationTool.Forms
 
             if (radio_UseAnon.Checked) main.settings.useUserData = false;
             else main.settings.useUserData = true;
+
+            main.settings.autoQuit = this.AutoCloseBox.Checked;
+            main.settings.validate = this.ValidateBox.Checked;
 
             Core.SaveSettings(main.settings);
             Close();

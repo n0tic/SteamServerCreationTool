@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SteamServerCreationTool.Forms
@@ -17,7 +12,7 @@ namespace SteamServerCreationTool.Forms
             InitializeComponent();
             this.Text = String.Format("About {0}", AssemblyTitle);
 
-            TextLabel.Text = "(" + Core.softwareNameShort + ") " + Core.softwareName + " " + Core.GetVersion() + "\n\rCreated by " + Core.authorName + " AKA " + Core.authorRealName + "\n\rContact: " + Core.authorContact;
+            TextLabel.Text = "(" + Core.softwareNameShort + ") " + Core.softwareName + " " + Core.GetVersion() + "\n\rCreated by " + Core.authorRealName + " AKA " + Core.authorName + "\n\rContact: " + Core.authorContact;
             ProjectLink.Text = "Github/Project Home";
         }
 
@@ -40,7 +35,7 @@ namespace SteamServerCreationTool.Forms
             }
         }
 
-        #endregion
+        #endregion Assembly Attribute Accessors
 
         private void ProjectLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) => Process.Start(Core.projectURL);
     }

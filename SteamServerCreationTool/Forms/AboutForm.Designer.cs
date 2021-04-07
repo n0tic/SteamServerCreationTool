@@ -40,7 +40,7 @@ namespace SteamServerCreationTool.Forms
             this.groupBox4.Controls.Add(this.TextLabel);
             this.groupBox4.Location = new System.Drawing.Point(12, 12);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(389, 83);
+            this.groupBox4.Size = new System.Drawing.Size(238, 83);
             this.groupBox4.TabIndex = 14;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Application Information";
@@ -64,14 +64,14 @@ namespace SteamServerCreationTool.Forms
             this.TextLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.TextLabel.Location = new System.Drawing.Point(3, 16);
             this.TextLabel.Name = "TextLabel";
-            this.TextLabel.Size = new System.Drawing.Size(383, 64);
+            this.TextLabel.Size = new System.Drawing.Size(232, 64);
             this.TextLabel.TabIndex = 12;
             this.TextLabel.Text = "label5";
             // 
             // AboutForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(412, 105);
+            this.ClientSize = new System.Drawing.Size(265, 105);
             this.Controls.Add(this.groupBox4);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;

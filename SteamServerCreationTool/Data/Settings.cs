@@ -1,19 +1,23 @@
-﻿using System.Collections.Generic;
-using System;
+﻿using System;
+using System.Collections.Generic;
 
 namespace SteamServerCreationTool.Data
 {
     /// <summary>
     /// Class to store information between sessions
     /// </summary>
-   [Serializable]
+    [Serializable]
     public class Settings
     {
         // User data
         public UserData userData;
+
         public bool useUserData = false; // Use anonymous user.
 
         // Steam data
+        public bool autoQuit = true;
+
+        public bool validate = true;
         public string steamCMD_installLocation = "";
 
         // Server data
@@ -64,6 +68,7 @@ namespace SteamServerCreationTool.Data
         }
 
         public void SetUsername(string name) => this.username = name;
+
         public void SetPassword(string pass) => this.password = Core.Base64Encode(pass);
 
         public string GetPassword()
