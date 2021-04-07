@@ -8,7 +8,12 @@
   <img alt="Visitor Count" src="https://visitor-badge.glitch.me/badge?page_id=n0tic.SteamServerCreationTool">
 </p>
 
-![Image Preview](http://bytevaultstudio.se/ShareX/SteamServerCreationTool_D6oDqkanhq.png)
+![Image Preview](http://bytevaultstudio.se/ShareX/SteamServerCreationTool_qSXUhdDBoe.png)
+
+### WIP : Work In Progress
+Please note that during the development process your save data and save file may become corrupt between updates as data changes.
+
+---------------------------------------------------------------------------------------------------------------------------------
 
 Steam Server Creation Tool is a simple GUI based server installation tool. 
 It automates downloading and the usage of SteamCMD to install servers extrapolated from SteamAPI. 
@@ -77,8 +82,10 @@ All files are provided as-is with no express or implied warranty. No liability f
 I'm not affiliated, associated, endorsed by, or in any way officially connected with Steam, Valve or any of its subsidiaries or its affiliates. SSCT | Steam Server Creation Tool and all its content is provided "as is" and "with all faults." I makes no representations or warranties of any kind concerning the safety, suitability, inaccuracies, typographical errors, or other components mishaps. I guarantee no accuracy or completeness of any information or usage on or in this project or found by following any link in this readme. There are inherent dangers in the use of any software, and you are solely responsible for determining whether this software is compatible with your equipment and other softwares installed on your equipment. You are also solely responsible for the protection of your equipment and backup of your data, and I will be liable for any damages you may suffer in connection with using, modifying, or distributing SSCT | Steam Server Creation Tool.
 
 # More Previews!
-![Image Preview](https://bytevaultstudio.se/ShareX/SteamServerCreationTool_lz8vSbVBwZ.png)
-![Image Preview](https://bytevaultstudio.se/ShareX/SteamServerCreationTool_Rch61lrBjM.png)
-![Image Preview](https://bytevaultstudio.se/ShareX/SteamServerCreationTool_tJykqy2oIW.png)
-![Image Preview](https://bytevaultstudio.se/ShareX/SteamServerCreationTool_01I8ZZKSgG.png)
-Gif: [https://bytevaultstudio.se/ShareX/aie4rcXY8C.gif](https://bytevaultstudio.se/ShareX/aie4rcXY8C.gif)
+![Image Preview](http://bytevaultstudio.se/ShareX/SteamServerCreationTool_qSXUhdDBoe.png)
+![Image Preview](http://bytevaultstudio.se/ShareX/SteamServerCreationTool_RiPqPqSR34.png)
+![Image Preview](http://bytevaultstudio.se/ShareX/SteamServerCreationTool_WEZZCA4Zsd.png)
+![Image Preview](http://bytevaultstudio.se/ShareX/SteamServerCreationTool_nhdkKNVqnc.png)
+
+
+Old preview - Gif: [https://bytevaultstudio.se/ShareX/aie4rcXY8C.gif](https://bytevaultstudio.se/ShareX/aie4rcXY8C.gif)
