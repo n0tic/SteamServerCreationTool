@@ -35,7 +35,7 @@ namespace SteamServerCreationTool
         public static BuildTypes buildType = BuildTypes.Beta;
         public static int majorVersion = 0;
         public static int minorVersion = 1;
-        public static int buildVersion = 9;
+        public static int buildVersion = 6;
 
         public enum BuildTypes
         {
@@ -52,10 +52,24 @@ namespace SteamServerCreationTool
 
         public static void CheckForUpdates()
         {
-            using (WebClient wc = new WebClient())
+            try
             {
-                wc.Headers.Add("User-Agent", "request");
-                var data = GithubReleasesData.FromJson(wc.DownloadString("https://api.github.com/repos/n0tic/SteamServerCreationTool/releases"));
+                using (WebClient wc = new WebClient())
+                {
+                    wc.Headers.Add("User-Agent", "request");
+
+                    wc.DownloadStringCompleted += Wc_DownloadStringCompleted;
+                    wc.DownloadStringAsync(new Uri("https://api.github.com/repos/n0tic/SteamServerCreationTool/releases"));
+                }
+            }
+            catch { }
+        }
+
+        private static void Wc_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
+        {
+            if (!e.Cancelled && e.Error == null)
+            {
+                var data = GithubReleasesData.FromJson(e.Result);
                 if (data != null)
                 {
                     int majorversion = Int32.Parse(data[0].TagName.Split('.')[0]), minorversion = Int32.Parse(data[0].TagName.Split('.')[1]), buildversion = Int32.Parse(data[0].TagName.Split('.')[2]);
