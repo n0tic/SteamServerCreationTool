@@ -8,8 +8,6 @@
   <img alt="Visitor Count" src="https://visitor-badge.glitch.me/badge?page_id=n0tic.SteamServerCreationTool">
 </p>
 
-![Image Preview](http://bytevaultstudio.se/ShareX/SteamServerCreationTool_qSXUhdDBoe.png)
-
 ### WIP : Work In Progress
 Please note that during the development process your save data and "save file"/settings file may become corrupt between updates as data changes.
 If you update and the "safe file"/settings file is corrupted, the servers still exist. Simply install the same server at the same location.
@@ -18,30 +16,25 @@ NOTE: Backup your server data/settings!
 ---------------------------------------------------------------------------------------------------------------------------------
 
 # Steam Server Creation Tool #
-Steam Server Creation Tool is a simple GUI based server installation tool. It's an easy and quick tool to install/manage servers. It "automates" the usage of SteamCMD to install servers extrapolated from SteamAPI. This application is designed around an "always up to date" idea and should work forever, even if steam adds/removes servers.
+Steam Server Creation Tool is a simple GUI based server installation tool. It's an easy and quick tool to install and manage servers. It "automates" the usage of SteamCMD to install servers extrapolated from SteamAPI. This application is designed around an "always up to date" idea and should work forever, even if steam adds/remove servers.
 
 # How does it work?
 The application is requesting a full list of applications from the steams API so it will always stay up-to-date with what steam has to offer.
 It extrapolates servers from that list using the keyword "server", creates a database with IDs and names which the application then uses.
 
-Step-by-Step, how do I use this application:
-- Install and reference "steamcmd.exe" automatically by pressing "Install SteamCMD" button and selecting a install directory.
-- Additionally you can locate "steamcmd.exe" manually by using the button "Locate SteamCMD".
-  - If you don't already have "steamcmd.exe" on your system you can download it manually:
-    - Direct download: https://steamcdn-a.akamaihd.net/client/installer/steamcmd.zip
-    - Page with download link: https://developer.valvesoftware.com/wiki/SteamCMD
-- "steamcmd.exe" has been located by the application. Whats the next step?
-  - Step one: Find your desired server in the list and select it. Information bellow should update with "App ID, App Name" etc.
-  - Step two: Click on the button "Create Server" and a dialogue/form will open. Give the server a name, install directory and complete creation by pressing "Install Server".
-  - Step three: The cmd window (Black box window) will appear and install the server. The cmd window will disappear once the install has completed. 
-    - Closing the cmd window (Black box window) prematurely will result in installation failure. However, SSCT have no way of detecting a successful installation so be careful. Let the installation window (cmd) close itself.
-  - Step four: Once the server has been installed your next mission will be to setup the server and if the idea is to lauch a server publicly, you need to open specific ports related to the server. If you run any firewalls you may need to accept them there too.
-  
+- Application fetch app list from:
+  - API: https://api.steampowered.com/ISteamApps/GetAppList/v2
+- Application fetch steamcmd from:
+  - Website: https://developer.valvesoftware.com/wiki/SteamCMD
+  - Direct: https://steamcdn-a.akamaihd.net/client/installer/steamcmd.zip
+
 # How to use the StartServerScript?
-Inside the root folder for the server there will be a batch (.bat) file called "StartServerScript.bat".
-This file will be a supplement for the server. If the generation was successfull and the server supports this feature, this is gold.
-This file will automatically update the server and validate files before trying to start the server.
-This file will need to be updated with valid information. You need to edit rows 19, 20, 21. In this case I demo the valheim server.
+Inside the root folder of the created server there will be a batch (.bat) file called "StartServerScript.bat".
+This file will be a supplement for the server. This script will automatically update the server and validate files before trying to start the server.
+If the server crash while started with the StartServerScript, the server will automatically restart.
+
+Before this script can be used correctly it will will need to be updated with valid information. 
+You need to edit rows 19, 20, 21. In this case I demo the valheim server.
 ```
 SET serverExecutablePath=D:\Valheim Server
 SET serverExecutableFileName=valheim_server.exe
@@ -52,9 +45,9 @@ The server is set to launch the file "valheim_server.exe" with the launch option
 
 -nographics -batchmode -name "MyFirstServer" -port 2456 -world "DedicatedServer" -password "SomePasswordHere"
 
-If this would be valid information the server would then run the server and monitor that process. If this window is closed or the server is crashed, the server will automatically be restarted as the StartServerScript is protecting the process. In order to stop the server from restarting you need to close the StartServerScript first.
+If this would be valid information, the script would then run the server and monitor that process. If this window is closed or the server has crashed, the server will automatically be restarted as the StartServerScript is protecting the process. In order to stop the server from restarting you need to close the StartServerScript first - Alternatively, select Y to terminate the process; When prompted.
 
-NOTE: The StartServerScript will only cover the update and the server protection loop (launch of the server). If there are any problems connecting to the server, server crashes or the server is miss configured. You'll need to configure that yourself by looking up a guide. Good luck!
+NOTE: If there are any problems connecting to the server, server crashes or the server is miss configured. You'll need to configure that yourself by looking up a guide. This has nothing to do with the script itself. Good luck!
   
 # Requirements
 - Internet Connection
@@ -62,7 +55,7 @@ NOTE: The StartServerScript will only cover the update and the server protection
 - Newtonsoft Json (Included)
 
 # Bugs?
-I've noticed the application not getting a response from the API causing the application to end up looping forever. Will look into this in the future.
+- None reported / None found
 
 # Disclamer
 Newtonsoft Json:
@@ -87,6 +80,3 @@ I'm not affiliated, associated, endorsed by, or in any way officially connected 
 ![Image Preview](http://bytevaultstudio.se/ShareX/SteamServerCreationTool_RiPqPqSR34.png)
 ![Image Preview](http://bytevaultstudio.se/ShareX/SteamServerCreationTool_WEZZCA4Zsd.png)
 ![Image Preview](http://bytevaultstudio.se/ShareX/SteamServerCreationTool_nhdkKNVqnc.png)
-
-
-Old preview - Gif: [https://bytevaultstudio.se/ShareX/aie4rcXY8C.gif](https://bytevaultstudio.se/ShareX/aie4rcXY8C.gif)
