@@ -7,9 +7,12 @@ namespace SteamServerCreationTool.Forms
 {
     partial class AboutForm : Form
     {
-        public AboutForm()
+        public AboutForm(Control parent)
         {
             InitializeComponent();
+
+            StartPosition = FormStartPosition.CenterParent;
+
             this.Text = String.Format("About {0}", AssemblyTitle);
 
             TextLabel.Text = "(" + Core.softwareNameShort + ") " + Core.softwareName + " " + Core.GetVersion() + "\n\rCreated by " + Core.authorRealName + " AKA " + Core.authorName + "\n\rContact: " + Core.authorContact;

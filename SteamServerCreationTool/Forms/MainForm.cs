@@ -476,7 +476,7 @@ namespace SteamServerCreationTool.Forms
             {
                 settings = new Settings(); // New settings file
                 settings.userData = new UserData();
-                MessageBox.Show("WARNING: This is an Alpha build. Not all features have been polished or tested 100%. Report any problems on the Github project issues page.", "Alpha Release", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("WARNING: This is a Beta build. Not all features have been polished or tested 100%. Report any problems on the Github project issues page.", "Beta Release", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
             //Do we have an ethernet connection?
@@ -519,6 +519,7 @@ namespace SteamServerCreationTool.Forms
 
             using (CreateServerForm csf = new CreateServerForm(this, selectedApp))
             {
+                csf.StartPosition = FormStartPosition.CenterParent;
                 DialogResult res = csf.ShowDialog();
             }
         }
@@ -581,8 +582,9 @@ namespace SteamServerCreationTool.Forms
         /// <param name="e"></param>
         private void WindowExpander_Click(object sender, EventArgs e)
         {
-            using (AboutForm af = new AboutForm())
+            using (AboutForm af = new AboutForm(this))
             {
+                af.StartPosition = FormStartPosition.CenterParent;
                 af.ShowDialog();
             }
         }
@@ -591,6 +593,7 @@ namespace SteamServerCreationTool.Forms
         {
             using (ServerListSearchForm form = new ServerListSearchForm(this))
             {
+                form.StartPosition = FormStartPosition.CenterParent;
                 form.ShowDialog();
             }
         }
@@ -610,6 +613,7 @@ namespace SteamServerCreationTool.Forms
         {
             using (SettingsForm sf = new SettingsForm(this))
             {
+                sf.StartPosition = FormStartPosition.CenterParent;
                 sf.ShowDialog();
             }
         }

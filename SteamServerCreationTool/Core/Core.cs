@@ -21,7 +21,7 @@ namespace SteamServerCreationTool
         public static string softwareName = "Steam Server Creation Tool";
         public static string softwareNameShort = "SSCT";
 
-        public static string authorRealName = "Victor Rimsby";
+        public static string authorRealName = "Victor";
         public static string authorName = "N0tiC";
         public static string authorContact = "contact@bytevaultstudio.se";
 
@@ -32,10 +32,10 @@ namespace SteamServerCreationTool
 
         #region Version
 
-        public static BuildTypes buildType = BuildTypes.Alpha;
+        public static BuildTypes buildType = BuildTypes.Beta;
         public static int majorVersion = 0;
         public static int minorVersion = 1;
-        public static int buildVersion = 8;
+        public static int buildVersion = 9;
 
         public enum BuildTypes
         {
