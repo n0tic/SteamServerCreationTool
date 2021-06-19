@@ -35,7 +35,7 @@ namespace SteamServerCreationTool
         public static BuildTypes buildType = BuildTypes.Beta;
         public static int majorVersion = 0;
         public static int minorVersion = 1;
-        public static int buildVersion = 6;
+        public static int buildVersion = 9;
 
         public enum BuildTypes
         {
