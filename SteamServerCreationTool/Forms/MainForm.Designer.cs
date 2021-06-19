@@ -62,6 +62,7 @@ namespace SteamServerCreationTool.Forms
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SettingsButton = new System.Windows.Forms.ToolStripButton();
             this.GrayBackgroundPanel = new System.Windows.Forms.Panel();
+            this.checkForUpdateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -368,6 +369,7 @@ namespace SteamServerCreationTool.Forms
             this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.githubProjectHomeToolStripMenuItem,
+            this.checkForUpdateToolStripMenuItem,
             this.aboutToolStripMenuItem});
             this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -409,6 +411,13 @@ namespace SteamServerCreationTool.Forms
             this.GrayBackgroundPanel.Name = "GrayBackgroundPanel";
             this.GrayBackgroundPanel.Size = new System.Drawing.Size(413, 2);
             this.GrayBackgroundPanel.TabIndex = 16;
+            // 
+            // checkForUpdateToolStripMenuItem
+            // 
+            this.checkForUpdateToolStripMenuItem.Name = "checkForUpdateToolStripMenuItem";
+            this.checkForUpdateToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.checkForUpdateToolStripMenuItem.Text = "Check For Update";
+            this.checkForUpdateToolStripMenuItem.Click += new System.EventHandler(this.checkForUpdateToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -462,7 +471,6 @@ namespace SteamServerCreationTool.Forms
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.Button SearchButton;
         public System.Windows.Forms.ComboBox SteamServerList;
-        private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton3;
         private System.Windows.Forms.ToolStripMenuItem ExitButton;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
@@ -473,5 +481,7 @@ namespace SteamServerCreationTool.Forms
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton ExpandToSaveData;
         private System.Windows.Forms.ToolStripButton SettingsButton;
+        private System.Windows.Forms.ToolStripMenuItem checkForUpdateToolStripMenuItem;
+        public System.Windows.Forms.ToolStrip toolStrip1;
     }
 }

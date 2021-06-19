@@ -37,6 +37,8 @@ namespace SteamServerCreationTool
         public static int minorVersion = 1;
         public static int buildVersion = 9;
 
+        private static bool checkingUpdate;
+
         public enum BuildTypes
         {
             Alpha,
@@ -50,22 +52,26 @@ namespace SteamServerCreationTool
 
         #region Network
 
-        public static void CheckForUpdates()
+        public static void CheckForUpdates(bool message = false)
         {
+            if (checkingUpdate) return;
+
+            checkingUpdate = true;
+
             try
             {
                 using (WebClient wc = new WebClient())
                 {
                     wc.Headers.Add("User-Agent", "request");
 
-                    wc.DownloadStringCompleted += Wc_DownloadStringCompleted;
+                    wc.DownloadStringCompleted += (sender, e) => Wc_DownloadStringCompleted(sender, e, message);
                     wc.DownloadStringAsync(new Uri("https://api.github.com/repos/n0tic/SteamServerCreationTool/releases"));
                 }
             }
-            catch { }
+            catch { checkingUpdate = false; }
         }
 
-        private static void Wc_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
+        private static void Wc_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e, bool message)
         {
             if (!e.Cancelled && e.Error == null)
             {
@@ -78,7 +84,12 @@ namespace SteamServerCreationTool
 
                     //MessageBox.Show(currentVersion + " vs " + version);
 
-                    if (currentVersion >= version) return;
+                    if (currentVersion >= version)
+                    {
+                        if (message) MessageBox.Show("You seem to be running the newest version!", "No Update Available!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        checkingUpdate = false;
+                        return;
+                    }
                     else
                     {
                         if (MessageBox.Show("There seem to be an update available.\n\rWould you like to go to the download location?", "Update Available!", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
@@ -88,6 +99,8 @@ namespace SteamServerCreationTool
                     }
                 }
             }
+
+            checkingUpdate = false;
         }
 
         public static bool CheckNetwork()

@@ -617,5 +617,7 @@ namespace SteamServerCreationTool.Forms
                 sf.ShowDialog();
             }
         }
+
+        private void checkForUpdateToolStripMenuItem_Click(object sender, EventArgs e) => Core.CheckForUpdates(true);
     }
 }
