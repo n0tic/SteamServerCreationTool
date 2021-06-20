@@ -19,7 +19,7 @@ NOTE: Backup your server data/settings!
 Steam Server Creation Tool is a simple GUI based server installation tool. It's an easy and quick tool to install and manage servers. It "automates" the usage of SteamCMD to install servers extrapolated from Steam's API. This application is designed around an "always up to date" idea and should work forever, even if steam adds/remove servers.
 
 # How does it work?
-The application is requesting a full list of applications from the steams API so it will always stay up-to-date with what steam has to offer.
+The application is requesting a full list of applications from the Steam's API so it will always stay up-to-date with what steam has to offer.
 It extrapolates servers from that list using the keyword "server", creates a database with IDs and names which the application then uses.
 
 - Application fetch app list from:
