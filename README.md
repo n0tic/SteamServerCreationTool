@@ -28,8 +28,10 @@ It extrapolates servers from that list, creates a database with name and referen
   - Website: https://developer.valvesoftware.com/wiki/SteamCMD
   - Direct: https://steamcdn-a.akamaihd.net/client/installer/steamcmd.zip
 
-# How to use the StartServerScript?
-Inside the root folder of the created server there will be a batch (.bat) file called "StartServerScript.bat".
+# StartServerScript?
+NOTE: This is not a required/needed feature to run most servers.
+
+Inside the root folder of the created server there will be a generated batch (.bat) file called "StartServerScript.bat".
 This file will be a supplement for the server. This script will automatically update the server and validate files before trying to start the server.
 If the server crash while started with the StartServerScript, the server will automatically restart.
 
