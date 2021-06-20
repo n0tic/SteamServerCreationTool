@@ -20,7 +20,7 @@ Steam Server Creation Tool is a simple GUI based server installation tool. It's 
 
 # How does it work?
 The application is requesting a full list of applications from the Steam's API so it will always stay up-to-date with what steam has to offer.
-It extrapolates servers from that list using the keyword "server", creates a database with IDs and names which the application then uses.
+It extrapolates servers from that list, creates a database with name and reference ID which the application then uses.
 
 - Application fetch app list from:
   - API: https://api.steampowered.com/ISteamApps/GetAppList/v2
