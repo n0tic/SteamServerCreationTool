@@ -52,7 +52,7 @@ NOTE: If there are any problems connecting to the server, server crashes or the 
   
 # Requirements
 - Internet Connection
-- .NET Framework 4.7.2 (+System.IO.Compression)
+- .NET Framework 4.7.2 (Looking into downgrading to 4.5 - Windows 10 .NET Framework default)
 - Newtonsoft Json (Included)
 
 # Bugs?
