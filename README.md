@@ -8,10 +8,9 @@
   <img alt="Visitor Count" src="https://visitor-badge.glitch.me/badge?page_id=n0tic.SteamServerCreationTool">
 </p>
 
-### WIP : Work In Progress
-Please note that during the development process your save data and "save file"/settings file may become corrupt between updates as data changes.
-If you update and the "safe file"/settings file is corrupted, the servers still exist. Simply install the same server at the same location.
-NOTE: Backup your server data/settings!
+### WIP : NOTE : Work In Progress
+NOTE: Before updating SSCT Steam Server Creation Tool - Backup your server data/settings!
+If prompted with "Load Data Error!"-dialogue, simply install servers on the same location. A new settings file will be created.
 
 ---------------------------------------------------------------------------------------------------------------------------------
 
