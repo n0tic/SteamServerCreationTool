@@ -59,10 +59,10 @@ namespace SteamServerCreationTool.Forms
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.githubProjectHomeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkForUpdateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SettingsButton = new System.Windows.Forms.ToolStripButton();
             this.GrayBackgroundPanel = new System.Windows.Forms.Panel();
-            this.checkForUpdateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -384,6 +384,13 @@ namespace SteamServerCreationTool.Forms
             this.githubProjectHomeToolStripMenuItem.Text = "Github / Project Home";
             this.githubProjectHomeToolStripMenuItem.Click += new System.EventHandler(this.ProjectLink_Click);
             // 
+            // checkForUpdateToolStripMenuItem
+            // 
+            this.checkForUpdateToolStripMenuItem.Name = "checkForUpdateToolStripMenuItem";
+            this.checkForUpdateToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.checkForUpdateToolStripMenuItem.Text = "Check For Update";
+            this.checkForUpdateToolStripMenuItem.Click += new System.EventHandler(this.checkForUpdateToolStripMenuItem_Click);
+            // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
@@ -411,13 +418,6 @@ namespace SteamServerCreationTool.Forms
             this.GrayBackgroundPanel.Name = "GrayBackgroundPanel";
             this.GrayBackgroundPanel.Size = new System.Drawing.Size(413, 2);
             this.GrayBackgroundPanel.TabIndex = 16;
-            // 
-            // checkForUpdateToolStripMenuItem
-            // 
-            this.checkForUpdateToolStripMenuItem.Name = "checkForUpdateToolStripMenuItem";
-            this.checkForUpdateToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
-            this.checkForUpdateToolStripMenuItem.Text = "Check For Update";
-            this.checkForUpdateToolStripMenuItem.Click += new System.EventHandler(this.checkForUpdateToolStripMenuItem_Click);
             // 
             // MainForm
             // 

@@ -32,7 +32,6 @@ namespace SteamServerCreationTool.Forms
 
         //"Temporary variables"
         public string steamCMDFolderPath;
-
         public string installedSteamCMDPath;
 
         //Initialize MainForm component

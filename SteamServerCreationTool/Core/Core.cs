@@ -34,8 +34,8 @@ namespace SteamServerCreationTool
 
         public static BuildTypes buildType = BuildTypes.Beta;
         public static int majorVersion = 0;
-        public static int minorVersion = 1;
-        public static int buildVersion = 9;
+        public static int minorVersion = 2;
+        public static int buildVersion = 0;
 
         private static bool checkingUpdate;
 
@@ -78,13 +78,19 @@ namespace SteamServerCreationTool
                 var data = GithubReleasesData.FromJson(e.Result);
                 if (data != null)
                 {
-                    int majorversion = Int32.Parse(data[0].TagName.Split('.')[0]), minorversion = Int32.Parse(data[0].TagName.Split('.')[1]), buildversion = Int32.Parse(data[0].TagName.Split('.')[2]);
-                    int version = majorversion + minorversion + buildversion;
-                    int currentVersion = majorVersion + minorVersion + buildVersion;
+                    int majorversion = Int32.Parse(data[0].TagName.Split('.')[0]), 
+                        minorversion = Int32.Parse(data[0].TagName.Split('.')[1]), 
+                        buildversion = Int32.Parse(data[0].TagName.Split('.')[2]);
 
-                    //MessageBox.Show(currentVersion + " vs " + version);
+                    bool update = false;
 
-                    if (currentVersion >= version)
+                    // Update verification logic - Simplified string 020 would become 2.
+                    // 2 < 19 so previous logic was flawed.
+                    if(majorversion > majorVersion) update = true;
+                    if (!update && minorversion > minorVersion) update = true;
+                    if (!update && minorversion >= minorVersion && buildversion > buildVersion) update = true;
+
+                    if (!update)
                     {
                         if (message) MessageBox.Show("You seem to be running the newest version!", "No Update Available!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         checkingUpdate = false;
