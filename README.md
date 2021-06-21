@@ -14,6 +14,9 @@ If prompted with "Load Data Error!"-dialogue, simply install servers on the same
 
 ---------------------------------------------------------------------------------------------------------------------------------
 
+![Image Preview](http://bytevaultstudio.se/ShareX/SteamServerCreationTool_qSXUhdDBoe.png)
+![Image Preview](http://bytevaultstudio.se/ShareX/SteamServerCreationTool_RiPqPqSR34.png)
+
 # Steam Server Creation Tool #
 Steam Server Creation Tool is a simple GUI based server installation tool. It's an easy and quick tool to install and manage servers. It "automates" the usage of SteamCMD to install servers extrapolated from Steam's API. This application is designed around an "always up to date" idea and should work forever, even if steam adds/remove servers.
 
