@@ -8,19 +8,18 @@
   <img alt="Visitor Count" src="https://visitor-badge.glitch.me/badge?page_id=n0tic.SteamServerCreationTool">
 </p>
 
-### WIP : Work In Progress
-Please note that during the development process your save data and "save file"/settings file may become corrupt between updates as data changes.
-If you update and the "safe file"/settings file is corrupted, the servers still exist. Simply install the same server at the same location.
-NOTE: Backup your server data/settings!
+### WIP : NOTE : Work In Progress
+NOTE: Before updating SSCT Steam Server Creation Tool - Backup your server data/settings!
+If prompted with "Load Data Error!"-dialogue, simply install servers on the same location. A new settings file will be created.
 
 ---------------------------------------------------------------------------------------------------------------------------------
 
 # Steam Server Creation Tool #
-Steam Server Creation Tool is a simple GUI based server installation tool. It's an easy and quick tool to install and manage servers. It "automates" the usage of SteamCMD to install servers extrapolated from SteamAPI. This application is designed around an "always up to date" idea and should work forever, even if steam adds/remove servers.
+Steam Server Creation Tool is a simple GUI based server installation tool. It's an easy and quick tool to install and manage servers. It "automates" the usage of SteamCMD to install servers extrapolated from Steam's API. This application is designed around an "always up to date" idea and should work forever, even if steam adds/remove servers.
 
 # How does it work?
-The application is requesting a full list of applications from the steams API so it will always stay up-to-date with what steam has to offer.
-It extrapolates servers from that list using the keyword "server", creates a database with IDs and names which the application then uses.
+The application is requesting a full list of applications from the Steam's API so it will always stay up-to-date with what steam has to offer.
+It extrapolates servers from that list, creates a database with name and reference ID which the application then uses.
 
 - Application fetch app list from:
   - API: https://api.steampowered.com/ISteamApps/GetAppList/v2
@@ -28,8 +27,10 @@ It extrapolates servers from that list using the keyword "server", creates a dat
   - Website: https://developer.valvesoftware.com/wiki/SteamCMD
   - Direct: https://steamcdn-a.akamaihd.net/client/installer/steamcmd.zip
 
-# How to use the StartServerScript?
-Inside the root folder of the created server there will be a batch (.bat) file called "StartServerScript.bat".
+# StartServerScript?
+NOTE: This is not a required/needed feature to run most servers.
+
+Inside the root folder of the created server there will be a generated batch (.bat) file called "StartServerScript.bat".
 This file will be a supplement for the server. This script will automatically update the server and validate files before trying to start the server.
 If the server crash while started with the StartServerScript, the server will automatically restart.
 
@@ -51,7 +52,7 @@ NOTE: If there are any problems connecting to the server, server crashes or the 
   
 # Requirements
 - Internet Connection
-- .NET Framework 4.7.2 (+System.IO.Compression)
+- .NET Framework 4.7.2 (Looking into downgrading to 4.5 - Windows 10 .NET Framework default)
 - Newtonsoft Json (Included)
 
 # Bugs?
