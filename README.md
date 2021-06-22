@@ -1,9 +1,9 @@
 <img src="https://socialify.git.ci/n0tic/SteamServerCreationTool/image?description=1&font=Inter&forks=1&issues=1&language=1&owner=1&pattern=Floating%20Cogs&pulls=1&stargazers=1&theme=Light" alt="Banner" width="768"/>
 
 <p align="center">
+  <img alt="GitHub release (latest by date including pre-releases)" src="https://img.shields.io/github/v/release/n0tic/SteamServerCreationTool?color=seagreen&include_prereleases">
   <img src="https://img.shields.io/badge/status-Beta-blue" />
   <img alt="GitHub all releases" src="https://img.shields.io/github/downloads/n0tic/SteamServerCreationTool/total?color=orange&label=downloads">
-  <img alt="GitHub release (latest by date including pre-releases)" src="https://img.shields.io/github/v/release/n0tic/SteamServerCreationTool?color=seagreen&include_prereleases">
   <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/n0tic/SteamServerCreationTool?color=crimson">
   <img alt="Visitor Count" src="https://visitor-badge.glitch.me/badge?page_id=n0tic.SteamServerCreationTool">
 </p>
