@@ -21,10 +21,12 @@ If prompted with "Load Data Error!"-dialogue, simply install servers on the same
 Steam Server Creation Tool is a simple GUI based server installation tool. It's an easy and quick tool to install and manage servers. It "automates" the usage of SteamCMD to install servers extrapolated from Steam's API. This application is designed around an "always up to date" idea and should work forever, even if steam adds/remove servers.
 
 # How does it work?
+[![YoutubeImage](http://bytevaultstudio.se/ShareX/youtubeX.png)](https://youtu.be/54oPT-_8D4U)
+
+The Image above will take you to a Youtube video.
+
 The application is requesting a full list of applications from the Steam's API so it will always stay up-to-date with what steam has to offer.
 It extrapolates servers from that list, creates a database with name and reference ID which the application then uses.
-
-[![YoutubeImage](http://bytevaultstudio.se/ShareX/youtubeX.png)](https://youtu.be/54oPT-_8D4U)
 
 - Application fetch app list from:
   - API: https://api.steampowered.com/ISteamApps/GetAppList/v2
