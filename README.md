@@ -25,6 +25,7 @@ The application is requesting a full list of applications from the Steam's API s
 It extrapolates servers from that list, creates a database with name and reference ID which the application then uses.
 
 [![YoutubeImage](http://bytevaultstudio.se/ShareX/youtubeX.png)](https://youtu.be/54oPT-_8D4U)
+Click the image above to see a quick informative video of the usage.
 
 - Application fetch app list from:
   - API: https://api.steampowered.com/ISteamApps/GetAppList/v2
