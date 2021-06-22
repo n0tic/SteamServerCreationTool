@@ -1,9 +1,9 @@
 <img src="https://socialify.git.ci/n0tic/SteamServerCreationTool/image?description=1&font=Inter&forks=1&issues=1&language=1&owner=1&pattern=Floating%20Cogs&pulls=1&stargazers=1&theme=Light" alt="Banner" width="768"/>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/status-Alpha-blue" />
-  <img alt="GitHub all releases" src="https://img.shields.io/github/downloads/n0tic/SteamServerCreationTool/total?color=orange&label=downloads">
   <img alt="GitHub release (latest by date including pre-releases)" src="https://img.shields.io/github/v/release/n0tic/SteamServerCreationTool?color=seagreen&include_prereleases">
+  <img src="https://img.shields.io/badge/status-Beta-blue" />
+  <img alt="GitHub all releases" src="https://img.shields.io/github/downloads/n0tic/SteamServerCreationTool/total?color=orange&label=downloads">
   <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/n0tic/SteamServerCreationTool?color=crimson">
   <img alt="Visitor Count" src="https://visitor-badge.glitch.me/badge?page_id=n0tic.SteamServerCreationTool">
 </p>
@@ -23,6 +23,8 @@ Steam Server Creation Tool is a simple GUI based server installation tool. It's 
 # How does it work?
 The application is requesting a full list of applications from the Steam's API so it will always stay up-to-date with what steam has to offer.
 It extrapolates servers from that list, creates a database with name and reference ID which the application then uses.
+
+[![YoutubeImage](http://bytevaultstudio.se/ShareX/youtubeX.png)](https://youtu.be/54oPT-_8D4U)
 
 - Application fetch app list from:
   - API: https://api.steampowered.com/ISteamApps/GetAppList/v2
@@ -55,7 +57,7 @@ NOTE: If there are any problems connecting to the server, server crashes or the 
   
 # Requirements
 - Internet Connection
-- .NET Framework 4.7.2 (Looking into downgrading to 4.5 - Windows 10 .NET Framework default)
+- .NET Framework 4.5 (Windows 10 Standard)
 - Newtonsoft Json (Included)
 
 # Bugs?
