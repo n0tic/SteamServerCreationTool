@@ -78,13 +78,15 @@ namespace SteamServerCreationTool
                 var data = GithubReleasesData.FromJson(e.Result);
                 if (data != null)
                 {
-                    int majorversion = Int32.Parse(data[0].TagName.Split('.')[0]), 
-                        minorversion = Int32.Parse(data[0].TagName.Split('.')[1]), 
+                    int majorversion = Int32.Parse(data[0].TagName.Split('.')[0]),
+                        minorversion = Int32.Parse(data[0].TagName.Split('.')[1]),
                         buildversion = Int32.Parse(data[0].TagName.Split('.')[2]);
 
                     bool update = false;
 
-                    // Update verification logic - Simplified string 020 would become 2.
+                    // Previous update verification logic was flawed:
+                    // Simplified string "020" would become 2.
+                    // Simplified string "019" would be 19.
                     // 2 < 19 so previous logic was flawed.
                     if(majorversion > majorVersion) update = true;
                     if (!update && minorversion > minorVersion) update = true;

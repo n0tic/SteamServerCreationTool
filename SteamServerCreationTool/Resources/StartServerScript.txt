@@ -76,7 +76,7 @@ PAUSE
 EXIT
 
 :server
-ECHO (%time%) Sven Co-op Dedicated Server started.
+ECHO (%time%) {app_name} Server started.
 START /wait %ServerExecutableFileName% %serverLaunchOptions%
-ECHO (%time%) WARNING: Sven Co-op Dedicated Server closed or crashed, restarting.
+ECHO (%time%) WARNING: {app_name} Server closed or crashed, restarting.
 GOTO server
