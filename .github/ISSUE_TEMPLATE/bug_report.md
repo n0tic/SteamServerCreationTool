@@ -20,6 +20,10 @@ Steps to reproduce the behavior:
 **Expected behavior**
 A clear and concise description of what you expected to happen.
 
+**Relevant Local Path / Affected Servers**
+Please specify which server as well as where on the drive it's installed.
+For example: (720) Counter-Strike: Global Offensive - "D:\CSGO Server 1"
+
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
 
