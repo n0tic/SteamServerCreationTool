@@ -569,6 +569,6 @@ namespace SteamServerCreationTool.Forms
             }
         }
 
-        private void checkForUpdateToolStripMenuItem_Click(object sender, EventArgs e) => Core.CheckForUpdates(true);
+        private void CheckForUpdateToolStripMenuItem_Click(object sender, EventArgs e) => Core.CheckForUpdates(true);
     }
 }
