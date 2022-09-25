@@ -59,7 +59,7 @@ NOTE: If there are any problems connecting to the server, server crashes or the 
   
 # Requirements
 - Internet Connection
-- .NET Framework 4.5 (Windows 10 Standard)
+- .NET Framework 4.8
 - Newtonsoft Json (Included)
 
 # Bugs?
