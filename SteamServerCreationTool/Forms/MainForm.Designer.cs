@@ -52,8 +52,6 @@ namespace SteamServerCreationTool.Forms
             this.label1 = new System.Windows.Forms.Label();
             this.Tooltipper = new System.Windows.Forms.ToolTip(this.components);
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripDropDownButton3 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.ExitButton = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.ExpandToSaveData = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -232,7 +230,7 @@ namespace SteamServerCreationTool.Forms
             this.linkLabel2.Text = "Server Setup";
             this.Tooltipper.SetToolTip(this.linkLabel2, "This will launch the selected server as a google query for server setup. \r\nSome s" +
         "ervers have the same name and you may need to add the app id to the query.");
-            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel2_LinkClicked);
             // 
             // linkLabel1
             // 
@@ -246,7 +244,7 @@ namespace SteamServerCreationTool.Forms
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Gameserver Login Tokens (GSLTs)";
             this.Tooltipper.SetToolTip(this.linkLabel1, resources.GetString("linkLabel1.ToolTip"));
-            this.linkLabel1.Click += new System.EventHandler(this.linkLabel1_Click);
+            this.linkLabel1.Click += new System.EventHandler(this.LinkLabel1_Click);
             // 
             // InstallServerButton
             // 
@@ -318,31 +316,12 @@ namespace SteamServerCreationTool.Forms
             this.ExpandToSaveData,
             this.toolStripSeparator1,
             this.toolStripDropDownButton1,
-            this.SettingsButton,
-            this.toolStripDropDownButton3});
+            this.SettingsButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 2);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(419, 25);
             this.toolStrip1.TabIndex = 15;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // toolStripDropDownButton3
-            // 
-            this.toolStripDropDownButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripDropDownButton3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ExitButton});
-            this.toolStripDropDownButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton3.Image")));
-            this.toolStripDropDownButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton3.Name = "toolStripDropDownButton3";
-            this.toolStripDropDownButton3.Size = new System.Drawing.Size(81, 22);
-            this.toolStripDropDownButton3.Text = "Application";
-            // 
-            // ExitButton
-            // 
-            this.ExitButton.Name = "ExitButton";
-            this.ExitButton.Size = new System.Drawing.Size(180, 22);
-            this.ExitButton.Text = "Exit";
-            this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
             // 
             // toolStripSeparator2
             // 
@@ -471,8 +450,6 @@ namespace SteamServerCreationTool.Forms
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.Button SearchButton;
         public System.Windows.Forms.ComboBox SteamServerList;
-        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton3;
-        private System.Windows.Forms.ToolStripMenuItem ExitButton;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
         private System.Windows.Forms.ToolStripMenuItem githubProjectHomeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;

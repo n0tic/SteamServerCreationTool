@@ -280,32 +280,6 @@ namespace SteamServerCreationTool.Forms
         }
 
         /// <summary>
-        /// Delete server information, folder, files.
-        /// </summary>
-        /// <param name="selectedInstalledApp"></param>
-        private void DeleteServer(InstalledServer selectedInstalledApp)
-        {
-            //Get index of installed server
-            int removeID = -1;
-            for (int i = 0; i < settings.installedServer.Count; i++)
-            {
-                if (settings.installedServer[i].app.Appid == selectedInstalledApp.app.Appid)
-                {
-                    removeID = i;
-                    break;
-                }
-            }
-
-            // if the index was found
-            if (removeID != -1)
-            {
-                //Remove index, save.
-                settings.installedServer.RemoveAt(removeID);
-                Core.SaveSettings(settings);
-            }
-        }
-
-        /// <summary>
         /// Refresh servers from steam API
         /// </summary>
         /// <param name="sender"></param>
@@ -473,8 +447,7 @@ namespace SteamServerCreationTool.Forms
             }
             else
             {
-                settings = new Settings(); // New settings file
-                settings.userData = new UserData();
+                settings = new Settings { userData = new UserData() }; // New settings file
                 MessageBox.Show("WARNING: This is a Beta build. Not all features have been polished or tested 100%. Report any problems on the Github project issues page.", "Beta Release", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
@@ -524,37 +497,18 @@ namespace SteamServerCreationTool.Forms
         }
 
         /// <summary>
-        /// Refreshes the server list.
-        /// </summary>
-        private void RefreshSelectedServerList()
-        {
-            int tmpInt = SteamServerList.SelectedIndex;
-            SteamServerList.SelectedIndex = 0;
-            SteamServerList.SelectedIndex = tmpInt;
-        }
-
-        /// <summary>
-        /// Deletes a server directory and files + stored installed server data.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void DeleteServerButton_Click(object sender, EventArgs e)
-        {
-        }
-
-        /// <summary>
         /// Open Game server Login Tokens (GSLTs) link
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void linkLabel1_Click(object sender, EventArgs e) => Process.Start("https://steamcommunity.com/dev/managegameservers?l=english");
+        private void LinkLabel1_Click(object sender, EventArgs e) => Process.Start("https://steamcommunity.com/dev/managegameservers?l=english");
 
         /// <summary>
         /// Open server setup query link
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void LinkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             if (SteamServerList.Items.Count > 0 && selectedApp != null)
             {
@@ -603,8 +557,6 @@ namespace SteamServerCreationTool.Forms
 
             mif.Show();
         }
-
-        private void ExitButton_Click(object sender, EventArgs e) => Environment.Exit(0);
 
         private void ProjectLink_Click(object sender, EventArgs e) => Process.Start(Core.projectURL);
 
