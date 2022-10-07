@@ -40,6 +40,7 @@ namespace SteamServerCreationTool.Forms
             this.OpenSteamCMDButton = new System.Windows.Forms.Button();
             this.ProgressBarInfo = new System.Windows.Forms.ProgressBar();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.TotalServerLabel = new System.Windows.Forms.Label();
             this.SearchButton = new System.Windows.Forms.Button();
             this.ServersRefreshButton = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -61,6 +62,7 @@ namespace SteamServerCreationTool.Forms
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SettingsButton = new System.Windows.Forms.ToolStripButton();
             this.GrayBackgroundPanel = new System.Windows.Forms.Panel();
+            this.refreshServerListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -166,6 +168,7 @@ namespace SteamServerCreationTool.Forms
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.TotalServerLabel);
             this.groupBox2.Controls.Add(this.SearchButton);
             this.groupBox2.Controls.Add(this.ServersRefreshButton);
             this.groupBox2.Controls.Add(this.SteamServerList);
@@ -175,6 +178,16 @@ namespace SteamServerCreationTool.Forms
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Server Selector";
+            // 
+            // TotalServerLabel
+            // 
+            this.TotalServerLabel.AutoSize = true;
+            this.TotalServerLabel.Location = new System.Drawing.Point(86, 0);
+            this.TotalServerLabel.Name = "TotalServerLabel";
+            this.TotalServerLabel.Size = new System.Drawing.Size(19, 13);
+            this.TotalServerLabel.TabIndex = 11;
+            this.TotalServerLabel.Text = "(0)";
+            this.Tooltipper.SetToolTip(this.TotalServerLabel, "Total Servers Found");
             // 
             // SearchButton
             // 
@@ -348,6 +361,7 @@ namespace SteamServerCreationTool.Forms
             this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.githubProjectHomeToolStripMenuItem,
+            this.refreshServerListToolStripMenuItem,
             this.checkForUpdateToolStripMenuItem,
             this.aboutToolStripMenuItem});
             this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
@@ -398,6 +412,13 @@ namespace SteamServerCreationTool.Forms
             this.GrayBackgroundPanel.Size = new System.Drawing.Size(413, 2);
             this.GrayBackgroundPanel.TabIndex = 16;
             // 
+            // refreshServerListToolStripMenuItem
+            // 
+            this.refreshServerListToolStripMenuItem.Name = "refreshServerListToolStripMenuItem";
+            this.refreshServerListToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.refreshServerListToolStripMenuItem.Text = "Refresh Server List";
+            this.refreshServerListToolStripMenuItem.Click += new System.EventHandler(this.refreshServerListToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -420,6 +441,7 @@ namespace SteamServerCreationTool.Forms
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
@@ -460,5 +482,7 @@ namespace SteamServerCreationTool.Forms
         private System.Windows.Forms.ToolStripButton SettingsButton;
         private System.Windows.Forms.ToolStripMenuItem checkForUpdateToolStripMenuItem;
         public System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.Label TotalServerLabel;
+        private System.Windows.Forms.ToolStripMenuItem refreshServerListToolStripMenuItem;
     }
 }

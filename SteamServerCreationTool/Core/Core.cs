@@ -7,6 +7,7 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Security;
 using System.Windows.Forms;
+using static System.Net.WebRequestMethods;
 
 /*
  Core system for the application providing name, version, links, feature methods etc.
@@ -26,9 +27,10 @@ namespace SteamServerCreationTool
         public static string authorContact = "contact@bytevaultstudio.se";
 
         public static string projectURL = "https://github.com/n0tic/SteamServerCreationTool";
+        public static string reposURL = "https://api.github.com/repos/n0tic/SteamServerCreationTool/releases";
 
         public static string steamCMDURL = "https://steamcdn-a.akamaihd.net/client/installer/steamcmd.zip";
-        public static string serversURL = "https://api.steampowered.com/ISteamApps/GetAppList/v2/";
+        public static string serversURL = "https://api.steampowered.com/ISteamApps/GetAppList/v2?utc=" + Core.GetUTCTime();
 
         #region Version
 
@@ -64,14 +66,14 @@ namespace SteamServerCreationTool
                 {
                     wc.Headers.Add("User-Agent", "request");
 
-                    wc.DownloadStringCompleted += (sender, e) => Wc_DownloadStringCompleted(sender, e, message);
-                    wc.DownloadStringAsync(new Uri("https://api.github.com/repos/n0tic/SteamServerCreationTool/releases"));
+                    wc.DownloadStringCompleted += (sender, e) => Wc_DownloadStringCompleted(e, message);
+                    wc.DownloadStringAsync(new Uri(reposURL));
                 }
             }
             catch { checkingUpdate = false; }
         }
 
-        private static void Wc_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e, bool message)
+        private static void Wc_DownloadStringCompleted(DownloadStringCompletedEventArgs e, bool message)
         {
             if (!e.Cancelled && e.Error == null)
             {
@@ -130,7 +132,7 @@ namespace SteamServerCreationTool
             }
             catch
             {
-                MessageBox.Show("Could not detect a valid ethernet connection. Networking disabled.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Could not detect a valid Internet connection. Networking disabled.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
@@ -169,7 +171,7 @@ namespace SteamServerCreationTool
 
         public static Settings LoadSettings()
         {
-            if (File.Exists("data"))
+            if (System.IO.File.Exists("data"))
             {
                 using (FileStream dataStream = new FileStream("data", FileMode.Open))
                 {

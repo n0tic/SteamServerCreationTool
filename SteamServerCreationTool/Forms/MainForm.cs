@@ -295,6 +295,7 @@ namespace SteamServerCreationTool.Forms
             this.Text = Core.softwareNameShort + " " + Core.softwareName + " - Getting server list...";
 
             //Nullify app information
+            TotalServerLabel.Text = "(0)";
             App_idLabel.Text = "";
             App_nameLabel.Text = "";
 
@@ -316,7 +317,7 @@ namespace SteamServerCreationTool.Forms
                     wc.Encoding = Encoding.UTF8;
                     wc.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.NoCacheNoStore);
                     wc.DownloadStringCompleted += Wc_DownloadStringCompletedList;
-                    wc.DownloadStringAsync(new Uri("https://api.steampowered.com/ISteamApps/GetAppList/v2?utc=" + Core.GetUTCTime()));
+                    wc.DownloadStringAsync(new Uri(Core.serversURL));
                 }
             }
             catch (Exception ex)
@@ -340,10 +341,13 @@ namespace SteamServerCreationTool.Forms
                 ServersRefreshButton.Enabled = true;
                 SearchButton.Enabled = true;
 
+                TotalServerLabel.Text = "(X)";
+
                 // Update title to show what the application is working on
                 this.Text = Core.softwareNameShort + " " + Core.softwareName;
 
                 MessageBox.Show("Steam API apps download cancelled...");
+                
                 return;
             }
 
@@ -354,6 +358,8 @@ namespace SteamServerCreationTool.Forms
                 SteamServerList.Enabled = true;
                 ServersRefreshButton.Enabled = true;
                 SearchButton.Enabled = true;
+
+                TotalServerLabel.Text = "(X)";
 
                 // Update title to show what the application is working on
                 this.Text = Core.softwareNameShort + " " + Core.softwareName;
@@ -413,6 +419,8 @@ namespace SteamServerCreationTool.Forms
 
                     // Update title to show what the application is working on
                     this.Text = Core.softwareNameShort + " " + Core.softwareName;
+
+                    TotalServerLabel.Text = $"({SteamServerList.Items.Count})";
                 }
             }
             else
@@ -459,7 +467,7 @@ namespace SteamServerCreationTool.Forms
                 SearchButton.Enabled = false;
                 SteamServerList.Enabled = false;
 
-                MessageBox.Show("No internet connection was detected. Disabling network features.", "No internet detected", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No Internet connection was detected. Disabling network features.", "No Internet detected", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
@@ -570,5 +578,7 @@ namespace SteamServerCreationTool.Forms
         }
 
         private void CheckForUpdateToolStripMenuItem_Click(object sender, EventArgs e) => Core.CheckForUpdates(true);
+
+        private void refreshServerListToolStripMenuItem_Click(object sender, EventArgs e) => ServersRefreshButton_Click(null, EventArgs.Empty);
     }
 }
