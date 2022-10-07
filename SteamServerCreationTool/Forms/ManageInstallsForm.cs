@@ -10,7 +10,7 @@ namespace SteamServerCreationTool.Forms
 {
     public partial class ManageInstallsForm : Form
     {
-        private MainForm main;
+        readonly MainForm main;
 
         private Data.InstalledServer app = null;
 
@@ -399,7 +399,7 @@ namespace SteamServerCreationTool.Forms
             }
         }
 
-        private void StartSteamCMDServerDownload(Data.InstalledServer app, bool skip = false)
+        private void StartSteamCMDServerDownload(Data.InstalledServer app)
         {
             //Keep track of success
             bool install = true;
@@ -430,7 +430,7 @@ namespace SteamServerCreationTool.Forms
                         {
                             UseShellExecute = false,
                             FileName = main.settings.steamCMD_installLocation,
-                            Arguments = "+login " + login + " +force_install_dir \"" + installDir + "\" +app_update " + appID + " " + validated + quit // Building argument string
+                            Arguments = $"+force_install_dir \"{installDir}\" +login " + login + " +app_update " + appID + " " + validated + quit // Building argument string
                         }
                 })
                 {

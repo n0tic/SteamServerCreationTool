@@ -138,7 +138,7 @@ namespace SteamServerCreationTool.Forms
                         {
                             UseShellExecute = false,
                             FileName = main.settings.steamCMD_installLocation,
-                            Arguments = "+login " + login + " +force_install_dir \"" + installDir + "\" +app_update " + appID + " " + validated + quit // Building argument string
+                            Arguments = $"+force_install_dir \"{installDir}\" +login " + login + " +app_update " + appID + " " + validated + quit // Building argument string
                         }
                 })
                 {
