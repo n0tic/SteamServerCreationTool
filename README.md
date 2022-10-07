@@ -13,6 +13,7 @@ NOTE: Before updating SSCT Steam Server Creation Tool - Backup your server data/
 If prompted with "Load Data Error!"-dialogue, simply install servers on the same location. A new settings file will be created.
 
 ---------------------------------------------------------------------------------------------------------------------------------
+*Images show version v0.2.2 Beta*
 
 ![Image Preview](http://bytevaultstudio.se/ShareX/SteamServerCreationTool_qSXUhdDBoe.png)
 ![Image Preview](http://bytevaultstudio.se/ShareX/SteamServerCreationTool_RiPqPqSR34.png)
