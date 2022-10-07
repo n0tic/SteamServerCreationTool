@@ -131,8 +131,8 @@ namespace SteamServerCreationTool.Forms
             if (File.Exists(installedSteamCMDPath))
             {
                 //Set button information OK
-                LocateSteamCMDButton.Text = "SteamCMD Located ✓";
-                LocateSteamCMDButton.ForeColor = Color.Green;
+                SteamCMD_InstallBox.Visible = false;
+                SteamCMD_LocatedBox.Visible = true;
 
                 //Set settings, save.
                 settings.steamCMD_installLocation = installedSteamCMDPath;
@@ -175,8 +175,8 @@ namespace SteamServerCreationTool.Forms
                     settings.steamCMD_installLocation = steamCMDFolderPath;
 
                     //Set button information OK
-                    LocateSteamCMDButton.Text = "SteamCMD Located ✓";
-                    LocateSteamCMDButton.ForeColor = Color.Green;
+                    SteamCMD_InstallBox.Visible = false;
+                    SteamCMD_LocatedBox.Visible = true;
 
                     Core.SaveSettings(settings);
                 }
@@ -449,8 +449,8 @@ namespace SteamServerCreationTool.Forms
                 // Check if SteamCMD install was found
                 if (File.Exists(settings.steamCMD_installLocation))
                 {
-                    LocateSteamCMDButton.Text = "SteamCMD Located ✓";
-                    LocateSteamCMDButton.ForeColor = Color.Green;
+                    SteamCMD_InstallBox.Visible = false;
+                    SteamCMD_LocatedBox.Visible = true;
                 }
             }
             else
@@ -462,7 +462,7 @@ namespace SteamServerCreationTool.Forms
             //Do we have an ethernet connection?
             if (!Core.CheckNetwork())
             {
-                InstallCMDButton.Enabled = false;
+                AutoInstallButton.Enabled = false;
                 ServersRefreshButton.Enabled = false;
                 SearchButton.Enabled = false;
                 SteamServerList.Enabled = false;
@@ -473,7 +473,7 @@ namespace SteamServerCreationTool.Forms
             {
                 Core.CheckForUpdates();
 
-                InstallCMDButton.Enabled = true;
+                AutoInstallButton.Enabled = true;
                 ServersRefreshButton.Enabled = false;
                 SearchButton.Enabled = false;
                 SteamServerList.Enabled = false;
@@ -579,6 +579,8 @@ namespace SteamServerCreationTool.Forms
 
         private void CheckForUpdateToolStripMenuItem_Click(object sender, EventArgs e) => Core.CheckForUpdates(true);
 
-        private void refreshServerListToolStripMenuItem_Click(object sender, EventArgs e) => ServersRefreshButton_Click(null, EventArgs.Empty);
+        private void RefreshServerListToolStripMenuItem_Click(object sender, EventArgs e) => ServersRefreshButton_Click(null, EventArgs.Empty);
+
+        private void Button_VisitDownloadButton_Click(object sender, EventArgs e) => Process.Start("https://developer.valvesoftware.com/wiki/SteamCMD#Downloading_SteamCMD");
     }
 }

@@ -31,13 +31,7 @@ namespace SteamServerCreationTool.Forms
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.InstallCMDButton = new System.Windows.Forms.Button();
-            this.LocateSteamCMDButton = new System.Windows.Forms.Button();
             this.SteamServerList = new System.Windows.Forms.ComboBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.OpenSteamCMDHelp = new System.Windows.Forms.Button();
-            this.OpenSteamCMDButton = new System.Windows.Forms.Button();
             this.ProgressBarInfo = new System.Windows.Forms.ProgressBar();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.TotalServerLabel = new System.Windows.Forms.Label();
@@ -52,48 +46,35 @@ namespace SteamServerCreationTool.Forms
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.Tooltipper = new System.Windows.Forms.ToolTip(this.components);
+            this.AutoInstallButton = new System.Windows.Forms.Button();
+            this.SteamCMDInfoButton = new System.Windows.Forms.Button();
+            this.ManuallyLocateSteamCMDButton = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.Button_VisitDownloadButton = new System.Windows.Forms.Button();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.ExpandToSaveData = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.githubProjectHomeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.refreshServerListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkForUpdateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SettingsButton = new System.Windows.Forms.ToolStripButton();
             this.GrayBackgroundPanel = new System.Windows.Forms.Panel();
-            this.refreshServerListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.SteamCMD_InstallBox = new System.Windows.Forms.GroupBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.SteamCMD_LocatedBox = new System.Windows.Forms.GroupBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            this.SteamCMD_InstallBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.SteamCMD_LocatedBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.SuspendLayout();
-            // 
-            // InstallCMDButton
-            // 
-            this.InstallCMDButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.InstallCMDButton.Location = new System.Drawing.Point(6, 19);
-            this.InstallCMDButton.Name = "InstallCMDButton";
-            this.InstallCMDButton.Size = new System.Drawing.Size(156, 24);
-            this.InstallCMDButton.TabIndex = 0;
-            this.InstallCMDButton.Text = "Install SteamCMD";
-            this.Tooltipper.SetToolTip(this.InstallCMDButton, "Install SteamCMD by selecting install location. Download and unpacking starts imm" +
-        "ediately.");
-            this.InstallCMDButton.UseVisualStyleBackColor = true;
-            this.InstallCMDButton.Click += new System.EventHandler(this.InstallCMDButton_Click);
-            // 
-            // LocateSteamCMDButton
-            // 
-            this.LocateSteamCMDButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LocateSteamCMDButton.Location = new System.Drawing.Point(201, 19);
-            this.LocateSteamCMDButton.Name = "LocateSteamCMDButton";
-            this.LocateSteamCMDButton.Size = new System.Drawing.Size(156, 24);
-            this.LocateSteamCMDButton.TabIndex = 1;
-            this.LocateSteamCMDButton.Text = "Locate SteamCMD";
-            this.Tooltipper.SetToolTip(this.LocateSteamCMDButton, "Locate \"steamcmd.exe\" on your drive.");
-            this.LocateSteamCMDButton.UseVisualStyleBackColor = true;
-            this.LocateSteamCMDButton.Click += new System.EventHandler(this.LocateSteamCMDButton_Click);
             // 
             // SteamServerList
             // 
@@ -106,53 +87,6 @@ namespace SteamServerCreationTool.Forms
             this.Tooltipper.SetToolTip(this.SteamServerList, "A full list of servers registered with steam.\r\nList is filtering away linux build" +
         "s and shows only servers with \"server\" in the name.");
             this.SteamServerList.SelectedIndexChanged += new System.EventHandler(this.SteamServerList_SelectedIndexChanged);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.pictureBox1);
-            this.groupBox1.Controls.Add(this.InstallCMDButton);
-            this.groupBox1.Controls.Add(this.OpenSteamCMDHelp);
-            this.groupBox1.Controls.Add(this.LocateSteamCMDButton);
-            this.groupBox1.Controls.Add(this.OpenSteamCMDButton);
-            this.groupBox1.Location = new System.Drawing.Point(12, 31);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(389, 51);
-            this.groupBox1.TabIndex = 7;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "SteamCMD";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Silver;
-            this.pictureBox1.Location = new System.Drawing.Point(194, 19);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1, 25);
-            this.pictureBox1.TabIndex = 12;
-            this.pictureBox1.TabStop = false;
-            // 
-            // OpenSteamCMDHelp
-            // 
-            this.OpenSteamCMDHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.OpenSteamCMDHelp.Location = new System.Drawing.Point(161, 19);
-            this.OpenSteamCMDHelp.Name = "OpenSteamCMDHelp";
-            this.OpenSteamCMDHelp.Size = new System.Drawing.Size(27, 24);
-            this.OpenSteamCMDHelp.TabIndex = 8;
-            this.OpenSteamCMDHelp.Text = "?";
-            this.Tooltipper.SetToolTip(this.OpenSteamCMDHelp, "Valve SteamCMD Wiki page to find more information about SteamCMD.");
-            this.OpenSteamCMDHelp.UseVisualStyleBackColor = true;
-            this.OpenSteamCMDHelp.Click += new System.EventHandler(this.OpenSteamCMDHelp_Click);
-            // 
-            // OpenSteamCMDButton
-            // 
-            this.OpenSteamCMDButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OpenSteamCMDButton.Image = global::SteamServerCreationTool.Properties.Resources._016_folder_24_EDIT;
-            this.OpenSteamCMDButton.Location = new System.Drawing.Point(356, 19);
-            this.OpenSteamCMDButton.Name = "OpenSteamCMDButton";
-            this.OpenSteamCMDButton.Size = new System.Drawing.Size(27, 24);
-            this.OpenSteamCMDButton.TabIndex = 4;
-            this.Tooltipper.SetToolTip(this.OpenSteamCMDButton, "Open Directory");
-            this.OpenSteamCMDButton.UseVisualStyleBackColor = true;
-            this.OpenSteamCMDButton.Click += new System.EventHandler(this.OpenSteamCMDButton_Click);
             // 
             // ProgressBarInfo
             // 
@@ -317,6 +251,90 @@ namespace SteamServerCreationTool.Forms
             this.Tooltipper.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.Tooltipper.ToolTipTitle = "Information";
             // 
+            // AutoInstallButton
+            // 
+            this.AutoInstallButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AutoInstallButton.Image = global::SteamServerCreationTool.Properties.Resources._016_double_chevron;
+            this.AutoInstallButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.AutoInstallButton.Location = new System.Drawing.Point(3, 19);
+            this.AutoInstallButton.Name = "AutoInstallButton";
+            this.AutoInstallButton.Size = new System.Drawing.Size(93, 24);
+            this.AutoInstallButton.TabIndex = 0;
+            this.AutoInstallButton.Text = "Auto-Install";
+            this.AutoInstallButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Tooltipper.SetToolTip(this.AutoInstallButton, "Install SteamCMD by selecting install location. Download and unpacking starts imm" +
+        "ediately.");
+            this.AutoInstallButton.UseVisualStyleBackColor = true;
+            this.AutoInstallButton.Click += new System.EventHandler(this.InstallCMDButton_Click);
+            // 
+            // SteamCMDInfoButton
+            // 
+            this.SteamCMDInfoButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            this.SteamCMDInfoButton.Location = new System.Drawing.Point(96, 19);
+            this.SteamCMDInfoButton.Name = "SteamCMDInfoButton";
+            this.SteamCMDInfoButton.Size = new System.Drawing.Size(27, 24);
+            this.SteamCMDInfoButton.TabIndex = 8;
+            this.SteamCMDInfoButton.Text = "?";
+            this.Tooltipper.SetToolTip(this.SteamCMDInfoButton, "Valve SteamCMD Wiki page to find more information about SteamCMD.");
+            this.SteamCMDInfoButton.UseVisualStyleBackColor = true;
+            this.SteamCMDInfoButton.Click += new System.EventHandler(this.OpenSteamCMDHelp_Click);
+            // 
+            // ManuallyLocateSteamCMDButton
+            // 
+            this.ManuallyLocateSteamCMDButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ManuallyLocateSteamCMDButton.Image = global::SteamServerCreationTool.Properties.Resources._031_ellipsis;
+            this.ManuallyLocateSteamCMDButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ManuallyLocateSteamCMDButton.Location = new System.Drawing.Point(130, 19);
+            this.ManuallyLocateSteamCMDButton.Name = "ManuallyLocateSteamCMDButton";
+            this.ManuallyLocateSteamCMDButton.Size = new System.Drawing.Size(125, 24);
+            this.ManuallyLocateSteamCMDButton.TabIndex = 1;
+            this.ManuallyLocateSteamCMDButton.Text = "Manually Locate";
+            this.ManuallyLocateSteamCMDButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Tooltipper.SetToolTip(this.ManuallyLocateSteamCMDButton, "Locate \"steamcmd.exe\" on your drive.");
+            this.ManuallyLocateSteamCMDButton.UseVisualStyleBackColor = true;
+            this.ManuallyLocateSteamCMDButton.Click += new System.EventHandler(this.LocateSteamCMDButton_Click);
+            // 
+            // button7
+            // 
+            this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button7.ForeColor = System.Drawing.Color.Green;
+            this.button7.Location = new System.Drawing.Point(6, 19);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(351, 24);
+            this.button7.TabIndex = 1;
+            this.button7.Text = "SteamCMD Located ✓";
+            this.Tooltipper.SetToolTip(this.button7, "Locate \"steamcmd.exe\" on your drive.");
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.InstallCMDButton_Click);
+            // 
+            // button8
+            // 
+            this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button8.Image = global::SteamServerCreationTool.Properties.Resources._016_folder_24_EDIT;
+            this.button8.Location = new System.Drawing.Point(356, 19);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(27, 24);
+            this.button8.TabIndex = 4;
+            this.Tooltipper.SetToolTip(this.button8, "Open SteamCMD Directory");
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.OpenSteamCMDButton_Click);
+            // 
+            // Button_VisitDownloadButton
+            // 
+            this.Button_VisitDownloadButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Button_VisitDownloadButton.Image = global::SteamServerCreationTool.Properties.Resources._021_browser;
+            this.Button_VisitDownloadButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Button_VisitDownloadButton.Location = new System.Drawing.Point(262, 19);
+            this.Button_VisitDownloadButton.Name = "Button_VisitDownloadButton";
+            this.Button_VisitDownloadButton.Size = new System.Drawing.Size(121, 24);
+            this.Button_VisitDownloadButton.TabIndex = 13;
+            this.Button_VisitDownloadButton.Text = "Visit Download";
+            this.Button_VisitDownloadButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Tooltipper.SetToolTip(this.Button_VisitDownloadButton, "Visit the download page for SteamCMD. Read up on how to use it and unpack it your" +
+        "self.");
+            this.Button_VisitDownloadButton.UseVisualStyleBackColor = true;
+            this.Button_VisitDownloadButton.Click += new System.EventHandler(this.Button_VisitDownloadButton_Click);
+            // 
             // toolStrip1
             // 
             this.toolStrip1.AutoSize = false;
@@ -377,6 +395,13 @@ namespace SteamServerCreationTool.Forms
             this.githubProjectHomeToolStripMenuItem.Text = "Github / Project Home";
             this.githubProjectHomeToolStripMenuItem.Click += new System.EventHandler(this.ProjectLink_Click);
             // 
+            // refreshServerListToolStripMenuItem
+            // 
+            this.refreshServerListToolStripMenuItem.Name = "refreshServerListToolStripMenuItem";
+            this.refreshServerListToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.refreshServerListToolStripMenuItem.Text = "Refresh Server List";
+            this.refreshServerListToolStripMenuItem.Click += new System.EventHandler(this.RefreshServerListToolStripMenuItem_Click);
+            // 
             // checkForUpdateToolStripMenuItem
             // 
             this.checkForUpdateToolStripMenuItem.Name = "checkForUpdateToolStripMenuItem";
@@ -412,22 +437,60 @@ namespace SteamServerCreationTool.Forms
             this.GrayBackgroundPanel.Size = new System.Drawing.Size(413, 2);
             this.GrayBackgroundPanel.TabIndex = 16;
             // 
-            // refreshServerListToolStripMenuItem
+            // SteamCMD_InstallBox
             // 
-            this.refreshServerListToolStripMenuItem.Name = "refreshServerListToolStripMenuItem";
-            this.refreshServerListToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
-            this.refreshServerListToolStripMenuItem.Text = "Refresh Server List";
-            this.refreshServerListToolStripMenuItem.Click += new System.EventHandler(this.refreshServerListToolStripMenuItem_Click);
+            this.SteamCMD_InstallBox.Controls.Add(this.Button_VisitDownloadButton);
+            this.SteamCMD_InstallBox.Controls.Add(this.pictureBox4);
+            this.SteamCMD_InstallBox.Controls.Add(this.pictureBox2);
+            this.SteamCMD_InstallBox.Controls.Add(this.AutoInstallButton);
+            this.SteamCMD_InstallBox.Controls.Add(this.SteamCMDInfoButton);
+            this.SteamCMD_InstallBox.Controls.Add(this.ManuallyLocateSteamCMDButton);
+            this.SteamCMD_InstallBox.Location = new System.Drawing.Point(0, 0);
+            this.SteamCMD_InstallBox.Name = "SteamCMD_InstallBox";
+            this.SteamCMD_InstallBox.Size = new System.Drawing.Size(389, 51);
+            this.SteamCMD_InstallBox.TabIndex = 13;
+            this.SteamCMD_InstallBox.TabStop = false;
+            this.SteamCMD_InstallBox.Text = "SteamCMD";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.Silver;
+            this.pictureBox2.Location = new System.Drawing.Point(126, 20);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(1, 25);
+            this.pictureBox2.TabIndex = 12;
+            this.pictureBox2.TabStop = false;
+            // 
+            // SteamCMD_LocatedBox
+            // 
+            this.SteamCMD_LocatedBox.Controls.Add(this.SteamCMD_InstallBox);
+            this.SteamCMD_LocatedBox.Controls.Add(this.button7);
+            this.SteamCMD_LocatedBox.Controls.Add(this.button8);
+            this.SteamCMD_LocatedBox.Location = new System.Drawing.Point(12, 31);
+            this.SteamCMD_LocatedBox.Name = "SteamCMD_LocatedBox";
+            this.SteamCMD_LocatedBox.Size = new System.Drawing.Size(389, 51);
+            this.SteamCMD_LocatedBox.TabIndex = 14;
+            this.SteamCMD_LocatedBox.TabStop = false;
+            this.SteamCMD_LocatedBox.Text = "SteamCMD";
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.BackColor = System.Drawing.Color.Silver;
+            this.pictureBox4.Location = new System.Drawing.Point(258, 20);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(1, 25);
+            this.pictureBox4.TabIndex = 13;
+            this.pictureBox4.TabStop = false;
             // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(414, 240);
+            this.Controls.Add(this.SteamCMD_LocatedBox);
             this.Controls.Add(this.ProgressBarInfo);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.GrayBackgroundPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -438,30 +501,25 @@ namespace SteamServerCreationTool.Forms
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SSCT Steam Server Creation Tool";
             this.Load += new System.EventHandler(this.MainForm_Load);
-            this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.SteamCMD_InstallBox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.SteamCMD_LocatedBox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button InstallCMDButton;
-        private System.Windows.Forms.Button LocateSteamCMDButton;
-        private System.Windows.Forms.Button OpenSteamCMDButton;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button OpenSteamCMDHelp;
         private System.Windows.Forms.ProgressBar ProgressBarInfo;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button ServersRefreshButton;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label App_nameLabel;
@@ -484,5 +542,15 @@ namespace SteamServerCreationTool.Forms
         public System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.Label TotalServerLabel;
         private System.Windows.Forms.ToolStripMenuItem refreshServerListToolStripMenuItem;
+        private System.Windows.Forms.GroupBox SteamCMD_InstallBox;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Button AutoInstallButton;
+        private System.Windows.Forms.Button SteamCMDInfoButton;
+        private System.Windows.Forms.Button ManuallyLocateSteamCMDButton;
+        private System.Windows.Forms.GroupBox SteamCMD_LocatedBox;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button Button_VisitDownloadButton;
+        private System.Windows.Forms.PictureBox pictureBox4;
     }
 }

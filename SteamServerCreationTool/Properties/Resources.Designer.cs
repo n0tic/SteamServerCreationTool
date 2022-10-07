@@ -73,9 +73,39 @@ namespace SteamServerCreationTool.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _016_double_chevron {
+            get {
+                object obj = ResourceManager.GetObject("016-double chevron", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _016_folder_24_EDIT {
             get {
                 object obj = ResourceManager.GetObject("016-folder-24-EDIT", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _021_browser {
+            get {
+                object obj = ResourceManager.GetObject("021-browser", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _031_ellipsis {
+            get {
+                object obj = ResourceManager.GetObject("031-ellipsis", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -114,16 +144,15 @@ namespace SteamServerCreationTool.Properties {
         ///   Looks up a localized string similar to @ECHO OFF
         ///::===============================================================
         ///:: This batch-script will run the server in a &quot;loop&quot; meaning that
-        ///:: the server will restart automatically if crashing or exited.
-        ///:: NOTE: Be sure to close this cmd/window before the server.
+        ///:: the server will restart automatically if crashing occur or server has been shutdown improperly.
+        ///:: NOTE: Make sure to close this cmd/window before the server.
         ///:: 
         ///:: You will need to edit the 3 lines below with valid information
-        ///:: Row: 19, 20, 21
+        ///:: Row: 19, 20, 21 (Bellow the lines beginning with &quot;::&quot;)
         ///::
         ///:: Examples:
         ///:: SET serverExecutablePath=D:\Valheim Server
-        ///:: SET serverExecutableFileName=valheim_server.exe
-        ///:: SET serverLaunchOptions=-nog [rest of string was truncated]&quot;;.
+        ///:: SET  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string StartServerScript {
             get {

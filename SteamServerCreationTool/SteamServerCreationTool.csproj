@@ -159,6 +159,8 @@
     </Content>
     <None Include="Resources\StartServerScript.txt" />
     <None Include="Resources\012-cogwheel.png" />
+    <None Include="Resources\016-double chevron.png" />
+    <None Include="Resources\031-ellipsis.png" />
     <Content Include="SSCT_LICENCE.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
