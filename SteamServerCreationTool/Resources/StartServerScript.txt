@@ -62,9 +62,6 @@ SET serverLaunchOptions=-Some -Launch Options
 
 SET pathExist=%serverExecutablePath%\%serverExecutableFileName%
 
-
-$"+force_install_dir \"{installDir}\" +login " + login + " +app_update " + appID + " " + validated + quit // Building argument string
-
 PUSHD {steamcmd_dir}
 START /wait steamcmd +force_install_dir "{server_dir}" +login anonymous +app_update {app_id} validated +quit
 PUSHD {server_dir}
