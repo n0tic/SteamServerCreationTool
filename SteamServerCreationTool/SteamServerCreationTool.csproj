@@ -147,25 +147,28 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\016-folder-24-EDIT.png" />
+    <None Include="Licenses\016-folder-24-EDIT.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\075-reload-EDIT.png" />
+    <None Include="Licenses\075-reload-EDIT.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="026-cloud-computing-12.ico" />
-    <Content Include="NewtonsoftJson_LICENSE.txt">
+    <Content Include="Licenses\NewtonsoftJson_LICENSE.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Resources\StartServerScript.txt" />
-    <None Include="Resources\012-cogwheel.png" />
-    <None Include="Resources\016-double chevron.png" />
-    <None Include="Resources\031-ellipsis.png" />
-    <Content Include="SSCT_LICENCE.txt">
+    <None Include="Licenses\StartServerScript.txt" />
+    <None Include="Licenses\012-cogwheel.png" />
+    <None Include="Licenses\016-double chevron.png" />
+    <None Include="Licenses\031-ellipsis.png" />
+    <Content Include="Licenses\ArchiveComment.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Resources\079-search-EDIT.png" />
-    <None Include="Resources\033-folder-7-EDIT.png" />
+    <Content Include="Licenses\SSCT_LICENCE.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Licenses\079-search-EDIT.png" />
+    <None Include="Licenses\033-folder-7-EDIT.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

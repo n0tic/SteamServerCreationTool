@@ -149,10 +149,8 @@ namespace SteamServerCreationTool.Properties {
         ///:: 
         ///:: You will need to edit the 3 lines below with valid information
         ///:: Row: 19, 20, 21 (Bellow the lines beginning with &quot;::&quot;)
-        ///::
-        ///:: Examples:
-        ///:: SET serverExecutablePath=D:\Valheim Server
-        ///:: SET  [rest of string was truncated]&quot;;.
+        ///:: 
+        ///:: !DO NOT ADD SPACES UNLESS THERE ARE SPACES IN THE ARGUMENT OR DI [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string StartServerScript {
             get {
