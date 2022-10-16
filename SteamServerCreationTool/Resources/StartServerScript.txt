@@ -6,6 +6,8 @@
 :: 
 :: You will need to edit the 3 lines below with valid information
 :: Row: 19, 20, 21 (Bellow the lines beginning with "::")
+:: 
+:: !DO NOT ADD SPACES UNLESS THERE ARE SPACES IN THE ARGUMENT OR DIRECTORY PATH!
 ::
 :: Examples:
 :: SET serverExecutablePath=D:\Valheim Server
@@ -59,15 +61,14 @@ SET serverLaunchOptions=-Some -Launch Options
 :: DO NOT EDIT BELOW THIS LINE; UNLESS YOU KNOW WHAT YOU ARE DOING
 ::================================================================
 
-
 SET pathExist=%serverExecutablePath%\%serverExecutableFileName%
 
 PUSHD {steamcmd_dir}
-START /wait steamcmd +force_install_dir "{server_dir}" +login anonymous +app_update {app_id} validated +quit
+START /wait steamcmd +force_install_dir "{server_dir}" +login "{login_cred}" +app_update {app_id} validated +quit
 PUSHD {server_dir}
 ECHO Protecting {app_name} from crashes...
 ECHO To exit {app_name}, close this window first. It will restart otherwise.
-TITLE {app_name}
+TITLE "{app_name}"
 IF EXIST "%pathExist%" GOTO server
 
 CLS

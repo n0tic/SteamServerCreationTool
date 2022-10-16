@@ -26,7 +26,7 @@ namespace SteamServerCreationTool.Data
         public string GetLogin()
         {
             if (!useUserData) return "anonymous";
-            else if (useUserData && !userData.IsEmpty()) return userData.username + " " + userData.GetPassword();
+            else if (useUserData && !userData.IsEmpty()) return userData.Username + " " + userData.GetPassword();
             else return null;
         }
     }
@@ -52,30 +52,30 @@ namespace SteamServerCreationTool.Data
     [Serializable]
     public class UserData
     {
-        public string username { get; private set; }
-        public string password { get; private set; }
+        public string Username { get; private set; }
+        public string Password { get; private set; }
 
         public UserData()
         {
-            this.username = null;
-            this.password = null;
+            this.Username = null;
+            this.Password = null;
         }
 
         public bool IsEmpty()
         {
-            if (string.IsNullOrWhiteSpace(this.username) || this.password == null || this.password.Length < 1) return true;
+            if (string.IsNullOrWhiteSpace(this.Username) || this.Password == null || this.Password.Length < 1) return true;
             else return false;
         }
 
-        public void SetUsername(string name) => this.username = name;
+        public void SetUsername(string name) => this.Username = name;
 
-        public void SetPassword(string pass) => this.password = Core.Base64Encode(pass);
+        public void SetPassword(string pass) => this.Password = Core.Base64Encode(pass);
 
         public string GetPassword()
         {
             try
             {
-                return Core.Base64Decode(this.password);
+                return Core.Base64Decode(this.Password);
             }
             catch { return null; }
         }

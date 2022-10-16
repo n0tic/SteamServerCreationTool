@@ -504,6 +504,7 @@ namespace SteamServerCreationTool.Forms
                 startScript = startScript.Replace("{server_dir}", app.installPath);
                 startScript = startScript.Replace("{app_id}", app.app.Appid.ToString());
                 startScript = startScript.Replace("{app_name}", app.app.Name);
+                startScript = startScript.Replace("{login_cred}", main.settings.GetLogin());
 
                 Core.SaveToFile(app.installPath + @"\StartServerScript.bat", startScript);
             }

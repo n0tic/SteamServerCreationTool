@@ -138,7 +138,7 @@ namespace SteamServerCreationTool.Forms
             this.linkLabel2.TabIndex = 19;
             this.linkLabel2.TabStop = true;
             this.linkLabel2.Text = "Server Setup";
-            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel2_LinkClicked);
             // 
             // label4
             // 
@@ -162,7 +162,7 @@ namespace SteamServerCreationTool.Forms
             this.linkLabel1.TabIndex = 18;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Gameserver Login Tokens (GSLTs)";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
             // 
             // InstallDirButton
             // 

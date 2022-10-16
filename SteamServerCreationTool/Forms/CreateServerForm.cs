@@ -1,4 +1,6 @@
-﻿using SteamServerCreationTool.Data;
+﻿#pragma warning disable IDE0044
+
+using SteamServerCreationTool.Data;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -31,7 +33,7 @@ namespace SteamServerCreationTool.Forms
             }
         }
 
-        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void LinkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             if (app != null)
             {
@@ -41,7 +43,7 @@ namespace SteamServerCreationTool.Forms
             }
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) => Process.Start("https://steamcommunity.com/dev/managegameservers?l=english");
+        private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) => Process.Start("https://steamcommunity.com/dev/managegameservers?l=english");
 
         private void InstallDirButton_Click(object sender, EventArgs e)
         {
@@ -107,7 +109,7 @@ namespace SteamServerCreationTool.Forms
             Close();
         }
 
-        private void StartSteamCMDServerDownload(Data.App app, bool skip = false)
+        private void StartSteamCMDServerDownload(Data.App app)
         {
             //Keep track of success
             bool install = true;
@@ -169,6 +171,7 @@ namespace SteamServerCreationTool.Forms
                         startScript = startScript.Replace("{server_dir}", installDir);
                         startScript = startScript.Replace("{app_id}", appID);
                         startScript = startScript.Replace("{app_name}", app.Name);
+                        startScript = startScript.Replace("{login_cred}", main.settings.GetLogin());
 
                         Core.SaveToFile(installDir + @"\StartServerScript.bat", startScript);
 

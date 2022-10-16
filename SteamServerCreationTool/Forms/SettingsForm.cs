@@ -15,7 +15,7 @@ namespace SteamServerCreationTool.Forms
 
         private void CreateServerForm_Load(object sender, EventArgs e)
         {
-            username_inputbox.Text = main.settings.userData.username;
+            username_inputbox.Text = main.settings.userData.Username;
 
             string pass = main.settings.userData.GetPassword();
             if (pass != null) password_inputbox.Text = pass;
