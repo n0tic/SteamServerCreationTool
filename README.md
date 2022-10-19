@@ -36,6 +36,7 @@ It extrapolates servers from that list, creates a database with name and referen
   - Direct: https://steamcdn-a.akamaihd.net/client/installer/steamcmd.zip
 
 # StartServerScript?
+NOTE: If you are using a username and password; the password will be in clear text format in the script! WARNING!
 NOTE: This is not a required/needed feature to run most servers.
 
 Inside the root folder of the created server there will be a generated batch (.bat) file called "StartServerScript.bat".
